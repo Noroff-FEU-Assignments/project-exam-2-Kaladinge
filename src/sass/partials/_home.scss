@@ -1,6 +1,19 @@
 .hero-banner {
   background-image: url("../../images/brygga-bergen-hero.jpg");
   height: 700px;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-top: 30px;
+  background-position: center;
+
+  &--text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    color: white;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #707070;
+  }
 }
