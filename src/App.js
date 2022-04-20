@@ -1,4 +1,4 @@
-import "./App.css";
+import "./sass/style.scss";
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
