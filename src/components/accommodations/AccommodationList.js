@@ -36,7 +36,6 @@ function AccommodationList() {
   return (
     <>
       {accommodations.map((item) => {
-        console.log(item.attributes);
         const {
           title,
           address,
@@ -48,10 +47,13 @@ function AccommodationList() {
           airport,
           bryggen,
         } = item.attributes;
-        console.log(title);
+
+        const { id } = item;
 
         return (
           <AccommodationItem
+            key={id}
+            id={id}
             title={title}
             address={address}
             area={area}
