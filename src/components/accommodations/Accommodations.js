@@ -12,7 +12,9 @@ function Accommodations() {
           <Heading title="Accommodations" />
           <AccommodationList />
         </Col>
-        <Col>other col</Col>
+        <Col xs={2} className="d-none d-lg-block">
+          <div>other col</div>
+        </Col>
       </Row>
     </>
   );
