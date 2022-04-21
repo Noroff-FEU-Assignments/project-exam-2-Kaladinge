@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AccommodationItem from "./AccommodationItem";
 
 function AccommodationList() {
   const [accommodations, setAccommodations] = useState([]);
@@ -33,7 +34,13 @@ function AccommodationList() {
 
   return (
     <>
-      <div>hei</div>
+      {accommodations.map((item) => {
+        console.log(item.attributes);
+        const { title, address } = item.attributes;
+        console.log(title);
+
+        return <AccommodationItem title={title} address={address} />;
+      })}
     </>
   );
 }
