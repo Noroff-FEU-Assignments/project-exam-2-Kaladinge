@@ -11,6 +11,8 @@ function AccommodationItem({
   price,
   rating,
   mainpic,
+  airport,
+  bryggen,
 }) {
   return (
     <Row>
@@ -23,8 +25,8 @@ function AccommodationItem({
         <hr />
         <p>{area}</p>
         <ul>
-          <li>km away from Bergen Airport</li>
-          <li>km away from Bergen Brygge</li>
+          <li>{airport} km away from Bergen Airport</li>
+          <li>{bryggen} km away from Bergen Brygge</li>
         </ul>
         {facility.map((item) => {
           return <span>{item} </span>;

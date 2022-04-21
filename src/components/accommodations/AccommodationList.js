@@ -37,8 +37,17 @@ function AccommodationList() {
     <>
       {accommodations.map((item) => {
         console.log(item.attributes);
-        const { title, address, area, facility, price, rating, mainpic } =
-          item.attributes;
+        const {
+          title,
+          address,
+          area,
+          facility,
+          price,
+          rating,
+          mainpic,
+          airport,
+          bryggen,
+        } = item.attributes;
         console.log(title);
 
         return (
@@ -50,6 +59,8 @@ function AccommodationList() {
             price={price}
             rating={rating}
             mainpic={mainpic}
+            airport={airport}
+            bryggen={bryggen}
           />
         );
       })}
