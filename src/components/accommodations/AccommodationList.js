@@ -36,10 +36,17 @@ function AccommodationList() {
     <>
       {accommodations.map((item) => {
         console.log(item.attributes);
-        const { title, address } = item.attributes;
+        const { title, address, area, facility } = item.attributes;
         console.log(title);
 
-        return <AccommodationItem title={title} address={address} />;
+        return (
+          <AccommodationItem
+            title={title}
+            address={address}
+            area={area}
+            facility={facility}
+          />
+        );
       })}
     </>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { Col, Row } from "react-bootstrap";
 import Accommodation from "../accommodation/Accommodation";
 import Heading from "../layout/Heading";
 import AccommodationList from "./AccommodationList";
@@ -6,8 +7,13 @@ import AccommodationList from "./AccommodationList";
 function Accommodations() {
   return (
     <>
-      <Heading title="Accommodations" />
-      <AccommodationList />
+      <Row>
+        <Col>
+          <Heading title="Accommodations" />
+          <AccommodationList />
+        </Col>
+        <Col>other col</Col>
+      </Row>
     </>
   );
 }
