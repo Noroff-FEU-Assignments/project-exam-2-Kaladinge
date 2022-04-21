@@ -3,11 +3,19 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-function AccommodationItem({ title, address, area, facility, price, rating }) {
+function AccommodationItem({
+  title,
+  address,
+  area,
+  facility,
+  price,
+  rating,
+  mainpic,
+}) {
   return (
     <Row>
       <Col md={4} className="border">
-        hi
+        <img src={mainpic.data.attributes.url} className="w-100" />
       </Col>
       <Col md={4} className="border">
         <h4>{title}</h4>

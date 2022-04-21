@@ -6,7 +6,8 @@ function AccommodationList() {
   const [loading, setLoading] = useState(true);
   const [fetchPagesError, setFetchPagesError] = useState(null);
 
-  const url = "https://kaladinge-pe2.herokuapp.com/api/accommodations";
+  const url =
+    "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
 
   useEffect(() => {
     const getAccommodations = async () => {
@@ -36,7 +37,7 @@ function AccommodationList() {
     <>
       {accommodations.map((item) => {
         console.log(item.attributes);
-        const { title, address, area, facility, price, rating } =
+        const { title, address, area, facility, price, rating, mainpic } =
           item.attributes;
         console.log(title);
 
@@ -48,6 +49,7 @@ function AccommodationList() {
             facility={facility}
             price={price}
             rating={rating}
+            mainpic={mainpic}
           />
         );
       })}
