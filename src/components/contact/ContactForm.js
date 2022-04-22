@@ -25,8 +25,12 @@ function ContactForm() {
     resolver: yupResolver(schema),
   });
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
     console.log(data);
+    try {
+    } catch (error) {
+    } finally {
+    }
   }
 
   return (
