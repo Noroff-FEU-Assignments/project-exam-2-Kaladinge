@@ -5,7 +5,7 @@ import ContactForm from "./ContactForm";
 function Contact() {
   return (
     <>
-      <Heading title="Contact Us" />
+      <Heading title="Send Us A Message" />
       <ContactForm />
     </>
   );

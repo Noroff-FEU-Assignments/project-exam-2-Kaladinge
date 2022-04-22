@@ -4,23 +4,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "react-bootstrap";
 
 const schema = yup.object().shape({
-  firstName: yup
+  name: yup
     .string()
-    .required("First name is required")
+    .required("Name is required")
     .min(3, "Your first name must be at least 3 characters"),
-  lastName: yup
-    .string()
-    .required("Last name is required")
-    .min(4, "Your last name must be at least 4 characters"),
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Please enter a valid email address"),
   subject: yup.string().required("A choice is required"),
   message: yup
     .string()
     .required("Message is required")
-    .min(10, "Your message must be at least 10 characters"),
+    .min(10, "Your message must be at least 10 characters")
+    .max(200, "Your message must be no more than 200 characters"),
 });
 
 function ContactForm() {
@@ -41,28 +34,12 @@ function ContactForm() {
       onSubmit={handleSubmit(onSubmit)}
       className={`bg-light p-3 d-flex flex-column mx-auto`}
     >
-      <Form.Label htmlFor="first-name" className="mt-3">
-        First Name
+      <Form.Label htmlFor="name" className="mt-3">
+        Name
       </Form.Label>
-      <Form.Control {...register("firstName")} id="first-name" />
-      {errors.firstName && (
-        <span className="mb-3 text-danger">{errors.firstName.message}</span>
-      )}
-
-      <Form.Label htmlFor="last-name" className="mt-3">
-        Last Name
-      </Form.Label>
-      <Form.Control {...register("lastName")} id="last-name" />
-      {errors.lastName && (
-        <span className="mb-3 text-danger">{errors.lastName.message}</span>
-      )}
-
-      <Form.Label htmlFor="email" className="mt-3">
-        Email
-      </Form.Label>
-      <Form.Control {...register("email")} id="email" />
-      {errors.email && (
-        <span className="mb-3 text-danger">{errors.email.message}</span>
+      <Form.Control {...register("name")} id="name" placeholder="Full name" />
+      {errors.name && (
+        <span className="mb-3 text-danger">{errors.name.message}</span>
       )}
 
       <Form.Label htmlFor="subject" className="mt-3">
@@ -70,8 +47,8 @@ function ContactForm() {
       </Form.Label>
       <Form.Select {...register("subject")}>
         <option value="">---</option>
-        <option value="recipe">Recipe</option>
-        <option value="courses">Courses</option>
+        <option value="booking">Booking</option>
+        <option value="cancellation">Cancellation</option>
         <option value="other">Other</option>
       </Form.Select>
       {errors.subject && (
@@ -86,6 +63,7 @@ function ContactForm() {
         id="message"
         as="textarea"
         rows={3}
+        placeholder="Max 200 words"
       />
       {errors.message && (
         <span className="mb-3 text-danger">{errors.message.message}</span>
