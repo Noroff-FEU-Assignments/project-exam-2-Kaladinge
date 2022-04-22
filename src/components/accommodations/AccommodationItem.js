@@ -16,7 +16,6 @@ function AccommodationItem({
   airport,
   bryggen,
 }) {
-  console.log(id);
   return (
     <Row>
       <Col md={4} className="border">

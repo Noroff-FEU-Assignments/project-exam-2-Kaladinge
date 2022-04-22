@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AccommodationItem from "./AccommodationItem";
 
-function AccommodationList() {
+function AccommodationList({ category }) {
   const [accommodations, setAccommodations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fetchPagesError, setFetchPagesError] = useState(null);
+
+  console.log(category);
 
   const url =
     "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
@@ -14,7 +16,6 @@ function AccommodationList() {
       try {
         const response = await fetch(url);
         const result = await response.json();
-        console.log(result.data);
         setAccommodations(result.data);
       } catch (error) {
         setFetchPagesError(error.toString());

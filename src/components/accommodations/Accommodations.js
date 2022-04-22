@@ -7,9 +7,7 @@ function Accommodations() {
   const [category, setCategory] = useState([]);
 
   function addCategory(event) {
-    console.log(event.target.innerHTML);
     setCategory([...category, event.target.innerHTML]);
-    console.log(category);
   }
 
   return (
@@ -19,7 +17,7 @@ function Accommodations() {
           <Heading title="Accommodations" />
           <div onClick={addCategory}>Hotel</div>
           <div onClick={addCategory}>Guesthouse</div>
-          <AccommodationList />
+          <AccommodationList category={category} />
         </Col>
         <Col xs={2} className="d-none d-lg-block">
           <div>other col</div>
