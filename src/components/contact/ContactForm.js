@@ -2,6 +2,10 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "react-bootstrap";
+import { useState } from "react";
+import axios from "axios";
+
+const url = "https://kaladinge-pe2.herokuapp.com/api/messages";
 
 const schema = yup.object().shape({
   name: yup
@@ -17,6 +21,9 @@ const schema = yup.object().shape({
 });
 
 function ContactForm() {
+  const [submitting, setSubmitting] = useState(false);
+  const [postError, setPostError] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -27,9 +34,15 @@ function ContactForm() {
 
   async function onSubmit(data) {
     console.log(data);
+    setSubmitting(true);
     try {
+      const response = await axios.post(url, { "data": {name: data.name, subject: data.subject, message: data.message} });
+      console.log(response.data);
     } catch (error) {
+      console.log(error);
+      setPostError(error.toString());
     } finally {
+      setSubmitting(false);
     }
   }
 
