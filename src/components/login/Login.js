@@ -5,7 +5,7 @@ import Loginform from "./LoginForm";
 function Login() {
   return (
     <>
-      <Heading title="Send Us A Message" />
+      <Heading title="Log In" />
       <Loginform />
     </>
   );

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 import { Form } from "react-bootstrap";
@@ -21,11 +22,13 @@ function Loginform() {
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [token, setToken] = useContext(AuthContext);
 
-  //const router = useRouter();
+  const navigate = useNavigate();
 
-  //if (token) {
-  //router.push("/admin");
-  //}
+  useEffect(() => {
+    if (token) {
+      navigate("/admin");
+    }
+  });
 
   const {
     register,
@@ -50,7 +53,7 @@ function Loginform() {
       setLoginError(false);
       console.log(response.data.jwt);
       setLoginSuccess(true);
-      //router.push("/admin");
+      navigate("/admin");
     } catch (error) {
       setLoginError(true);
     } finally {
@@ -93,7 +96,7 @@ function Loginform() {
           </button>
         </fieldset>
         {loginSuccess && (
-          <div className="text-success">Successfully logged in</div>
+          <div className="text-success">You successfully logged in</div>
         )}
         {loginError && (
           <div className="text-danger">UserName or password was incorrect</div>
