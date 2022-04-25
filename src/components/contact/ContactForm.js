@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
+import FormMessage from "../../common/FormMessage";
 
 const url = "https://kaladinge-pe2.herokuapp.com/api/messages";
 
@@ -23,6 +24,7 @@ const schema = yup.object().shape({
 function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [postError, setPostError] = useState(null);
+  const [postSuccess, setPostSuccess] = useState(false);
 
   const {
     register,
@@ -33,13 +35,14 @@ function ContactForm() {
   });
 
   async function onSubmit(data) {
-    console.log(data);
     setSubmitting(true);
+    setPostError(null);
     try {
-      const response = await axios.post(url, { "data": {name: data.name, subject: data.subject, message: data.message} });
-      console.log(response.data);
+      const response = await axios.post(url, {
+        data: { name: data.name, subject: data.subject, message: data.message },
+      });
+      setPostSuccess(true);
     } catch (error) {
-      console.log(error);
       setPostError(error.toString());
     } finally {
       setSubmitting(false);
@@ -51,44 +54,56 @@ function ContactForm() {
       onSubmit={handleSubmit(onSubmit)}
       className={`bg-light p-3 d-flex flex-column mx-auto`}
     >
-      <Form.Label htmlFor="name" className="mt-3">
-        Name
-      </Form.Label>
-      <Form.Control {...register("name")} id="name" placeholder="Full name" />
-      {errors.name && (
-        <span className="mb-3 text-danger">{errors.name.message}</span>
-      )}
+      <fieldset disabled={submitting}>
+        <Form.Label htmlFor="name" className="mt-3">
+          Name
+        </Form.Label>
+        <Form.Control {...register("name")} id="name" placeholder="Full name" />
+        {errors.name && (
+          <div className="mb-3 text-danger">{errors.name.message}</div>
+        )}
 
-      <Form.Label htmlFor="subject" className="mt-3">
-        Subject
-      </Form.Label>
-      <Form.Select {...register("subject")}>
-        <option value="">---</option>
-        <option value="booking">Booking</option>
-        <option value="cancellation">Cancellation</option>
-        <option value="other">Other</option>
-      </Form.Select>
-      {errors.subject && (
-        <span className="mb-3 text-danger">{errors.subject.message}</span>
-      )}
+        <Form.Label htmlFor="subject" className="mt-3">
+          Subject
+        </Form.Label>
+        <Form.Select {...register("subject")}>
+          <option value="">---</option>
+          <option value="booking">Booking</option>
+          <option value="cancellation">Cancellation</option>
+          <option value="other">Other</option>
+        </Form.Select>
+        {errors.subject && (
+          <div className="mb-3 text-danger">{errors.subject.message}</div>
+        )}
 
-      <Form.Label htmlFor="message" className="mt-3">
-        Message
-      </Form.Label>
-      <Form.Control
-        {...register("message")}
-        id="message"
-        as="textarea"
-        rows={3}
-        placeholder="Max 200 words"
-      />
-      {errors.message && (
-        <span className="mb-3 text-danger">{errors.message.message}</span>
-      )}
+        <Form.Label htmlFor="message" className="mt-3">
+          Message
+        </Form.Label>
+        <Form.Control
+          {...register("message")}
+          id="message"
+          as="textarea"
+          rows={3}
+          placeholder="Max 200 words"
+        />
+        {errors.message && (
+          <div className="mb-3 text-danger">{errors.message.message}</div>
+        )}
 
-      <button type="submit" className="mt-3 bg-primary text-white">
-        Submit
-      </button>
+        <button type="submit" className="mt-3 bg-primary text-white">
+          {submitting === true ? "Working..." : "Submit"}
+        </button>
+      </fieldset>
+      {postError && (
+        <FormMessage styling="form--error">
+          Something went wrong when posting data
+        </FormMessage>
+      )}
+      {postSuccess && (
+        <FormMessage styling="form--success">
+          Message was successfully submitted
+        </FormMessage>
+      )}
     </Form>
   );
 }
