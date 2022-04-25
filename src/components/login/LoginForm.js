@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 import { Form } from "react-bootstrap";
 
-const url = BASE_URL + TOKEN_PATH;
+const url = "https://kaladinge-pe2.herokuapp.com/api/auth/local";
 
 const schema = yup.object().shape({
   username: yup.string().required("Please enter your username"),
@@ -21,11 +21,11 @@ function Loginform() {
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [token, setToken] = useContext(AuthContext);
 
-  const router = useRouter();
+  //const router = useRouter();
 
-  if (token) {
-    router.push("/admin");
-  }
+  //if (token) {
+  //router.push("/admin");
+  //}
 
   const {
     register,
@@ -37,14 +37,20 @@ function Loginform() {
 
   async function onSubmit(data) {
     setSubmitting(true);
+    console.log(data.username);
+    console.log(data.password);
 
     try {
-      const response = await axios.post(url, data);
-      setToken(response.data.token);
+      const response = await axios.post(url, {
+        identifier: data.username,
+        password: data.password,
+      });
+
+      setToken(response.data.jwt);
       setLoginError(false);
-      console.log(response.data.token);
+      console.log(response.data.jwt);
       setLoginSuccess(true);
-      router.push("/admin");
+      //router.push("/admin");
     } catch (error) {
       setLoginError(true);
     } finally {
@@ -54,15 +60,9 @@ function Loginform() {
 
   return (
     <>
-      {loginSuccess && (
-        <div className="text-success">Successfully logged in</div>
-      )}
-      {loginError && (
-        <div className="text-danger">UserName or password was incorrect</div>
-      )}
       <Form
         onSubmit={handleSubmit(onSubmit)}
-        className={`${styles.formContainer} login-form bg-light mx-auto p-3 mt-3`}
+        className={`login-form bg-light mx-auto p-3 mt-3`}
       >
         <fieldset disabled={submitting}>
           <div className="d-flex flex-column">
@@ -92,6 +92,12 @@ function Loginform() {
             Login
           </button>
         </fieldset>
+        {loginSuccess && (
+          <div className="text-success">Successfully logged in</div>
+        )}
+        {loginError && (
+          <div className="text-danger">UserName or password was incorrect</div>
+        )}
       </Form>
     </>
   );
