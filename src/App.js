@@ -17,56 +17,62 @@ import Contact from "./components/contact/Contact";
 import Login from "./components/login/Login";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
+import AuthProvider from "./context/AuthContext";
 
 function App() {
   return (
-    <Router>
-      <Navbar expand="lg" className="bg-dark navbar-dark position-relative">
-        <NavLink to="/" className="d-lg-none">
-          <Navbar.Brand>mobile</Navbar.Brand>
-        </NavLink>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <div className="d-flex flex-column flex-lg-row justify-content-around w-100">
-            <NavLink to="/" className="text-decoration-none d-none d-lg-block">
-              <Navbar.Brand>desktop</Navbar.Brand>
-            </NavLink>
-            <Nav className="">
-              <NavLink to="/accommodations" className="nav-link">
-                Accommodations
+    <AuthProvider>
+      <Router>
+        <Navbar expand="lg" className="bg-dark navbar-dark position-relative">
+          <NavLink to="/" className="d-lg-none">
+            <Navbar.Brand>mobile</Navbar.Brand>
+          </NavLink>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <div className="d-flex flex-column flex-lg-row justify-content-around w-100">
+              <NavLink
+                to="/"
+                className="text-decoration-none d-none d-lg-block"
+              >
+                <Navbar.Brand>desktop</Navbar.Brand>
               </NavLink>
-            </Nav>
-            <Form action="/action_page.php" className="w-50">
-              <FormControl
-                type="text"
-                placeholder="Search accommodation"
-                name="search"
-              />
-            </Form>
-            <Nav className="">
-              <NavLink to="/contact" className="nav-link">
-                Contact
-              </NavLink>
-            </Nav>
-            <Nav className="">
-              <NavLink to="/login" className="nav-link">
-                Login
-              </NavLink>
-            </Nav>
-          </div>
-        </Navbar.Collapse>
-      </Navbar>
-      <Container>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/accommodations" element={<Accommodations />} />
-          <Route path="/accommodation/:id" element={<Accommodation />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
-      </Container>
-    </Router>
+              <Nav className="">
+                <NavLink to="/accommodations" className="nav-link">
+                  Accommodations
+                </NavLink>
+              </Nav>
+              <Form action="/action_page.php" className="w-50">
+                <FormControl
+                  type="text"
+                  placeholder="Search accommodation"
+                  name="search"
+                />
+              </Form>
+              <Nav className="">
+                <NavLink to="/contact" className="nav-link">
+                  Contact
+                </NavLink>
+              </Nav>
+              <Nav className="">
+                <NavLink to="/login" className="nav-link">
+                  Login
+                </NavLink>
+              </Nav>
+            </div>
+          </Navbar.Collapse>
+        </Navbar>
+        <Container>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/accommodations" element={<Accommodations />} />
+            <Route path="/accommodation/:id" element={<Accommodation />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={<Admin />} />
+          </Routes>
+        </Container>
+      </Router>
+    </AuthProvider>
   );
 }
 
