@@ -4,6 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import Heading from "../layout/Heading";
 import Details from "./Details";
+import EnquiryForm from "./EnquiryForm";
 
 function Accommodation() {
   const [accommodation, setAccommodation] = useState([]);
@@ -41,6 +42,7 @@ function Accommodation() {
   const {
     title,
     summary,
+    description,
     address,
     area,
     facility,
@@ -59,6 +61,7 @@ function Accommodation() {
           <Details
             key={id}
             summary={summary}
+            description={description}
             id={id}
             title={title}
             address={address}
@@ -71,7 +74,9 @@ function Accommodation() {
             bryggen={bryggen}
           />
         </Col>
-        <Col></Col>
+        <Col>
+          <EnquiryForm />
+        </Col>
       </Row>
     </>
   );

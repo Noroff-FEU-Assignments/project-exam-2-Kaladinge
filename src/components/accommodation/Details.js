@@ -5,6 +5,7 @@ function Details({
   id,
   title,
   summary,
+  description,
   address,
   area,
   facility,
@@ -26,13 +27,21 @@ function Details({
       })}
       <hr></hr>
       <Row>
-        <Col xs={12}>
+        <Col>
           <img src={mainpic.data.attributes.url} className="w-100" />
         </Col>
       </Row>
       <Row>
-        <Col></Col>
-        <Col></Col>
+        <Col xs={12} lg={6}>
+          {description}
+        </Col>
+        <Col>
+          <p>{area}</p>
+          <ul>
+            <li>{airport} km away from Bergen Airport</li>
+            <li>{bryggen} km away from Bergen Brygge</li>
+          </ul>
+        </Col>
       </Row>
     </>
   );
