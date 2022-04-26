@@ -1,4 +1,6 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "react-bootstrap";
@@ -15,7 +17,7 @@ const schema = yup.object().shape({
     .min(3, "Your first name must be at least 3 characters"),
   guests: yup.string().required("Number of guests is required"),
   to: yup.string().required("Start date is required"),
-  from: yup.string().required("End date is required"),
+  from: yup.string().required("Start date is required"),
 });
 
 function ContactForm() {
@@ -26,6 +28,7 @@ function ContactForm() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -33,6 +36,7 @@ function ContactForm() {
 
   async function onSubmit(data) {
     console.log(data);
+    console.log(errors.name);
     setSubmitting(true);
     setPostError(null);
     try {
@@ -77,13 +81,21 @@ function ContactForm() {
         <Form.Label htmlFor="from" className="mt-3">
           From
         </Form.Label>
-        <Form.Control {...register("from")} id="from" placeholder="To date" />
-        {errors.from && (
-          <div className="mb-3 text-danger">{errors.from.message}</div>
-        )}
+        <Controller
+          control={control}
+          name="from"
+          render={({ field }) => (
+            <DatePicker
+              placeholderText="Select date"
+              onChange={(e) => field.onChange(e)}
+              selected={field.value}
+            />
+          )}
+        />
+        {errors.from && <span>This field is required</span>}
 
         <Form.Label htmlFor="guests" className="mt-3">
-          Subject
+          Number of guests
         </Form.Label>
         <Form.Select {...register("guests")}>
           <option value="">---</option>
