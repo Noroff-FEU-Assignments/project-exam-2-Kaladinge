@@ -13,12 +13,9 @@ const schema = yup.object().shape({
     .string()
     .required("Name is required")
     .min(3, "Your first name must be at least 3 characters"),
-  guests: yup.string().required("A choice is required"),
-  message: yup
-    .string()
-    .required("Message is required")
-    .min(10, "Your message must be at least 10 characters")
-    .max(200, "Your message must be no more than 200 characters"),
+  guests: yup.string().required("Number of guests is required"),
+  to: yup.string().required("Start date is required"),
+  from: yup.string().required("End date is required"),
 });
 
 function ContactForm() {
@@ -52,6 +49,22 @@ function ContactForm() {
           <div className="mb-3 text-danger">{errors.name.message}</div>
         )}
 
+        <Form.Label htmlFor="to" className="mt-3">
+          To
+        </Form.Label>
+        <Form.Control {...register("to")} id="to" placeholder="Full name" />
+        {errors.to && (
+          <div className="mb-3 text-danger">{errors.to.message}</div>
+        )}
+
+        <Form.Label htmlFor="from" className="mt-3">
+          To
+        </Form.Label>
+        <Form.Control {...register("from")} id="from" placeholder="Full name" />
+        {errors.from && (
+          <div className="mb-3 text-danger">{errors.from.message}</div>
+        )}
+
         <Form.Label htmlFor="guests" className="mt-3">
           Subject
         </Form.Label>
@@ -64,20 +77,6 @@ function ContactForm() {
         </Form.Select>
         {errors.guests && (
           <div className="mb-3 text-danger">{errors.guests.message}</div>
-        )}
-
-        <Form.Label htmlFor="message" className="mt-3">
-          Message
-        </Form.Label>
-        <Form.Control
-          {...register("message")}
-          id="message"
-          as="textarea"
-          rows={3}
-          placeholder="Max 200 words"
-        />
-        {errors.message && (
-          <div className="mb-3 text-danger">{errors.message.message}</div>
         )}
 
         <button type="submit" className="mt-3 bg-primary text-white">
