@@ -9,10 +9,10 @@ import FormMessage from "../../common/FormMessage";
 const url = "https://kaladinge-pe2.herokuapp.com/api/messages";
 
 const schema = yup.object().shape({
-  name: yup
+  email: yup
     .string()
-    .required("Name is required")
-    .min(3, "Your first name must be at least 3 characters"),
+    .required("Please enter an email address")
+    .email("Please enter a valid email address"),
   subject: yup.string().required("A choice is required"),
   message: yup
     .string()
@@ -40,7 +40,11 @@ function ContactForm() {
     setPostError(null);
     try {
       const response = await axios.post(url, {
-        data: { name: data.name, subject: data.subject, message: data.message },
+        data: {
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+        },
       });
       setPostSuccess(true);
     } catch (error) {
@@ -56,12 +60,16 @@ function ContactForm() {
       className={`bg-light p-3 d-flex flex-column mx-auto`}
     >
       <fieldset disabled={submitting}>
-        <Form.Label htmlFor="name" className="mt-3">
+        <Form.Label htmlFor="email" className="mt-3">
           Name
         </Form.Label>
-        <Form.Control {...register("name")} id="name" placeholder="Full name" />
-        {errors.name && (
-          <div className="mb-3 text-danger">{errors.name.message}</div>
+        <Form.Control
+          {...register("email")}
+          id="email"
+          placeholder="e.g name@hoteldaze.com"
+        />
+        {errors.email && (
+          <div className="mb-3 text-danger">{errors.email.message}</div>
         )}
 
         <Form.Label htmlFor="subject" className="mt-3">
