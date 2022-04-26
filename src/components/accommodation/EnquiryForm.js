@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import FormMessage from "../../common/FormMessage";
 
-//const url = "https://kaladinge-pe2.herokuapp.com/api/messages";
+const url = "https://kaladinge-pe2.herokuapp.com/api/enquiries";
 
 const schema = yup.object().shape({
   name: yup
@@ -33,6 +33,23 @@ function ContactForm() {
 
   async function onSubmit(data) {
     console.log(data);
+    setSubmitting(true);
+    setPostError(null);
+    try {
+      const response = await axios.post(url, {
+        data: {
+          name: data.name,
+          to: data.to,
+          from: data.from,
+          guests: data.guests,
+        },
+      });
+      setPostSuccess(true);
+    } catch (error) {
+      setPostError(error.toString());
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -52,15 +69,15 @@ function ContactForm() {
         <Form.Label htmlFor="to" className="mt-3">
           To
         </Form.Label>
-        <Form.Control {...register("to")} id="to" placeholder="Full name" />
+        <Form.Control {...register("to")} id="to" placeholder="From date" />
         {errors.to && (
           <div className="mb-3 text-danger">{errors.to.message}</div>
         )}
 
         <Form.Label htmlFor="from" className="mt-3">
-          To
+          From
         </Form.Label>
-        <Form.Control {...register("from")} id="from" placeholder="Full name" />
+        <Form.Control {...register("from")} id="from" placeholder="To date" />
         {errors.from && (
           <div className="mb-3 text-danger">{errors.from.message}</div>
         )}
