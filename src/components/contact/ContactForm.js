@@ -35,6 +35,7 @@ function ContactForm() {
   });
 
   async function onSubmit(data) {
+    console.log(data);
     setSubmitting(true);
     setPostError(null);
     try {
