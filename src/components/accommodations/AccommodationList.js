@@ -6,8 +6,6 @@ function AccommodationList({ category }) {
   const [loading, setLoading] = useState(true);
   const [fetchPagesError, setFetchPagesError] = useState(null);
 
-  console.log(category);
-
   const url =
     "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
 

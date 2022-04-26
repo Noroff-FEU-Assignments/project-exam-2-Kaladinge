@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
+import Heading from "../layout/Heading";
+import Details from "./Details";
 
 function Accommodation() {
   const [accommodation, setAccommodation] = useState([]);
@@ -33,7 +36,45 @@ function Accommodation() {
     return <div>There was a fetch data error</div>;
   }
 
-  return <div>Accommodation</div>;
+  console.log(accommodation);
+
+  const {
+    title,
+    summary,
+    address,
+    area,
+    facility,
+    price,
+    rating,
+    mainpic,
+    airport,
+    bryggen,
+  } = accommodation.attributes;
+
+  return (
+    <>
+      <Heading title={title} />
+      <Row>
+        <Col xs={12} lg={8}>
+          <Details
+            key={id}
+            summary={summary}
+            id={id}
+            title={title}
+            address={address}
+            area={area}
+            facility={facility}
+            price={price}
+            rating={rating}
+            mainpic={mainpic}
+            airport={airport}
+            bryggen={bryggen}
+          />
+        </Col>
+        <Col></Col>
+      </Row>
+    </>
+  );
 }
 
 export default Accommodation;
