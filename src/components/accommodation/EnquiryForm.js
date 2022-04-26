@@ -13,7 +13,7 @@ const schema = yup.object().shape({
     .string()
     .required("Name is required")
     .min(3, "Your first name must be at least 3 characters"),
-  subject: yup.string().required("A choice is required"),
+  guests: yup.string().required("A choice is required"),
   message: yup
     .string()
     .required("Message is required")
@@ -52,17 +52,18 @@ function ContactForm() {
           <div className="mb-3 text-danger">{errors.name.message}</div>
         )}
 
-        <Form.Label htmlFor="subject" className="mt-3">
+        <Form.Label htmlFor="guests" className="mt-3">
           Subject
         </Form.Label>
-        <Form.Select {...register("subject")}>
+        <Form.Select {...register("guests")}>
           <option value="">---</option>
-          <option value="booking">Booking</option>
-          <option value="cancellation">Cancellation</option>
-          <option value="other">Other</option>
+          <option value="1 guest">1 guest</option>
+          <option value="2 guest">2 guests</option>
+          <option value="3 guest">3 guests</option>
+          <option value="4 guest">4 guests</option>
         </Form.Select>
-        {errors.subject && (
-          <div className="mb-3 text-danger">{errors.subject.message}</div>
+        {errors.guests && (
+          <div className="mb-3 text-danger">{errors.guests.message}</div>
         )}
 
         <Form.Label htmlFor="message" className="mt-3">
