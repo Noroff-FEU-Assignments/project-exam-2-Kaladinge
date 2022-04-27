@@ -75,7 +75,7 @@ function Accommodation() {
           />
         </Col>
         <Col>
-          <EnquiryForm />
+          <EnquiryForm title={title} />
         </Col>
       </Row>
     </>
