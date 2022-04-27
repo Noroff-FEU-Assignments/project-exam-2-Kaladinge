@@ -7,6 +7,7 @@ import { Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import FormMessage from "../../common/FormMessage";
+import { Button } from "react-bootstrap";
 
 const url = "https://kaladinge-pe2.herokuapp.com/api/enquiries";
 
@@ -24,6 +25,7 @@ function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [postError, setPostError] = useState(null);
   const [postSuccess, setPostSuccess] = useState(false);
+  const [displayMode, setDisplayMode] = useState(false);
 
   const {
     register,
@@ -33,6 +35,11 @@ function ContactForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  function displayForm() {
+    setDisplayMode(!displayMode);
+    console.log(displayMode);
+  }
 
   async function onSubmit(data) {
     const options = {
@@ -65,84 +72,93 @@ function ContactForm() {
   }
 
   return (
-    <Form
-      onSubmit={handleSubmit(onSubmit)}
-      className={`bg-light p-3 d-flex flex-column mx-auto`}
-    >
-      <fieldset disabled={submitting}>
-        <Form.Label htmlFor="name" className="mt-3">
-          Name
-        </Form.Label>
-        <Form.Control {...register("name")} id="name" placeholder="Full name" />
-        {errors.name && (
-          <div className="mb-3 text-danger">{errors.name.message}</div>
-        )}
-
-        <Form.Label htmlFor="to" className="mt-3">
-          To
-        </Form.Label>
-        <Controller
-          control={control}
-          name="to"
-          render={({ field }) => (
-            <DatePicker
-              placeholderText="Select date"
-              onChange={(e) => field.onChange(e)}
-              selected={field.value}
-            />
+    <>
+      <Button onClick={displayForm}>Check availability</Button>
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        className={`bg-light p-3 d-flex flex-column mx-auto ${
+          displayMode ? "d-block" : "d-none"
+        }`}
+      >
+        <fieldset disabled={submitting}>
+          <Form.Label htmlFor="name" className="mt-3">
+            Name
+          </Form.Label>
+          <Form.Control
+            {...register("name")}
+            id="name"
+            placeholder="Full name"
+          />
+          {errors.name && (
+            <div className="mb-3 text-danger">{errors.name.message}</div>
           )}
-        />
-        {errors.to && (
-          <div className="mb-3 text-danger">This field is required</div>
-        )}
 
-        <Form.Label htmlFor="from" className="mt-3">
-          From
-        </Form.Label>
-        <Controller
-          control={control}
-          name="from"
-          render={({ field }) => (
-            <DatePicker
-              placeholderText="Select date"
-              onChange={(e) => field.onChange(e)}
-              selected={field.value}
-            />
+          <Form.Label htmlFor="to" className="mt-3">
+            To
+          </Form.Label>
+          <Controller
+            control={control}
+            name="to"
+            render={({ field }) => (
+              <DatePicker
+                placeholderText="Select date"
+                onChange={(e) => field.onChange(e)}
+                selected={field.value}
+              />
+            )}
+          />
+          {errors.to && (
+            <div className="mb-3 text-danger">This field is required</div>
           )}
-        />
-        {errors.from && (
-          <div className="mb-3 text-danger">This field is required</div>
-        )}
 
-        <Form.Label htmlFor="guests" className="mt-3">
-          Number of guests
-        </Form.Label>
-        <Form.Select {...register("guests")}>
-          <option value="">---</option>
-          <option value="1 guest">1 guest</option>
-          <option value="2 guest">2 guests</option>
-          <option value="3 guest">3 guests</option>
-          <option value="4 guest">4 guests</option>
-        </Form.Select>
-        {errors.guests && (
-          <div className="mb-3 text-danger">{errors.guests.message}</div>
-        )}
+          <Form.Label htmlFor="from" className="mt-3">
+            From
+          </Form.Label>
+          <Controller
+            control={control}
+            name="from"
+            render={({ field }) => (
+              <DatePicker
+                placeholderText="Select date"
+                onChange={(e) => field.onChange(e)}
+                selected={field.value}
+              />
+            )}
+          />
+          {errors.from && (
+            <div className="mb-3 text-danger">This field is required</div>
+          )}
 
-        <button type="submit" className="mt-3 bg-primary text-white">
-          {submitting === true ? "Working..." : "Submit"}
-        </button>
-      </fieldset>
-      {postError && (
-        <FormMessage styling="form--error">
-          Something went wrong when posting data
-        </FormMessage>
-      )}
-      {postSuccess && (
-        <FormMessage styling="form--success">
-          Message was successfully submitted
-        </FormMessage>
-      )}
-    </Form>
+          <Form.Label htmlFor="guests" className="mt-3">
+            Number of guests
+          </Form.Label>
+          <Form.Select {...register("guests")}>
+            <option value="">---</option>
+            <option value="1 guest">1 guest</option>
+            <option value="2 guest">2 guests</option>
+            <option value="3 guest">3 guests</option>
+            <option value="4 guest">4 guests</option>
+          </Form.Select>
+          {errors.guests && (
+            <div className="mb-3 text-danger">{errors.guests.message}</div>
+          )}
+
+          <button type="submit" className="mt-3 bg-primary text-white">
+            {submitting === true ? "Working..." : "Submit"}
+          </button>
+        </fieldset>
+        {postError && (
+          <FormMessage styling="form--error">
+            Something went wrong when posting data
+          </FormMessage>
+        )}
+        {postSuccess && (
+          <FormMessage styling="form--success">
+            Message was successfully submitted
+          </FormMessage>
+        )}
+      </Form>
+    </>
   );
 }
 
