@@ -35,16 +35,24 @@ function ContactForm() {
   });
 
   async function onSubmit(data) {
-    console.log(data);
-    console.log(errors.name);
+    const options = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+
+    function newDate(date) {
+      return new Intl.DateTimeFormat("en-UK", options).format(new Date(date));
+    }
+
     setSubmitting(true);
     setPostError(null);
     try {
       const response = await axios.post(url, {
         data: {
           name: data.name,
-          to: data.to,
-          from: data.from,
+          to: newDate(data.to),
+          from: newDate(data.from),
           guests: data.guests,
         },
       });
@@ -73,9 +81,19 @@ function ContactForm() {
         <Form.Label htmlFor="to" className="mt-3">
           To
         </Form.Label>
-        <Form.Control {...register("to")} id="to" placeholder="From date" />
+        <Controller
+          control={control}
+          name="to"
+          render={({ field }) => (
+            <DatePicker
+              placeholderText="Select date"
+              onChange={(e) => field.onChange(e)}
+              selected={field.value}
+            />
+          )}
+        />
         {errors.to && (
-          <div className="mb-3 text-danger">{errors.to.message}</div>
+          <div className="mb-3 text-danger">This field is required</div>
         )}
 
         <Form.Label htmlFor="from" className="mt-3">
@@ -92,7 +110,9 @@ function ContactForm() {
             />
           )}
         />
-        {errors.from && <span>This field is required</span>}
+        {errors.from && (
+          <div className="mb-3 text-danger">This field is required</div>
+        )}
 
         <Form.Label htmlFor="guests" className="mt-3">
           Number of guests
