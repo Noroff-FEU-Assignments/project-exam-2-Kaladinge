@@ -21,6 +21,7 @@ function Loginform() {
   const [loginError, setLoginError] = useState(null);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [token, setToken] = useContext(AuthContext);
+  console.log(token);
 
   const navigate = useNavigate();
 
