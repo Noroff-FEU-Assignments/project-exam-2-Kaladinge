@@ -14,10 +14,27 @@ const schema = yup.object().shape({
     .string()
     .required("Please enter a accommodation name")
     .min(2, "Accommodation name must be longer than 2 characters"),
+  category: yup.string().required("Please choose an accommodation type"),
   address: yup
     .string()
     .required("Please enter an address")
     .min(8, "Address must be longer than 8 characters long"),
+  rating: yup.string().required("Please choose a rating"),
+  airport: yup
+    .number()
+    .required("Please enter distance from accommodation to Bergen airport"),
+  bryggen: yup
+    .number()
+    .required("Please enter distance from accommodation to bryggen in Bergen"),
+  summary: yup
+    .string()
+    .required("Please enter a short description")
+    .min(2, "Summary must be at least 10 characters long"),
+  description: yup
+    .string()
+    .required("Please enter a description")
+    .min(20, "Description must be at least 20 characters long")
+    .max(500, "Description must be at most 200 characters long"),
 });
 
 function Enquiries() {
@@ -35,17 +52,26 @@ function Enquiries() {
 
   const http = useAxios();
   const url = ACCOMMODATIONS_PATH;
-  console.log(url);
 
   async function onSubmit(data) {
     setSubmitting(true);
     setPostError(null);
 
     try {
+      console.log(data.rating);
+      console.log(data.summary);
+      console.log(data.description);
+
       const response = await http.post(url, {
         data: {
           title: data.title,
           address: data.address,
+          rating: data.rating,
+          category: data.category,
+          airport: data.airport,
+          bryggen: data.bryggen,
+          summary: data.summary,
+          description: data.description,
         },
       });
       console.log(response);
@@ -76,6 +102,19 @@ function Enquiries() {
             <div className="mb-3 text-danger">{errors.title.message}</div>
           )}
 
+          <Form.Label htmlFor="category" className="mt-3">
+            Category
+          </Form.Label>
+          <Form.Select {...register("category")}>
+            <option value="">---</option>
+            <option value="Hotel">Hotel</option>
+            <option value="B & B">B & B</option>
+            <option value="Guesthouse">GuestHouse</option>
+          </Form.Select>
+          {errors.category && (
+            <div className="mb-3 text-danger">{errors.category.message}</div>
+          )}
+
           <Form.Label htmlFor="address" className="mt-3">
             Address
           </Form.Label>
@@ -86,6 +125,68 @@ function Enquiries() {
           />
           {errors.address && (
             <div className="mb-3 text-danger">{errors.address.message}</div>
+          )}
+
+          <Form.Label htmlFor="rating" className="mt-3">
+            Rating
+          </Form.Label>
+          <Form.Select {...register("rating")}>
+            <option value="">---</option>
+            <option value="Very Good">Very good</option>
+            <option value="Good">Good</option>
+            <option value="Not Bad">Not bad</option>
+            <option value="Bad">Bad</option>
+          </Form.Select>
+          {errors.rating && (
+            <div className="mb-3 text-danger">{errors.rating.message}</div>
+          )}
+
+          <Form.Label htmlFor="airport" className="mt-3">
+            Distance to Bergen Airport
+          </Form.Label>
+          <Form.Control
+            {...register("airport")}
+            id="airport"
+            placeholder="Distance to Bergen airport (km)"
+          />
+          {errors.airport && (
+            <div className="mb-3 text-danger">{errors.airport.message}</div>
+          )}
+
+          <Form.Label htmlFor="bryggen" className="mt-3">
+            Distance to bryggen
+          </Form.Label>
+          <Form.Control
+            {...register("bryggen")}
+            id="bryggen"
+            placeholder="Distance to Bryggen in Bergen (km)"
+          />
+          {errors.bryggen && (
+            <div className="mb-3 text-danger">{errors.bryggen.message}</div>
+          )}
+
+          <Form.Label htmlFor="summary" className="mt-3">
+            Short description
+          </Form.Label>
+          <Form.Control
+            {...register("summary")}
+            id="summary"
+            placeholder="A sentence about the accommodation"
+          />
+          {errors.summary && (
+            <div className="mb-3 text-danger">{errors.summary.message}</div>
+          )}
+
+          <Form.Label htmlFor="description" className="mt-3">
+            About the accommodation
+          </Form.Label>
+          <Form.Control
+            {...register("description")}
+            id="descpription"
+            placeholder="Introductive text about the accommodation - max 500 words"
+          />
+          {errors.description && (
+            <div className="mb-3 text-danger">{errors.description.message}</div>
           )}
 
           <button type="submit" className="mt-3 bg-primary text-white">
