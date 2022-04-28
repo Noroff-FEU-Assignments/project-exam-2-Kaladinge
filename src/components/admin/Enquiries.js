@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "react-bootstrap";
 import { useState } from "react";
 import FormMessage from "../../common/FormMessage";
-import { ACCOMMODATIONS_PATH } from "../../constants/api";
+import { ACCOMMODATIONS_PATH, facilitiesCheckbox } from "../../constants/api";
 import useAxios from "../../hooks/useAxios";
 
 const schema = yup.object().shape({
@@ -41,6 +41,7 @@ function Enquiries() {
   const [submitting, setSubmitting] = useState(false);
   const [postError, setPostError] = useState(null);
   const [postSuccess, setPostSuccess] = useState(false);
+  const [checkboxArray, setCheckboxArray] = useState([]);
 
   const {
     register,
@@ -57,11 +58,9 @@ function Enquiries() {
     setSubmitting(true);
     setPostError(null);
 
-    try {
-      console.log(data.rating);
-      console.log(data.summary);
-      console.log(data.description);
+    console.log(data.facility);
 
+    try {
       const response = await http.post(url, {
         data: {
           title: data.title,
@@ -81,6 +80,30 @@ function Enquiries() {
       setSubmitting(false);
     }
   }
+
+  function say(event) {
+    const alreadyThere = checkboxArray.filter((item) => {
+      if (item === event.target.value) {
+        return true;
+      }
+    });
+
+    if (alreadyThere.length === 0) {
+      setCheckboxArray([...checkboxArray, event.target.value]);
+    }
+
+    if (alreadyThere.length > 0) {
+      const alreadyThere2 = checkboxArray.filter((item) => {
+        if (item !== event.target.value) {
+          return true;
+        }
+      });
+
+      setCheckboxArray(alreadyThere2);
+    }
+  }
+
+  console.log(checkboxArray);
 
   return (
     <>
@@ -164,6 +187,20 @@ function Enquiries() {
           {errors.bryggen && (
             <div className="mb-3 text-danger">{errors.bryggen.message}</div>
           )}
+
+          <div className="mb-3">
+            {facilitiesCheckbox.map((item, index) => (
+              <Form.Check
+                {...register("facility")}
+                key={index}
+                onClick={say}
+                type="checkbox"
+                id={`${index}`}
+                label={`${item}`}
+                value={item}
+              />
+            ))}
+          </div>
 
           <Form.Label htmlFor="summary" className="mt-3">
             Short description
