@@ -69,6 +69,7 @@ function Enquiries() {
           category: data.category,
           airport: data.airport,
           bryggen: data.bryggen,
+          facility: checkboxArray,
           summary: data.summary,
           description: data.description,
         },
@@ -191,7 +192,6 @@ function Enquiries() {
           <div className="mb-3">
             {facilitiesCheckbox.map((item, index) => (
               <Form.Check
-                {...register("facility")}
                 key={index}
                 onClick={say}
                 type="checkbox"
