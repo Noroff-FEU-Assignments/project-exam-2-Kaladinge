@@ -42,6 +42,7 @@ function Enquiries() {
   const [postError, setPostError] = useState(null);
   const [postSuccess, setPostSuccess] = useState(false);
   const [checkboxArray, setCheckboxArray] = useState([]);
+  const [mainImage, setMainImage] = useState(null);
 
   const {
     register,
@@ -70,10 +71,12 @@ function Enquiries() {
           airport: data.airport,
           bryggen: data.bryggen,
           facility: checkboxArray,
+
           summary: data.summary,
           description: data.description,
         },
       });
+      setPostSuccess(true);
       console.log(response);
     } catch (error) {
       setPostError(error.toString());
@@ -104,8 +107,30 @@ function Enquiries() {
     }
   }
 
-  console.log(checkboxArray);
+  let widget = window.cloudinary.createUploadWidget(
+    {
+      cloudName: "dyv1dt5ps",
+      uploadPreset: "r2gbrppp",
+    },
+    (error, result) => {
+      checkUpload(result);
+    }
+  );
 
+  function showWidget() {
+    widget.open();
+  }
+
+  function checkUpload(result) {
+    if (result.event === "success") {
+      console.log(result);
+      console.log(result.info.url);
+      setMainImage(result.info.url);
+      console.log(mainImage);
+    }
+  }
+
+  console.log(mainImage);
   return (
     <>
       <Heading title="Booking Enquiries" />
@@ -200,6 +225,10 @@ function Enquiries() {
                 value={item}
               />
             ))}
+          </div>
+
+          <div id="image-container">
+            <button onClick={showWidget}>Upload photo</button>
           </div>
 
           <Form.Label htmlFor="summary" className="mt-3">
