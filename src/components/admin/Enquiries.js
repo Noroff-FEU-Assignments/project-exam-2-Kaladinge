@@ -6,8 +6,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "react-bootstrap";
 import { useState } from "react";
 import FormMessage from "../../common/FormMessage";
-import { ACCOMMODATIONS_PATH, facilitiesCheckbox } from "../../constants/api";
+import {
+  ACCOMMODATIONS_PATH,
+  facilitiesCheckbox,
+  UPLOAD_PATH,
+} from "../../constants/api";
 import useAxios from "../../hooks/useAxios";
+import axios from "axios";
 
 const schema = yup.object().shape({
   title: yup
@@ -42,7 +47,7 @@ function Enquiries() {
   const [postError, setPostError] = useState(null);
   const [postSuccess, setPostSuccess] = useState(false);
   const [checkboxArray, setCheckboxArray] = useState([]);
-  const [mainImage, setMainImage] = useState(null);
+  const [file, setFile] = useState(false);
 
   const {
     register,
@@ -54,12 +59,11 @@ function Enquiries() {
 
   const http = useAxios();
   const url = ACCOMMODATIONS_PATH;
+  const url2 = UPLOAD_PATH;
 
   async function onSubmit(data) {
     setSubmitting(true);
     setPostError(null);
-
-    console.log(data.facility);
 
     try {
       const response = await http.post(url, {
@@ -71,10 +75,20 @@ function Enquiries() {
           airport: data.airport,
           bryggen: data.bryggen,
           facility: checkboxArray,
-
           summary: data.summary,
           description: data.description,
         },
+      });
+      let formData = new FormData();
+      formData.append("files", file);
+
+      await axios({
+        method: "post",
+        url: "https://kaladinge-pe2.herokuapp.com/api/upload",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      }).then((response) => {
+        console.log(response);
       });
       setPostSuccess(true);
       console.log(response);
@@ -123,14 +137,20 @@ function Enquiries() {
 
   function checkUpload(result) {
     if (result.event === "success") {
+      console.log(result.event);
       console.log(result);
       console.log(result.info.url);
-      setMainImage(result.info.url);
-      console.log(mainImage);
+      setFile(result.info.url);
+      console.log(file);
     }
   }
 
-  console.log(mainImage);
+  const handleInputChange = (event) => {
+    setFile(event.target.files[0]);
+    console.log(event);
+  };
+
+  console.log(file);
   return (
     <>
       <Heading title="Booking Enquiries" />
@@ -230,6 +250,8 @@ function Enquiries() {
           <div id="image-container">
             <button onClick={showWidget}>Upload photo</button>
           </div>
+
+          <input type="file" onChange={handleInputChange} />
 
           <Form.Label htmlFor="summary" className="mt-3">
             Short description
