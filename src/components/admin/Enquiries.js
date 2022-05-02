@@ -48,6 +48,8 @@ function Enquiries() {
   const [postSuccess, setPostSuccess] = useState(false);
   const [checkboxArray, setCheckboxArray] = useState([]);
   const [file, setFile] = useState(false);
+  const [subpic1, setSubpic1] = useState(false);
+  const [subpic2, setSubpic2] = useState(false);
 
   const {
     register,
@@ -61,37 +63,36 @@ function Enquiries() {
   const url = ACCOMMODATIONS_PATH;
   const url2 = UPLOAD_PATH;
 
-  async function onSubmit(data) {
+  async function onSubmit(dat) {
     setSubmitting(true);
     setPostError(null);
 
     try {
-      const response = await http.post(url, {
-        data: {
-          title: data.title,
-          address: data.address,
-          rating: data.rating,
-          category: data.category,
-          airport: data.airport,
-          bryggen: data.bryggen,
-          facility: checkboxArray,
-          summary: data.summary,
-          description: data.description,
-        },
-      });
+      const data = {
+        title: dat.title,
+        address: dat.address,
+        rating: dat.rating,
+        category: dat.category,
+        airport: dat.airport,
+        bryggen: dat.bryggen,
+        facility: checkboxArray,
+        summary: dat.summary,
+        description: dat.description,
+      };
+
       let formData = new FormData();
-      formData.append("files", file);
+      formData.append("files.mainpic", file);
+      formData.append("files.subpic", subpic1);
+      formData.append("files.subpic", subpic2);
+      formData.append("data", JSON.stringify(data));
 
       await axios({
         method: "post",
-        url: "https://kaladinge-pe2.herokuapp.com/api/upload",
+        url: "https://kaladinge-pe2.herokuapp.com/api/accommodations",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
-      }).then((response) => {
-        console.log(response);
       });
       setPostSuccess(true);
-      console.log(response);
     } catch (error) {
       setPostError(error.toString());
     } finally {
@@ -121,33 +122,18 @@ function Enquiries() {
     }
   }
 
-  let widget = window.cloudinary.createUploadWidget(
-    {
-      cloudName: "dyv1dt5ps",
-      uploadPreset: "r2gbrppp",
-    },
-    (error, result) => {
-      checkUpload(result);
-    }
-  );
-
-  function showWidget() {
-    widget.open();
-  }
-
-  function checkUpload(result) {
-    if (result.event === "success") {
-      console.log(result.event);
-      console.log(result);
-      console.log(result.info.url);
-      setFile(result.info.url);
-      console.log(file);
-    }
-  }
-
   const handleInputChange = (event) => {
     setFile(event.target.files[0]);
     console.log(event);
+  };
+
+  const handleInputChange2 = (event) => {
+    setSubpic1(event.target.files[0]);
+    console.log(event.target.files[0]);
+  };
+  const handleInputChange3 = (event) => {
+    setSubpic2(event.target.files[0]);
+    console.log(event.target.files[0]);
   };
 
   console.log(file);
@@ -247,11 +233,9 @@ function Enquiries() {
             ))}
           </div>
 
-          <div id="image-container">
-            <button onClick={showWidget}>Upload photo</button>
-          </div>
-
           <input type="file" onChange={handleInputChange} />
+          <input type="file" onChange={handleInputChange2} />
+          <input type="file" onChange={handleInputChange3} />
 
           <Form.Label htmlFor="summary" className="mt-3">
             Short description
