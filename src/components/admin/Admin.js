@@ -1,8 +1,10 @@
 import React from "react";
+
 import Heading from "../layout/Heading";
-import Enquiries from "./Enquiries";
+import AddPost from "./AddPost";
 import Messages from "./Messages";
 import PageLink from "./PageLink";
+import Enquiries from "./Enquiries";
 
 function Admin() {
   return (
@@ -18,7 +20,7 @@ function Admin() {
         <Enquiries />
       </section>
       <section id="add-accommodation">
-        <Heading title="Add a New Accommodation" />
+        <AddPost />
       </section>
     </>
   );

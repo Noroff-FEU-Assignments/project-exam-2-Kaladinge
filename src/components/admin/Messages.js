@@ -17,6 +17,7 @@ function Messages() {
         setMessages(response.data.data);
       } catch (error) {
         setFetchPagesError(error.toString());
+        console.log(error);
       } finally {
         setLoading(false);
       }
