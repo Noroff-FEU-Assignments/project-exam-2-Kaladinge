@@ -30,7 +30,7 @@ function Messages() {
   }
 
   if (fetchPagesError) {
-    return <div>There was a fetch messages error</div>;
+    return <div>There was a fetch enquiries error</div>;
   }
 
   return (
