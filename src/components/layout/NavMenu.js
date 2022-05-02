@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { AuthContext } from "../../context/AuthContext";
 import { Button } from "react-bootstrap";
+import SearchBar from "./SearchBar";
 
 function NavMenu() {
   const [token, setToken] = useContext(AuthContext);
@@ -34,11 +35,7 @@ function NavMenu() {
             </NavLink>
           </Nav>
           <Form action="/action_page.php" className="w-50">
-            <FormControl
-              type="text"
-              placeholder="Search accommodation"
-              name="search"
-            />
+            <SearchBar />
           </Form>
           <Nav className="">
             {token ? (
