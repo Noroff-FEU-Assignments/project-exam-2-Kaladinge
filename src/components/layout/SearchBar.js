@@ -33,13 +33,21 @@ function SearchBar() {
     return <div>There was a fetch pages error</div>;
   }
 
+  console.log(accommodations);
+
+  function showAccommodations() {
+    console.log("hi");
+  }
+
   return (
     <>
       <FormControl
+        autoComplete="off"
         className="navsearch"
         type="text"
         placeholder="Search accommodation"
         name="search"
+        onKeyUp={showAccommodations}
       />
       <div id="navsearch--results"></div>
     </>
