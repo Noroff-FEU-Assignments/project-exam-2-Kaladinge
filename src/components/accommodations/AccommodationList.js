@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import AccommodationItem from "./AccommodationItem";
 
@@ -12,9 +13,9 @@ function AccommodationList({ category }) {
   useEffect(() => {
     const getAccommodations = async () => {
       try {
-        const response = await fetch(url);
-        const result = await response.json();
-        setAccommodations(result.data);
+        const response = await axios.get(url);
+        console.log(response);
+        setAccommodations(response.data.data);
       } catch (error) {
         setFetchPagesError(error.toString());
       } finally {

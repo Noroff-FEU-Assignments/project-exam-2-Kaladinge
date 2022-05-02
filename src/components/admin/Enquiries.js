@@ -12,7 +12,6 @@ import {
   UPLOAD_PATH,
 } from "../../constants/api";
 import useAxios from "../../hooks/useAxios";
-import axios from "axios";
 
 const schema = yup.object().shape({
   title: yup
@@ -86,12 +85,8 @@ function Enquiries() {
       formData.append("files.subpic", subpic2);
       formData.append("data", JSON.stringify(data));
 
-      await axios({
-        method: "post",
-        url: "https://kaladinge-pe2.herokuapp.com/api/accommodations",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await http.post(url, formData);
+      console.log(response);
       setPostSuccess(true);
     } catch (error) {
       setPostError(error.toString());

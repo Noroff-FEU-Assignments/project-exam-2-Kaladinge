@@ -18,7 +18,6 @@ function Accommodation() {
     const getAccommodation = async () => {
       try {
         const response = await axios.get(url);
-
         setAccommodation(response.data.data);
       } catch (error) {
         setFetchDataError(error.toString());

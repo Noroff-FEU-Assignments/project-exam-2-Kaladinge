@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import { MESSAGES_PATH } from "../../constants/api";
+import useAxios from "../../hooks/useAxios";
 import Heading from "../layout/Heading";
 
 function Messages() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fetchPagesError, setFetchPagesError] = useState(null);
-
-  const url = "https://kaladinge-pe2.herokuapp.com/api/messages";
+  const http = useAxios();
 
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const response = await fetch(url);
-        const result = await response.json();
-        setMessages(result.data);
+        const response = await http.get(MESSAGES_PATH);
+        setMessages(response.data.data);
       } catch (error) {
         setFetchPagesError(error.toString());
       } finally {
@@ -22,7 +22,7 @@ function Messages() {
       }
     };
     getMessages();
-  }, [url]);
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;

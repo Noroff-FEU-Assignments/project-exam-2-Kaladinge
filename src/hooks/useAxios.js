@@ -2,9 +2,8 @@ import { useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
-const url = "https://kaladinge-pe2.herokuapp.com/api/";
-
 export default function useAxios() {
+  const url = "https://kaladinge-pe2.herokuapp.com/api/";
   const [token] = useContext(AuthContext);
 
   const apiClient = axios.create({
