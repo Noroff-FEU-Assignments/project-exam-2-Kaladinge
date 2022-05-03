@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form, FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ListResult from "./ListResult";
 
 function SearchBar() {
   const [accommodations, setAccommodations] = useState([]);
@@ -9,6 +10,7 @@ function SearchBar() {
   const [fetchPagesError, setFetchPagesError] = useState(null);
   const [listResult, setListResult] = useState(null);
   const [displayResult, setDisplayResult] = useState("d-none");
+  const [terms, setTerms] = useState(null);
 
   function showAccommodations(event) {
     const url =
@@ -18,26 +20,13 @@ function SearchBar() {
 
     const getAccommodations = async () => {
       try {
-        setListResult(<p>loading</p>);
         const response = await axios.get(url);
 
-        let terms = autoCompleteMatch(event.target.value, response.data.data);
-
-        const newArray = terms.map((item) => {
-          return (
-            <Link to={`/accommodation/${item.id}`}>
-              <li key={item.id}>{item.attributes.title}</li>
-            </Link>
-          );
-        });
-        if (terms.length > 0) {
-          setListResult(<ul>{newArray}</ul>);
-        } else {
-          setListResult(<p>There are no results</p>);
-        }
+        setTerms(autoCompleteMatch(event.target.value, response.data.data));
       } catch (error) {
         setFetchPagesError(error.toString());
-        setListResult(<p>There was something wrong when fetching results</p>);
+      } finally {
+        setLoading(false);
       }
     };
     getAccommodations();
@@ -69,7 +58,7 @@ function SearchBar() {
         className={`text-danger navsearch--result ${displayResult}`}
         id="navsearch--results"
       >
-        {listResult}
+        <ListResult list={terms} error={fetchPagesError} loading={loading} />
       </div>
     </>
   );
