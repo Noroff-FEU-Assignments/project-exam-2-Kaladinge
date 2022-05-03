@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Form, FormControl } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { FormControl } from "react-bootstrap";
+
 import ListResult from "./ListResult";
 
 function SearchBar() {
@@ -45,22 +45,22 @@ function SearchBar() {
   }
 
   return (
-    <>
+    <div className="position-relative">
       <FormControl
         autoComplete="off"
         className="navsearch"
         type="text"
-        placeholder="Search accommodation"
+        placeholder="Search accommodations"
         name="search"
         onKeyUp={showAccommodations}
       />
       <div
-        className={`text-danger navsearch--result ${displayResult}`}
+        className={`text-danger navsearch--result position-absolute w-100 ${displayResult}`}
         id="navsearch--results"
       >
         <ListResult list={terms} error={fetchPagesError} loading={loading} />
       </div>
-    </>
+    </div>
   );
 }
 

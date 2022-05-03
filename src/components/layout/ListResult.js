@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function ListResult({ list, error, loading }) {
-  console.log(loading);
   if (loading) {
     return <p>loading</p>;
   }
