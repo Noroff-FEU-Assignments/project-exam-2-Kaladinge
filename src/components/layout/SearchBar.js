@@ -6,16 +6,18 @@ function SearchBar() {
   const [accommodations, setAccommodations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fetchPagesError, setFetchPagesError] = useState(null);
+  const [listResult, setListResult] = useState(null);
 
-  const url =
-    "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
+  function showAccommodations(event) {
+    const url =
+      "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
 
-  useEffect(() => {
     const getAccommodations = async () => {
       try {
         const response = await axios.get(url);
-        console.log(response);
-        setAccommodations(response.data.data);
+        //setAccommodations(response.data.data);
+        let terms = autoCompleteMatch(event.target.value, response.data.data);
+        console.log(terms);
       } catch (error) {
         setFetchPagesError(error.toString());
       } finally {
@@ -23,20 +25,29 @@ function SearchBar() {
       }
     };
     getAccommodations();
-  }, [url]);
 
-  if (loading) {
-    return <div>Loading...</div>;
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
+    if (fetchPagesError) {
+      return <div>There was a fetch pages error</div>;
+    }
   }
 
-  if (fetchPagesError) {
-    return <div>There was a fetch pages error</div>;
-  }
-
-  console.log(accommodations);
-
-  function showAccommodations() {
-    console.log("hi");
+  function autoCompleteMatch(input, apiArray) {
+    console.log(input);
+    if (input === "") {
+      console.log("hi");
+      return [];
+    }
+    const reg = new RegExp(input.toLowerCase());
+    return apiArray.filter(function (item) {
+      console.log(item.attributes.title);
+      if (item.attributes.title.toLowerCase().match(reg)) {
+        return item;
+      }
+    });
   }
 
   return (
