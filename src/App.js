@@ -10,6 +10,7 @@ import Contact from "./components/contact/Contact";
 import Login from "./components/login/Login";
 import AuthProvider from "./context/AuthContext";
 import NavMenu from "./components/layout/NavMenu";
+import Footer from "./components/layout/Footer";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>
+          <Footer />
         </Container>
       </Router>
     </AuthProvider>
