@@ -1,0 +1,19 @@
+.navsearch--result {
+  border: 1px solid #ccc;
+  background: #ccc;
+  padding: 3px;
+  
+  & ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  & ul li {
+    padding: 5px 0;
+  }
+
+  & ul li:hover {
+    background: #eee;
+  }
+}
