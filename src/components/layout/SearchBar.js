@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form, FormControl } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function SearchBar() {
   const [accommodations, setAccommodations] = useState([]);
@@ -14,25 +15,31 @@ function SearchBar() {
 
     const getAccommodations = async () => {
       try {
+        setListResult(null);
         const response = await axios.get(url);
-        //setAccommodations(response.data.data);
+
         let terms = autoCompleteMatch(event.target.value, response.data.data);
-        console.log(terms);
+
+        const newArray = terms.map((item) => {
+          return (
+            <li>
+              <Link to={`/accommodation/${item.id}`}>
+                {item.attributes.title}
+              </Link>
+            </li>
+          );
+        });
+        if (terms.length > 0) {
+          setListResult(<ul>{newArray}</ul>);
+        } else {
+          setListResult(<p>There are no results</p>);
+        }
       } catch (error) {
         setFetchPagesError(error.toString());
-      } finally {
-        setLoading(false);
+        setListResult(<p>There was something wrong when fetching results</p>);
       }
     };
     getAccommodations();
-
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-
-    if (fetchPagesError) {
-      return <div>There was a fetch pages error</div>;
-    }
   }
 
   function autoCompleteMatch(input, apiArray) {
@@ -60,7 +67,9 @@ function SearchBar() {
         name="search"
         onKeyUp={showAccommodations}
       />
-      <div id="navsearch--results"></div>
+      <div className="text-danger" id="navsearch--results">
+        {listResult}
+      </div>
     </>
   );
 }

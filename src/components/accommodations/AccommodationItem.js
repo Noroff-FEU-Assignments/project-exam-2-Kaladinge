@@ -17,7 +17,6 @@ function AccommodationItem({
   airport,
   bryggen,
 }) {
-  console.log(mainpic.data.attributes.url);
   return (
     <Row>
       <Col md={4} className="border">
