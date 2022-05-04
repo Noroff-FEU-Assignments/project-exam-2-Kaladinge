@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+}
+
 /* nav */
 
 .nav-link.active {
@@ -31,8 +35,21 @@
   }
 }
 
+.wrapper {
+  flex: 1 0 auto;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 /* footer */
 
 .footer {
-  background: $secondary;
+  flex-shrink: 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  padding: 0.5em;
 }

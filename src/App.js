@@ -29,7 +29,7 @@ function App() {
             </Routes>
           </Container>
         </div>
-        <Footer className="footer bg-secondary" />
+        <Footer />
       </Router>
     </AuthProvider>
   );

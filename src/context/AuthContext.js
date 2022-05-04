@@ -8,7 +8,7 @@ function AuthProvider(props) {
   console.log(token);
 
   return (
-    <AuthContext.Provider value={[token, setToken]}>
+    <AuthContext.Provider value={[token, setToken]} className="border">
       {props.children}
     </AuthContext.Provider>
   );
