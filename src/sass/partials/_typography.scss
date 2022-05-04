@@ -4,9 +4,14 @@
 
 .accommodations--address {
   font-size: 20px;
-  color: #808080;
+  color: $colorDarkGrey;
 }
 
 .accommodations--facility {
   font-size: 14px;
+}
+
+.accommodations--price {
+  font-size: 60px;
+  color: $colorDarkGrey;
 }
