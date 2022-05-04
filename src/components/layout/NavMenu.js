@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 import SearchBar2 from "./SearchBar2";
+import logo from "../../images/primary-logo.png";
 
 function NavMenu() {
   const [token, setToken] = useContext(AuthContext);
@@ -22,13 +23,22 @@ function NavMenu() {
   return (
     <Navbar expand="lg" className="bg-dark navbar-dark position-relative">
       <NavLink to="/" className="d-lg-none">
-        <Navbar.Brand>mobile</Navbar.Brand>
+        <Navbar.Brand>
+          <img src={logo} alt="desktop-logo" className="desktop-logo--image" />
+        </Navbar.Brand>
       </NavLink>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <div className="d-flex flex-column flex-lg-row justify-content-around w-100">
+        <div className="d-flex flex-column flex-lg-row justify-content-around w-100 align-items-center">
           <NavLink to="/" className="text-decoration-none d-none d-lg-block">
-            <Navbar.Brand>desktop</Navbar.Brand>
+            <Navbar.Brand className="d-block text-center">
+              <img
+                src={logo}
+                alt="desktop-logo"
+                className="desktop-logo--image"
+              />
+              <h1 className="text-uppercase desktop-logo--text">Hoteldaze</h1>
+            </Navbar.Brand>
           </NavLink>
           <Nav className="">
             <NavLink to="/accommodations" className="nav-link">

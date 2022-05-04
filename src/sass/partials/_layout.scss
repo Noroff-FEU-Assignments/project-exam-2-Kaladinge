@@ -4,6 +4,15 @@ html, body {
 
 /* nav */
 
+.desktop-logo--image {
+  width: 140px;
+}
+
+.desktop-logo--text {
+  color: black;
+  font-size: 30px;
+}
+
 .nav-link.active {
   border-bottom: 3px solid $primary;
 }
@@ -44,12 +53,23 @@ html, body {
   flex-direction: column;
   height: 100%;
 }
-/* footer */
 
+/* footer */
 .footer {
   flex-shrink: 0;
   font-size: 16px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0.5em;
+  align-items: center;
+
+  &--icon {
+    width: 30px;
+  }
+
+  &--logo {
+    width: 80px;
+  }
 }
+
+
