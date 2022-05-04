@@ -21,7 +21,7 @@ function NavMenu() {
   }
 
   return (
-    <Navbar expand="lg" className="bg-dark navbar-dark position-relative">
+    <Navbar expand="lg" className="bg-light navbar-light position-relative">
       <NavLink to="/" className="d-lg-none">
         <Navbar.Brand>
           <img src={logo} alt="desktop-logo" className="desktop-logo--image" />

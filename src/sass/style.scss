@@ -1,18 +1,22 @@
-$navbar-dark-color: black;
-$navbar-dark-active-color: #808080;
-$navbar-dark-hover-color: #808080;
-$dark: white;
+$light: white;
 $primary: #F29F05;
 $secondary: #F2B705;
+$colorDarkGrey: #808080;
+$navbar-dark-color: black;
+$navbar-dark-active-color: $colorDarkGrey;
+$navbar-dark-hover-color: $colorDarkGrey;
 //$font-family-sans-serif: "Open Sans";
-$navbar-dark-toggler-border-color: #808080;
+$navbar-dark-toggler-border-color: $colorDarkGrey;
 //$h6-font-size: 0.8em;
+
+
 
 @import "partials/layout";
 @import "partials/typography";
 @import "partials/base";
 @import "partials/home";
 @import "partials/modal";
+@import "partials/accommodations";
 
 
 

@@ -18,24 +18,35 @@ function AccommodationItem({
   bryggen,
 }) {
   return (
-    <Row>
-      <Col md={4} className="border">
+    <Row className="accommodations">
+      <Col md={4} className="border p-0">
         <Link to={`/accommodation/${id}`}>
-          <img src={mainpic.data.attributes.url} className="w-100" />
+          <img
+            src={mainpic.data.attributes.url}
+            className="w-100 accommodations--image"
+          />
         </Link>
       </Col>
       <Col md={4} className="border">
         <Link to={`/accommodation/${id}`}>
-          <h4>{title}</h4>
-          <p>{address}</p>
+          <h4 className="accommodations--title mb-0">{title}</h4>
+          <p className="accommodations--address">{address}</p>
           <hr />
-          <p>{area}</p>
-          <ul>
+          <p className="mb-0">{area}</p>
+          <ul className="accommodations--distance">
             <li>{airport} km away from Bergen Airport</li>
             <li>{bryggen} km away from Bergen Brygge</li>
           </ul>
+
           {facility.map((item) => {
-            return <span key={item}>{item} </span>;
+            return (
+              <span
+                key={item}
+                className="accommodations--facility text-white me-1 rounded p-1"
+              >
+                {item}
+              </span>
+            );
           })}
         </Link>
       </Col>

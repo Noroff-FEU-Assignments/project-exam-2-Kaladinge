@@ -14,7 +14,7 @@ function Accommodations() {
     <>
       <Row>
         <Col>
-          <Heading title="Accommodations" />
+          <Heading title="All accommodations" />
           <div onClick={addCategory}>Hotel</div>
           <div onClick={addCategory}>Guesthouse</div>
           <AccommodationList category={category} />
