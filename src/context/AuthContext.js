@@ -5,6 +5,7 @@ export const AuthContext = React.createContext([null, () => {}]);
 
 function AuthProvider(props) {
   const [token, setToken] = useLocalStorage("auth", null);
+  console.log(token);
 
   return (
     <AuthContext.Provider value={[token, setToken]}>

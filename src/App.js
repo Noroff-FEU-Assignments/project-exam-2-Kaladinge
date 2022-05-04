@@ -16,18 +16,20 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <NavMenu />
-        <Container>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/accommodations" element={<Accommodations />} />
-            <Route path="/accommodation/:id" element={<Accommodation />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
-          <Footer />
-        </Container>
+        <div className="wrapper">
+          <NavMenu />
+          <Container>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/accommodations" element={<Accommodations />} />
+              <Route path="/accommodation/:id" element={<Accommodation />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </Container>
+        </div>
+        <Footer className="footer bg-secondary" />
       </Router>
     </AuthProvider>
   );
