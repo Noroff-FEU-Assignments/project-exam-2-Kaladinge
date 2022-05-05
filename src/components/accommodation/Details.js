@@ -17,17 +17,53 @@ function Details({
 }) {
   return (
     <>
-      <div>
-        <span>{summary}</span> - <span>{address}</span> -{" "}
-        <span>{rating} stars</span>
+      <div className="accommodation--textcontainer">
+        <div>{summary}</div>
+        <span>{address}</span> - <span className="text-success">{rating}</span>
+        <hr></hr>
+      </div>
+      <div className="d-flex justify-content-between">
+        {facility.map((item) => {
+          return (
+            <span
+              key={item}
+              className="accommodation--facility text-white text-center me-1 rounded p-1"
+            >
+              {item}{" "}
+            </span>
+          );
+        })}
       </div>
       <hr></hr>
-      {facility.map((item) => {
-        return <span key={item}>{item} </span>;
-      })}
-      <hr></hr>
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col-sm-8 border">
+            <div class="main-content">
+              <img src={mainpic.data.attributes.url} className="w-100" />
+            </div>
+          </div>
+          <div class="col-sm-4 border">
+            <div class="row">
+              <div class="col-12">
+                <div class="sidebar-content">hi</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="sidebar-content">hi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <Row>
-        <Col>
+        <Col xs={12} lg={6}>
+          <img src={mainpic.data.attributes.url} className="w-100" />
+        </Col>
+        <Col xs={6} lg={6}>
+          <img src={mainpic.data.attributes.url} className="w-100" />
+        </Col>
+        <Col xs={6} lg={6}>
           <img src={mainpic.data.attributes.url} className="w-100" />
         </Col>
       </Row>

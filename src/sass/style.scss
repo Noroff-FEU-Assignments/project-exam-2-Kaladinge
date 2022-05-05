@@ -6,7 +6,8 @@ $colorDarkGrey: #808080;
 $navbar-dark-color: black;
 $navbar-dark-active-color: $colorDarkGrey;
 $navbar-dark-hover-color: $colorDarkGrey;
-//$font-family-sans-serif: "Open Sans";
+$font-family-sans-serif: 'Montserrat',
+sans-serif;
 $navbar-dark-toggler-border-color: $colorDarkGrey;
 //$h6-font-size: 0.8em;
 
@@ -18,6 +19,7 @@ $navbar-dark-toggler-border-color: $colorDarkGrey;
 @import "partials/home";
 @import "partials/modal";
 @import "partials/accommodations";
+@import "partials/accommodation";
 
 
 

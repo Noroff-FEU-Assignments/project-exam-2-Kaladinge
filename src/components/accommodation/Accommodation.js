@@ -53,8 +53,9 @@ function Accommodation() {
   return (
     <>
       <Heading title={title} />
+
       <Row>
-        <Col xs={12} lg={8}>
+        <Col xs={12} lg={8} className="accommodation">
           <Details
             key={id}
             summary={summary}
