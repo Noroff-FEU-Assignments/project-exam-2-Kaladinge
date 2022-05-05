@@ -66,7 +66,7 @@ function AccommodationItem({
           <p>
             from <span className="accommodations--price">{price}</span> NOK
           </p>
-          <EnquiryForm />
+          <EnquiryForm title={title} />
           <p className="accommodations--rating text-success">{rating}</p>
         </Col>
       </Row>

@@ -75,8 +75,10 @@ function Accommodation() {
             bryggen={bryggen}
           />
         </Col>
-        <Col>
-          <EnquiryForm title={title} />
+        <Col className="enquiryform border-start">
+          <div className="enquiryform--container text-center ">
+            <EnquiryForm title={title} />
+          </div>
         </Col>
       </Row>
     </>

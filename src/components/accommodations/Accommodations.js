@@ -20,7 +20,7 @@ function Accommodations() {
           <div onClick={addCategory}>Guesthouse</div>
           <AccommodationList category={category} />
         </Col>
-        <Col xs={2} className="d-none d-lg-block question text-center">
+        <Col xs={2} className="question d-none d-lg-block text-center">
           <div className="position-fixed border bottom-50">
             <p>Have a question?</p>
             <Link to={`/contact`}>Ask us!</Link>

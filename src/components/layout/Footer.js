@@ -6,9 +6,9 @@ import facebook from "../../images/facebook-icon.png";
 
 function Footer() {
   return (
-    <div className="footer bg-secondary">
+    <div className="footer bg-secondary mt-4">
       <img src={logo} alt="footer-logo" className="footer--logo" />
-      <div>Hoteldaze 2022</div>
+      <div>Holidaze 2022</div>
       <div>
         <img src={instagram} alt="footer-instagram" className="footer--icon" />
         <img src={youtube} alt="footer-youtube" className="footer--icon" />

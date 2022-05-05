@@ -61,13 +61,15 @@ function Details({
           </Row>
         </Col>
       </Row>
-      <Row>
-        <Col xs={12} lg={6}>
+      <Row className="mt-3">
+        <Col xs={12} lg={8}>
           {description}
         </Col>
         <Col>
-          <p>{area}</p>
-          <ul>
+          <p className="accommodation--area ms-3 mt-3 mt-lg-0 mb-0">
+            Area: {area}
+          </p>
+          <ul className="accommodation--distance">
             <li>{airport} km away from Bergen Airport</li>
             <li>{bryggen} km away from Bergen Brygge</li>
           </ul>

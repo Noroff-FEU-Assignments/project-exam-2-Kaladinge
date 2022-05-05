@@ -73,7 +73,7 @@ function EnquiryForm({ title }) {
 
   return (
     <>
-      <Button onClick={displayModal} className="w-100 text-light check-button">
+      <Button onClick={displayModal} className="w-75 text-light check-button">
         Check availability
       </Button>
       <div className={`modal ${displayMode ? "d-block" : "d-none"}`}>
