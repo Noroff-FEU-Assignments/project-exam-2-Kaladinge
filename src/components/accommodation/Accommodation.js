@@ -19,6 +19,7 @@ function Accommodation() {
       try {
         const response = await axios.get(url);
         setAccommodation(response.data.data);
+        console.log(response.data.data);
       } catch (error) {
         setFetchDataError(error.toString());
       } finally {
@@ -46,6 +47,7 @@ function Accommodation() {
     price,
     rating,
     mainpic,
+    subpic,
     airport,
     bryggen,
   } = accommodation.attributes;
@@ -68,6 +70,7 @@ function Accommodation() {
             price={price}
             rating={rating}
             mainpic={mainpic}
+            subpic={subpic}
             airport={airport}
             bryggen={bryggen}
           />

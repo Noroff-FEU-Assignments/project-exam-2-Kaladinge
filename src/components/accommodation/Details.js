@@ -12,6 +12,7 @@ function Details({
   price,
   rating,
   mainpic,
+  subpic,
   airport,
   bryggen,
 }) {
@@ -35,36 +36,29 @@ function Details({
         })}
       </div>
       <hr></hr>
-      <div class="container mt-3">
-        <div class="row">
-          <div class="col-sm-8 border">
-            <div class="main-content">
-              <img src={mainpic.data.attributes.url} className="w-100" />
-            </div>
-          </div>
-          <div class="col-sm-4 border">
-            <div class="row">
-              <div class="col-12">
-                <div class="sidebar-content">hi</div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="sidebar-content">hi</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <Row>
-        <Col xs={12} lg={6}>
-          <img src={mainpic.data.attributes.url} className="w-100" />
+        <Col xs={12} sm={8} className="mb-2">
+          <img
+            src={mainpic.data.attributes.url}
+            className="w-100 accommodation--image"
+          />
         </Col>
-        <Col xs={6} lg={6}>
-          <img src={mainpic.data.attributes.url} className="w-100" />
-        </Col>
-        <Col xs={6} lg={6}>
-          <img src={mainpic.data.attributes.url} className="w-100" />
+        <Col>
+          <Row>
+            <Col xs={6} sm={12}>
+              <img
+                src={subpic.data[0].attributes.url}
+                className="w-100 accommodation--image"
+              />
+            </Col>
+            <Col xs={6} sm={12} className="mt-sm-3">
+              <img
+                src={subpic.data[1].attributes.url}
+                className="w-100 accommodation--image"
+              />
+            </Col>
+          </Row>
         </Col>
       </Row>
       <Row>
