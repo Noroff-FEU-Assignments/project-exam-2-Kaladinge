@@ -66,14 +66,19 @@ function Loginform() {
     <>
       <Form
         onSubmit={handleSubmit(onSubmit)}
-        className={`login-form bg-light mx-auto p-3 mt-3`}
+        className={`login-form mx-auto p-3 mt-3`}
+        autoComplete="off"
       >
         <fieldset disabled={submitting}>
           <div className="d-flex flex-column">
             <Form.Label htmlFor="name" className="mt-3">
               Username
             </Form.Label>
-            <Form.Control {...register("username")} id="username" />
+            <Form.Control
+              {...register("username")}
+              id="username"
+              placeholder="e.g. myname@hoteldaze.com"
+            />
             {errors.username && (
               <span className="mb-3 text-danger">
                 {errors.username.message}
@@ -92,7 +97,7 @@ function Loginform() {
             )}
           </div>
 
-          <button className="mt-3 bg-primary text-white w-100 border border-none rounded p-2">
+          <button className="button mt-3 bg-primary text-white w-100 border border-none p-2">
             Login
           </button>
         </fieldset>

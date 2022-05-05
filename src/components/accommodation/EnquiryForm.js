@@ -73,7 +73,7 @@ function EnquiryForm({ title }) {
 
   return (
     <>
-      <Button onClick={displayModal} className="w-75 text-light check-button">
+      <Button onClick={displayModal} className="check-button w-75 text-light">
         Check availability
       </Button>
       <div className={`modal ${displayMode ? "d-block" : "d-none"}`}>
@@ -82,7 +82,8 @@ function EnquiryForm({ title }) {
         </span>
         <Form
           onSubmit={handleSubmit(onSubmit)}
-          className={`modal--content bg-light p-3 d-flex flex-column mx-auto`}
+          className={`modal--content p-3 d-flex flex-column mx-auto text-start`}
+          autoComplete="off"
         >
           <fieldset disabled={submitting}>
             <Form.Label htmlFor="name" className="mt-3">
@@ -147,7 +148,10 @@ function EnquiryForm({ title }) {
               <div className="mb-3 text-danger">{errors.guests.message}</div>
             )}
 
-            <button type="submit" className="mt-3 bg-primary text-white">
+            <button
+              type="submit"
+              className="button mt-3 bg-primary text-white w-100 border border-none p-2"
+            >
               {submitting === true ? "Working..." : "Submit"}
             </button>
           </fieldset>

@@ -76,7 +76,7 @@ function Accommodation() {
           />
         </Col>
         <Col className="enquiryform border-start">
-          <div className="enquiryform--container text-center ">
+          <div className="enquiryform--container text-center">
             <EnquiryForm title={title} />
           </div>
         </Col>

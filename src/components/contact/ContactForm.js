@@ -35,7 +35,6 @@ function ContactForm() {
   });
 
   async function onSubmit(data) {
-    console.log(data);
     setSubmitting(true);
     setPostError(null);
     try {
@@ -57,7 +56,7 @@ function ContactForm() {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className={`bg-light p-3 d-flex flex-column mx-auto`}
+      className={`contactform p-3 d-flex flex-column mx-auto`}
     >
       <fieldset disabled={submitting}>
         <Form.Label htmlFor="email" className="mt-3">
@@ -76,7 +75,7 @@ function ContactForm() {
           Subject
         </Form.Label>
         <Form.Select {...register("subject")}>
-          <option value="">---</option>
+          <option value="">Choose a subject</option>
           <option value="booking">Booking</option>
           <option value="cancellation">Cancellation</option>
           <option value="other">Other</option>
@@ -99,7 +98,10 @@ function ContactForm() {
           <div className="mb-3 text-danger">{errors.message.message}</div>
         )}
 
-        <button type="submit" className="mt-3 bg-primary text-white">
+        <button
+          type="submit"
+          className="button mt-3 bg-primary text-white w-100 border border-none p-2"
+        >
           {submitting === true ? "Working..." : "Submit"}
         </button>
       </fieldset>

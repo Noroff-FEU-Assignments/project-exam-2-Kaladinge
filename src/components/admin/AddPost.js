@@ -256,7 +256,10 @@ function AddPost() {
             <div className="mb-3 text-danger">{errors.description.message}</div>
           )}
 
-          <button type="submit" className="mt-3 bg-primary text-white">
+          <button
+            type="submit"
+            className="button mt-3 bg-primary text-white w-100 border border-none p-2"
+          >
             {submitting === true ? "Working..." : "Submit"}
           </button>
         </fieldset>
