@@ -8,4 +8,11 @@ export const ENQUIRIES_PATH = "enquiries";
 
 export const UPLOAD_PATH = "upload";
 
-export const facilitiesCheckbox = ["WiFi included", "Bar"];
+export const facilitiesCheckbox = [
+  "WiFi included",
+  "Bar",
+  "Restaurant",
+  "Pet friendly",
+  "Non-smoking",
+  "Breakfast included",
+];

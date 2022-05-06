@@ -35,9 +35,11 @@ function Messages() {
 
   return (
     <div>
-      <div className="d-flex">
+      <div className="position-relative d-inline-block">
         <Heading title="Messages" />
-        <p>{messages.length}</p>
+        <span className="position-absolute top-0 start-100 badge rounded-pill bg-secondary">
+          {messages.length}
+        </span>
       </div>
       <Table striped bordered hover responsive="md">
         <thead>
