@@ -34,7 +34,7 @@ function Messages() {
   }
 
   return (
-    <>
+    <div>
       <div className="d-flex">
         <Heading title="Messages" />
         <p>{messages.length}</p>
@@ -61,7 +61,7 @@ function Messages() {
           })}
         </tbody>
       </Table>
-    </>
+    </div>
   );
 }
 

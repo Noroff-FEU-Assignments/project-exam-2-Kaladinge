@@ -57,6 +57,7 @@ function ContactForm() {
     <Form
       onSubmit={handleSubmit(onSubmit)}
       className={`contactform p-3 d-flex flex-column mx-auto`}
+      autoComplete="off"
     >
       <fieldset disabled={submitting}>
         <Form.Label htmlFor="email" className="mt-3">

@@ -36,7 +36,7 @@ function Messages() {
   return (
     <>
       <div className="d-flex">
-        <Heading title="Messages" />
+        <Heading title="Bokking Enquiries" />
         <p>{enquiries.length}</p>
       </div>
       <Table striped bordered hover responsive="md">

@@ -4,6 +4,9 @@ $secondary: #F2B705;
 $success: #22B527;
 $colorDarkGrey: #808080;
 $colorLightGrey: #F7F7F7;
+$colorOrange: #F25C05;
+$link-color: $colorOrange;
+$link-hover-color: $colorOrange;
 $navbar-dark-color: black;
 $navbar-dark-active-color: $colorDarkGrey;
 $navbar-dark-hover-color: $colorDarkGrey;
@@ -22,6 +25,7 @@ $navbar-dark-toggler-border-color: $colorDarkGrey;
 @import "partials/accommodations";
 @import "partials/accommodation";
 @import "partials/forms";
+@import "partials/admin";
 
 
 

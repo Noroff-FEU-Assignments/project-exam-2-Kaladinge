@@ -23,7 +23,9 @@ function Accommodations() {
         <Col xs={2} className="question d-none d-lg-block text-center">
           <div className="position-fixed border bottom-50">
             <p>Have a question?</p>
-            <Link to={`/contact`}>Ask us!</Link>
+            <Link className="link" to={`/contact`}>
+              Ask us!
+            </Link>
           </div>
         </Col>
       </Row>

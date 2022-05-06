@@ -3,7 +3,7 @@ import { HashLink } from "react-router-hash-link";
 
 function PageLink({ children, link }) {
   return (
-    <HashLink className="d-block" to={link} smooth>
+    <HashLink className="d-block link" to={link} smooth>
       {children}
     </HashLink>
   );
