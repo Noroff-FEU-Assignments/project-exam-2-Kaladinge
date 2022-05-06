@@ -31,13 +31,16 @@ const schema = yup.object().shape({
     .min(2, "Area name must be longer than 2 characters"),
   price: yup
     .number()
+    .integer("Value must be an integer")
     .required("Please enter distance from accommodation to bryggen in Bergen"),
   category: yup.string().required("Please choose an accommodation type"),
   airport: yup
     .number()
+    .integer("Value must be an integer")
     .required("Please enter distance from accommodation to Bergen airport"),
   bryggen: yup
     .number()
+    .integer("Value must be an integer")
     .required("Please enter distance from accommodation to bryggen in Bergen"),
   summary: yup
     .string()
@@ -127,17 +130,6 @@ function AddPost() {
       setCheckboxArray(alreadyThere2);
     }
   }
-
-  const handleInputChange = (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  const handleInputChange2 = (event) => {
-    setSubpic1(event.target.files[0]);
-  };
-  const handleInputChange3 = (event) => {
-    setSubpic2(event.target.files[0]);
-  };
 
   console.log(file);
   return (
@@ -234,7 +226,11 @@ function AddPost() {
                 placeholder="Price for one night"
               />
               {errors.price && (
-                <div className="mb-3 text-danger">{errors.price.message}</div>
+                <div className="mb-3 text-danger">
+                  {errors.price.message.includes("NaN")
+                    ? "Value must be a number (integer)"
+                    : errors.price.message}
+                </div>
               )}
             </Col>
 
@@ -248,7 +244,11 @@ function AddPost() {
                 placeholder="Distance to Bergen airport (km)"
               />
               {errors.airport && (
-                <div className="mb-3 text-danger">{errors.airport.message}</div>
+                <div className="mb-3 text-danger">
+                  {errors.airport.message.includes("NaN")
+                    ? "Value must be a number (integer)"
+                    : errors.airport.message}
+                </div>
               )}
             </Col>
 
@@ -262,11 +262,15 @@ function AddPost() {
                 placeholder="Distance to Bryggen in Bergen (km)"
               />
               {errors.bryggen && (
-                <div className="mb-3 text-danger">{errors.bryggen.message}</div>
+                <div className="mb-3 text-danger">
+                  {errors.bryggen.message.includes("NaN")
+                    ? "Value must be a number (integer)"
+                    : errors.bryggen.message}
+                </div>
               )}
             </Col>
 
-            <Col xs={12} lg={6}>
+            <Col xs={12} md={4}>
               <Form.Label htmlFor="facility" className="mt-3">
                 Facility
               </Form.Label>
@@ -284,16 +288,15 @@ function AddPost() {
               </div>
             </Col>
 
-            <Col xs={12} lg={6}>
+            <Col xs={6} lg={4}>
               <Form.Label htmlFor="mainpic" className="mt-3">
                 <p>Mainpic</p>
-                <div
-                  className="bg-light border position-relative"
-                  id="mainpic--container"
-                >
+                <div className="bg-light border position-relative mainpic--container">
                   <img
-                    src={mainpicture}
-                    className="w-50 position-absolute start-50 bottom-0 translate-middle"
+                    src={file ? URL.createObjectURL(file) : mainpicture}
+                    className={`${
+                      file ? "w-100 top-50" : "w-50 bottom-0"
+                    }  start-50 translate-middle position-absolute`}
                     alt="main picture"
                   />
                 </div>
@@ -301,12 +304,59 @@ function AddPost() {
               <Form.Control
                 type="file"
                 id="mainpic"
-                onChange={handleInputChange}
+                onChange={(event) => setFile(event.target.files[0])}
                 className="d-none"
               />
             </Col>
-            <input type="file" onChange={handleInputChange2} />
-            <input type="file" onChange={handleInputChange3} />
+
+            <Col xs={12} lg={4}>
+              <Row>
+                <Col xs={5} sm={4} lg={12}>
+                  <Form.Label htmlFor="subpic" className="mt-2 mt-lg-3 mb-0">
+                    <p>Subpics</p>
+                    <div className="bg-light border position-relative subpic--container">
+                      <img
+                        src={
+                          subpic1 ? URL.createObjectURL(subpic1) : mainpicture
+                        }
+                        className={`${
+                          subpic1 ? "w-100 top-50" : "w-50 bottom-0"
+                        }  start-50 translate-middle position-absolute`}
+                        alt="sub picture"
+                      />
+                    </div>
+                  </Form.Label>
+                  <Form.Control
+                    type="file"
+                    id="subpic"
+                    onChange={(event) => setSubpic1(event.target.files[0])}
+                    className="d-none"
+                  />
+                </Col>
+
+                <Col xs={5} sm={4} lg={12}>
+                  <Form.Label htmlFor="subpic2" className="mt-5 mt-lg-0">
+                    <div className="bg-light border position-relative subpic--container">
+                      <img
+                        src={
+                          subpic2 ? URL.createObjectURL(subpic2) : mainpicture
+                        }
+                        className={`${
+                          subpic2 ? "w-100 top-50" : "w-50 bottom-0"
+                        }  start-50 translate-middle position-absolute`}
+                        alt="sub picture"
+                      />
+                    </div>
+                  </Form.Label>
+                  <Form.Control
+                    type="file"
+                    id="subpic2"
+                    onChange={(event) => setSubpic2(event.target.files[0])}
+                    className="d-none"
+                  />
+                </Col>
+              </Row>
+            </Col>
 
             <Col xs={12}>
               <Form.Label htmlFor="summary" className="mt-3">
@@ -338,12 +388,14 @@ function AddPost() {
               )}
             </Col>
 
-            <button
-              type="submit"
-              className="button mt-3 bg-primary text-white w-100 border border-none p-2"
-            >
-              {submitting === true ? "Working..." : "Submit"}
-            </button>
+            <Col>
+              <button
+                type="submit"
+                className="button mt-3 bg-primary text-white w-100 border border-none p-2"
+              >
+                {submitting === true ? "Working..." : "Submit"}
+              </button>
+            </Col>
           </Row>
         </fieldset>
         {postError && (
