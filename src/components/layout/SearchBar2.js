@@ -24,9 +24,9 @@ function SearchBar() {
       try {
         const response = await axios.get(url);
         setTerms(autoCompleteMatch(event.target.value, response.data.data));
-        //if (event.which !== 40 && event.which !== 38) {
-        //setListIndex(0);
-        //}
+        if (event.which !== 40 && event.which !== 38) {
+          setListIndex(-1);
+        }
       } catch (error) {
         setFetchPagesError(error.toString());
       } finally {
