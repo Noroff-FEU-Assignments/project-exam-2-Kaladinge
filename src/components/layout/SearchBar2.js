@@ -11,6 +11,7 @@ function SearchBar() {
   const [listResult, setListResult] = useState(null);
   const [displayResult, setDisplayResult] = useState("d-none");
   const [terms, setTerms] = useState(null);
+  const [listIndex, setListIndex] = useState(-1);
 
   function showAccommodations(event) {
     const url =
@@ -44,6 +45,22 @@ function SearchBar() {
     });
   }
 
+  function browseList(e) {
+    if (e.which === 40) {
+      if (terms.length - 1 === listIndex) {
+        setListIndex(0);
+      } else {
+        setListIndex(listIndex + 1);
+      }
+    } else if (e.which === 38) {
+      if (0 === listIndex) {
+        setListIndex(terms.length - 1);
+      } else {
+        setListIndex(listIndex - 1);
+      }
+    }
+  }
+
   return (
     <div className="position-relative">
       <FormControl
@@ -53,12 +70,18 @@ function SearchBar() {
         placeholder="Search accommodations"
         name="search"
         onKeyUp={showAccommodations}
+        onKeyDown={browseList}
       />
       <div
         className={`text-danger navsearch--result position-absolute w-100 ${displayResult}`}
         id="navsearch--results"
       >
-        <ListResult list={terms} error={fetchPagesError} loading={loading} />
+        <ListResult
+          list={terms}
+          error={fetchPagesError}
+          loading={loading}
+          listIndex={listIndex}
+        />
       </div>
     </div>
   );

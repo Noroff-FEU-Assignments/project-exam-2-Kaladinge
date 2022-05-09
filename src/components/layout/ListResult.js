@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function ListResult({ list, error, loading }) {
+function ListResult({ list, error, loading, listIndex }) {
   if (loading) {
     return <p>loading</p>;
   }
@@ -13,10 +13,12 @@ function ListResult({ list, error, loading }) {
   if (list.length > 0) {
     return (
       <ul>
-        {list.map((item) => {
+        {list.map((item, index) => {
           return (
             <Link to={`/accommodation/${item.id}`} key={item.id}>
-              <li>{item.attributes.title}</li>
+              <li className={index === listIndex ? "bg-primary" : ""}>
+                {item.attributes.title}
+              </li>
             </Link>
           );
         })}
