@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { FormControl } from "react-bootstrap";
+import { Form, FormControl } from "react-bootstrap";
 
 import ListResult from "./ListResult";
 
@@ -12,6 +12,7 @@ function SearchBar() {
   const [displayResult, setDisplayResult] = useState("d-none");
   const [terms, setTerms] = useState(null);
   const [listIndex, setListIndex] = useState(-1);
+  const [inputValue, setInputValue] = useState("");
 
   function showAccommodations(event) {
     const url =
@@ -22,8 +23,10 @@ function SearchBar() {
     const getAccommodations = async () => {
       try {
         const response = await axios.get(url);
-
         setTerms(autoCompleteMatch(event.target.value, response.data.data));
+        //if (event.which !== 40 && event.which !== 38) {
+        //setListIndex(0);
+        //}
       } catch (error) {
         setFetchPagesError(error.toString());
       } finally {
@@ -46,44 +49,58 @@ function SearchBar() {
   }
 
   function browseList(e) {
-    if (e.which === 40) {
-      if (terms.length - 1 === listIndex) {
-        setListIndex(0);
-      } else {
-        setListIndex(listIndex + 1);
-      }
-    } else if (e.which === 38) {
-      if (0 === listIndex) {
-        setListIndex(terms.length - 1);
-      } else {
-        setListIndex(listIndex - 1);
+    if (e.code !== "Enter") {
+      if (e.which === 40) {
+        console.log(terms);
+        if (terms.length - 1 === listIndex) {
+          setListIndex(0);
+          setInputValue(terms[listIndex].id);
+        } else {
+          setListIndex(listIndex + 1);
+          setInputValue(terms[listIndex + 1].id);
+        }
+      } else if (e.which === 38) {
+        if (0 === listIndex) {
+          setListIndex(terms.length - 1);
+          setInputValue(terms[terms.length - 1].id);
+        } else {
+          setListIndex(listIndex - 1);
+          setInputValue(terms[listIndex - 1].id);
+        }
       }
     }
   }
 
+  function hoi(event) {
+    console.log("hoi");
+  }
+
   return (
-    <div className="position-relative">
-      <FormControl
-        autoComplete="off"
-        className="navsearch"
-        type="text"
-        placeholder="Search accommodations"
-        name="search"
-        onKeyUp={showAccommodations}
-        onKeyDown={browseList}
-      />
-      <div
-        className={`text-danger navsearch--result position-absolute w-100 ${displayResult}`}
-        id="navsearch--results"
-      >
-        <ListResult
-          list={terms}
-          error={fetchPagesError}
-          loading={loading}
-          listIndex={listIndex}
+    <Form action={`accommodation/${inputValue}`} className="w-50">
+      <div className="position-relative">
+        <FormControl
+          autoComplete="off"
+          className="navsearch"
+          type="text"
+          placeholder="Search accommodations"
+          action="hoho"
+          onKeyUp={showAccommodations}
+          onKeyDown={browseList}
         />
+        <div
+          className={`text-danger navsearch--result position-absolute w-100 ${displayResult}`}
+          id="navsearch--results"
+          onKeyDown={hoi}
+        >
+          <ListResult
+            list={terms}
+            error={fetchPagesError}
+            loading={loading}
+            listIndex={listIndex}
+          />
+        </div>
       </div>
-    </div>
+    </Form>
   );
 }
 

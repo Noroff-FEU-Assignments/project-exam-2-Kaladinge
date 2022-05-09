@@ -10,13 +10,17 @@ function ListResult({ list, error, loading, listIndex }) {
     return <p>There was something wrong when fetching results</p>;
   }
 
+  function hei(event) {
+    console.log("hoi");
+  }
+
   if (list.length > 0) {
     return (
       <ul>
         {list.map((item, index) => {
           return (
             <Link to={`/accommodation/${item.id}`} key={item.id}>
-              <li className={index === listIndex ? "bg-primary" : ""}>
+              <li className={`${index === listIndex ? "bg-primary" : ""}`}>
                 {item.attributes.title}
               </li>
             </Link>

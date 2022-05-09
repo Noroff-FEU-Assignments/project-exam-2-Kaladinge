@@ -45,9 +45,9 @@ function NavMenu() {
               Accommodations
             </NavLink>
           </Nav>
-          <Form action="/action_page.php" className="w-50">
-            <SearchBar2 />
-          </Form>
+
+          <SearchBar2 />
+
           <Nav className="">
             {token ? (
               <NavLink to="/admin" className="nav-link">
