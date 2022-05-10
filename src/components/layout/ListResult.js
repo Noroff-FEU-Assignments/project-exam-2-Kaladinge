@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function ListResult({ list, error, loading, listIndex }) {
+function ListResult({ list, error, loading, listIndex, clickHandle }) {
   if (loading) {
     return <p>loading</p>;
   }
@@ -10,17 +10,16 @@ function ListResult({ list, error, loading, listIndex }) {
     return <p>There was something wrong when fetching results</p>;
   }
 
-  function hei(event) {
-    console.log("hoi");
-  }
-
   if (list.length > 0) {
     return (
       <ul>
         {list.map((item, index) => {
           return (
             <Link to={`/accommodation/${item.id}`} key={item.id}>
-              <li className={`${index === listIndex ? "bg-primary" : ""}`}>
+              <li
+                className={`${index === listIndex ? "bg-primary" : ""}`}
+                onClick={clickHandle}
+              >
                 {item.attributes.title}
               </li>
             </Link>
@@ -29,6 +28,7 @@ function ListResult({ list, error, loading, listIndex }) {
       </ul>
     );
   } else {
+    console.log(list);
     return <p>There are no results</p>;
   }
 }
