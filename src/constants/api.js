@@ -15,4 +15,5 @@ export const facilitiesCheckbox = [
   "Pet friendly",
   "Non-smoking",
   "Breakfast included",
+  "Swimming Pool",
 ];
