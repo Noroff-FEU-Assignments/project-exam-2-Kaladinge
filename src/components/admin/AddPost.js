@@ -50,7 +50,7 @@ const schema = yup.object().shape({
     .string()
     .required("Please enter a description")
     .min(20, "Description must be at least 20 characters long")
-    .max(500, "Description must be at most 200 characters long"),
+    .max(1000, "Description must be at most 1000 characters long"),
 });
 
 function AddPost() {
@@ -379,6 +379,8 @@ function AddPost() {
               <Form.Control
                 {...register("description")}
                 id="descpription"
+                as="textarea"
+                rows={5}
                 placeholder="Introductive text about the accommodation - max 500 words"
               />
               {errors.description && (
