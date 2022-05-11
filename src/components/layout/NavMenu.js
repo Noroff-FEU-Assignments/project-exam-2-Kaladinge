@@ -37,7 +37,7 @@ function NavMenu() {
                 alt="desktop-logo"
                 className="desktop-logo--image"
               />
-              <h1 className="text-uppercase desktop-logo--text">Hoteldaze</h1>
+              <h1 className="text-uppercase desktop-logo--text">Holidaze</h1>
             </Navbar.Brand>
           </NavLink>
           <Nav className="">
