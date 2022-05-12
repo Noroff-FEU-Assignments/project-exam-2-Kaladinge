@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FilterContext } from "../../context/AuthContext";
 import Heading from "../layout/Heading";
 import AccommodationList2 from "./AccommodationList2";
 
@@ -12,6 +13,8 @@ function Accommodations2() {
   const [dataArray, setDataArray] = useState([]);
   const [clicked, setClicked] = useState(false);
   const [category, setCategory] = useState([]);
+  const [filter, setFilter] = useContext(FilterContext);
+  console.log(filter);
 
   const url =
     "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
@@ -21,7 +24,16 @@ function Accommodations2() {
       try {
         const response = await axios.get(url);
         setDataArray(response.data.data);
-        setAccommodations(response.data.data);
+        if (filter) {
+          console.log(response.data.data[0].attributes.category);
+          const filteredArray = response.data.data.filter(
+            (item) => item.attributes.category === filter
+          );
+          console.log(filteredArray);
+          setAccommodations(filteredArray);
+        } else {
+          setAccommodations(response.data.data);
+        }
       } catch (error) {
         setFetchPagesError(error.toString());
       } finally {

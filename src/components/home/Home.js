@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { categoryImages } from "../../constants/data";
 import { Link } from "react-router-dom";
+import { FilterContext } from "../../context/AuthContext";
 
 function Home() {
+  const [filter, setFilter] = useContext(FilterContext);
+
   function setCategory(e) {
-    console.log(e.target.nextSibling.innerText);
+    setFilter(e.target.nextSibling.innerText);
   }
 
   return (
