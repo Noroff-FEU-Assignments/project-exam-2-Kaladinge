@@ -14,7 +14,6 @@ function Accommodations2() {
   const [clicked, setClicked] = useState(false);
   const [category, setCategory] = useState([]);
   const [filter, setFilter] = useContext(FilterContext);
-  console.log(filter);
 
   const url =
     "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
@@ -38,6 +37,7 @@ function Accommodations2() {
         setFetchPagesError(error.toString());
       } finally {
         setLoading(false);
+        setFilter(null);
       }
     };
     getAccommodations();
@@ -52,7 +52,6 @@ function Accommodations2() {
   }
 
   function addCategory(e) {
-    //setCategory([...category, event.target.innerHTML]);
     console.log(e);
     const filteredArray = dataArray.filter(
       (item) => item.attributes.category === e.target.innerText
@@ -92,8 +91,8 @@ function Accommodations2() {
           <div onClick={addCategory} value="Hotel">
             Hotel
           </div>
-          <div onClick={addCategory}>Guesthouse</div>
           <div onClick={addCategory}>B &amp; B</div>
+          <div onClick={addCategory}>Guesthouse</div>
           <AccommodationList2
             accommodations={
               accommodations.length > 0 ? accommodations : dataArray
