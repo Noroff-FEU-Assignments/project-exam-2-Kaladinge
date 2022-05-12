@@ -1,3 +1,4 @@
+/* hero-banner */
 .hero-banner {
   background-image: url("../../images/brygga-bergen-hero.jpg");
   height: 700px;
@@ -18,3 +19,20 @@
     -webkit-text-stroke-color: #707070;
   }
 }
+
+/* category-thumbnails */
+
+.categories-thumbnails {
+  
+  &--button {
+    width: 300px;
+  }
+  &--image {
+    border-radius: 20px;
+  }
+  &--text {
+    border-radius: 0 0 20px 20px;
+  }
+  
+}
+
