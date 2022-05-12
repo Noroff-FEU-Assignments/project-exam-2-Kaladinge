@@ -162,7 +162,7 @@ function AddPost() {
               <Form.Select {...register("category")}>
                 <option value="">Choose a Category</option>
                 <option value="Hotel">Hotel</option>
-                <option value="B & B">B & B</option>
+                <option value="B &amp; B">B &amp; B</option>
                 <option value="Guesthouse">GuestHouse</option>
               </Form.Select>
               {errors.category && (
