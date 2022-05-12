@@ -5,7 +5,7 @@ import guesthouseThumbnail from "../images/thumbnail-guesthouse.jpg";
 export const categoryImages = [
   {
     image: hotelThumbnail,
-    text: "Hotels",
+    text: "Hotel",
   },
   {
     image: BnbThumbnail,
@@ -13,6 +13,6 @@ export const categoryImages = [
   },
   {
     image: guesthouseThumbnail,
-    text: "Guesthouses",
+    text: "Guesthouse",
   },
 ];

@@ -1,6 +1,4 @@
 import React from "react";
-
-import Heading from "../layout/Heading";
 import AddPost from "./AddPost";
 import Messages from "./Messages";
 import PageLink from "./PageLink";
