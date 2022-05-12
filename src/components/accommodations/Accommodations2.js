@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { categoryButtons } from "../../constants/data";
 import { FilterContext } from "../../context/AuthContext";
 import Heading from "../layout/Heading";
 import AccommodationList2 from "./AccommodationList2";
@@ -14,6 +15,8 @@ function Accommodations2() {
   const [clicked, setClicked] = useState(false);
   const [category, setCategory] = useState([]);
   const [filter, setFilter] = useContext(FilterContext);
+  const [categoryButtonStyle, setCategoryButtonStyle] =
+    useState(categoryButtons);
 
   const url =
     "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
@@ -89,24 +92,17 @@ function Accommodations2() {
         <Col className="accommodations">
           <Heading title="All accommodations" />
 
-          <span
-            onClick={addCategory}
-            className="accommodations--category me-4 p-2"
-          >
-            Hotel
-          </span>
-          <span
-            onClick={addCategory}
-            className="accommodations--category me-4 p-2"
-          >
-            B &amp; B
-          </span>
-          <span
-            onClick={addCategory}
-            className="accommodations--category me-4 p-2"
-          >
-            Guesthouse
-          </span>
+          {categoryButtonStyle.map((item, index) => (
+            <span
+              onClick={addCategory}
+              key={item.text}
+              className={`accommodations--category me-4 p-2 ${
+                item.state ? "accommodations--category--clicked" : ""
+              }`}
+            >
+              {item.text}
+            </span>
+          ))}
 
           <AccommodationList2
             accommodations={

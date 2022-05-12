@@ -16,3 +16,18 @@ export const categoryImages = [
     text: "Guesthouse",
   },
 ];
+
+export const categoryButtons = [
+  {
+    text: "Hotel",
+    state: false,
+  },
+  {
+    text: "B & B",
+    state: false,
+  },
+  {
+    text: "Guesthouse",
+    state: false,
+  },
+];
