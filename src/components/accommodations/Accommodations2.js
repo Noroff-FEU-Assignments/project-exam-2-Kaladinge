@@ -88,11 +88,26 @@ function Accommodations2() {
       <Row>
         <Col className="accommodations">
           <Heading title="All accommodations" />
-          <div onClick={addCategory} value="Hotel">
+
+          <span
+            onClick={addCategory}
+            className="accommodations--category me-4 p-2"
+          >
             Hotel
-          </div>
-          <div onClick={addCategory}>B &amp; B</div>
-          <div onClick={addCategory}>Guesthouse</div>
+          </span>
+          <span
+            onClick={addCategory}
+            className="accommodations--category me-4 p-2"
+          >
+            B &amp; B
+          </span>
+          <span
+            onClick={addCategory}
+            className="accommodations--category me-4 p-2"
+          >
+            Guesthouse
+          </span>
+
           <AccommodationList2
             accommodations={
               accommodations.length > 0 ? accommodations : dataArray

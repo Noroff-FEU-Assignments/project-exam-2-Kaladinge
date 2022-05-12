@@ -1,15 +1,23 @@
-.accommodations--image {
+.accommodations {
+  &--image {
+    border-radius: 20px;
+    border: 1px solid #808080;
+  }
+
+  & a {
+    text-decoration: none;
+    color: black;
+  }
+
+  &--facility {
+    background-color: $colorDarkGrey;
+  }
+}
+
+.accommodations--category {
+  border: 1px solid #d9d9d9;
   border-radius: 20px;
-  border: 1px solid #808080;
-}
-
-.accommodations a{
-  text-decoration: none;
-  color: black;
-}
-
-.accommodations--facility {
-  background-color: $colorDarkGrey;
+  cursor: pointer;
 }
 
 .question {
