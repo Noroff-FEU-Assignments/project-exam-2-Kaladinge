@@ -19,15 +19,18 @@ export const categoryImages = [
 
 export const categoryButtons = [
   {
+    id: 0,
     text: "Hotel",
-    state: false,
+    clicked: false,
   },
   {
+    id: 1,
     text: "B & B",
-    state: false,
+    clicked: false,
   },
   {
+    id: 2,
     text: "Guesthouse",
-    state: false,
+    clicked: false,
   },
 ];

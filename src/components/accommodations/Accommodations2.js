@@ -55,7 +55,26 @@ function Accommodations2() {
   }
 
   function addCategory(e) {
-    console.log(e);
+    const index = parseInt(e.target.dataset.index);
+
+    setCategoryButtonStyle((prevButtons) => {
+      const newButtons = [];
+      prevButtons.forEach((item) => {
+        if (item.id === index) {
+          const updatedButtons = {
+            ...item,
+            clicked: !item.clicked,
+          };
+          newButtons.push(updatedButtons);
+        } else {
+          newButtons.push(item);
+        }
+      });
+      return newButtons;
+    });
+
+    console.log(categoryButtonStyle[index].clicked);
+
     const filteredArray = dataArray.filter(
       (item) => item.attributes.category === e.target.innerText
     );
@@ -68,8 +87,6 @@ function Accommodations2() {
       const alreadyThere = accommodations.filter(
         (item) => item.attributes.category === e.target.innerText
       );
-      console.log(alreadyThere.length);
-      console.log(alreadyThere);
 
       if (alreadyThere.length === 0) {
         console.log("new");
@@ -84,8 +101,6 @@ function Accommodations2() {
     }
   }
 
-  console.log(accommodations.length);
-
   return (
     <>
       <Row>
@@ -96,8 +111,9 @@ function Accommodations2() {
             <span
               onClick={addCategory}
               key={item.text}
+              data-index={index}
               className={`accommodations--category me-4 p-2 ${
-                item.state ? "accommodations--category--clicked" : ""
+                item.clicked ? "accommodations--category--clicked" : ""
               }`}
             >
               {item.text}
