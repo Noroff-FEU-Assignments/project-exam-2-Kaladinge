@@ -103,6 +103,7 @@ function Accommodations2() {
       const alreadyThere = accommodations.filter(
         (item) => item.attributes.category === e.target.innerText
       );
+      setClicked(true);
 
       if (alreadyThere.length === 0) {
         console.log("new");
