@@ -18,6 +18,8 @@ function Accommodations2() {
   const [categoryButtonStyle, setCategoryButtonStyle] =
     useState(categoryButtons);
 
+  console.log(filter);
+
   const url =
     "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
 
@@ -31,7 +33,23 @@ function Accommodations2() {
           const filteredArray = response.data.data.filter(
             (item) => item.attributes.category === filter
           );
-          console.log(filteredArray);
+
+          setCategoryButtonStyle((prevButtons) => {
+            const newButtons = [];
+            prevButtons.forEach((item) => {
+              if (filter === item.text) {
+                const updatedButtons = {
+                  ...item,
+                  clicked: true,
+                };
+                newButtons.push(updatedButtons);
+              } else {
+                newButtons.push(item);
+              }
+            });
+            return newButtons;
+          });
+
           setAccommodations(filteredArray);
         } else {
           setAccommodations(response.data.data);
@@ -72,8 +90,6 @@ function Accommodations2() {
       });
       return newButtons;
     });
-
-    console.log(categoryButtonStyle[index].clicked);
 
     const filteredArray = dataArray.filter(
       (item) => item.attributes.category === e.target.innerText
