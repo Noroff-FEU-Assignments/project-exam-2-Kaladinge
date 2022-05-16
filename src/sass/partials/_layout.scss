@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -33,11 +34,15 @@ html, body {
   border: 1px solid black;
 }
 
+.navbar-scroll {
+  background-color: $colorOrange;
+}
+
 .navsearch--result {
   border: 1px solid #ccc;
   background: #ccc;
   padding: 3px;
-  
+
   & ul {
     list-style-type: none;
     padding: 0;
@@ -63,6 +68,10 @@ html, body {
   height: 100%;
 }
 
+.container {
+  margin-top: 120px;
+}
+
 /* footer */
 .footer {
   flex-shrink: 0;
@@ -80,5 +89,3 @@ html, body {
     width: 80px;
   }
 }
-
-

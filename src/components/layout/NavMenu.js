@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -12,6 +10,9 @@ import logo from "../../images/primary-logo.png";
 
 function NavMenu() {
   const [token, setToken] = useContext(AuthContext);
+  const [backgroundColor, setBackgroundColor] = useState("bg-light");
+  const [navColor, setNavColor] = useState("navbar-light");
+  const [logoColor, setLogoColor] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,9 +21,22 @@ function NavMenu() {
     setToken(null);
   }
 
+  document.onscroll = function() {
+    if (document.documentElement.scrollTop > 10) {
+      setBackgroundColor("bg-dark")
+      setLogoColor("text-white")
+      setNavColor("navbar-dark")} 
+    else {
+      setBackgroundColor("bg-light")
+      setNavColor("navbar-light")
+      setLogoColor("")
+    }
+  } 
+  
+
   return (
-    <Navbar expand="lg" className="bg-light navbar-light position-relative">
-      <NavLink to="/" className="d-lg-none">
+    <Navbar expand="lg" className={`${backgroundColor} ${navColor} position-fixed w-100`}>
+      <NavLink to="/" className="d-lg-none border">
         <Navbar.Brand>
           <img src={logo} alt="desktop-logo" className="desktop-logo--image" />
         </Navbar.Brand>
@@ -37,7 +51,7 @@ function NavMenu() {
                 alt="desktop-logo"
                 className="desktop-logo--image"
               />
-              <h1 className="text-uppercase desktop-logo--text">Holidaze</h1>
+              <h1 className={`text-uppercase desktop-logo--text ${logoColor}`}>Holidaze</h1>
             </Navbar.Brand>
           </NavLink>
           <Nav className="">
