@@ -6,6 +6,7 @@
   margin-top: 30px;
   background-position: center;
   position: relative;
+  z-index: -1;
 
   &--text {
     position: absolute;
@@ -16,23 +17,22 @@
     color: white;
     -webkit-text-fill-color: white;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #707070;
   }
 }
 
 /* category-thumbnails */
 
 .categories-thumbnails {
-  
+
   &--button {
     width: 300px;
   }
+
   &--image {
     border-radius: 20px;
   }
+
   &--text {
     border-radius: 0 0 20px 20px;
   }
-  
 }
-

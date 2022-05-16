@@ -39,9 +39,10 @@ body {
 }
 
 .navsearch--result {
-  border: 1px solid #ccc;
-  background: #ccc;
-  padding: 3px;
+  border: 1px solid $colorDarkGrey;
+  background: $colorLightGrey;
+  border-radius: 10px;
+  padding: 5px;
 
   & ul {
     list-style-type: none;
@@ -55,6 +56,11 @@ body {
 
   & ul li:hover {
     background: #eee;
+  }
+
+  .navsearch--item {
+    color: black;
+    text-decoration: none;
   }
 }
 

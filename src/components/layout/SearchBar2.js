@@ -52,10 +52,7 @@ function SearchBar() {
     });
   }
 
-  //if (document.location.pathname.includes("accommodation") &&
-  //!document.location.pathname.includes("accommodation")) {
-  //console.log(document.location.pathname);
-  //}
+  
 
   function browseList(e) {
     if (e.code !== "Enter") {
@@ -63,18 +60,14 @@ function SearchBar() {
         console.log(terms);
         if (terms.length - 1 === listIndex) {
           setListIndex(0);
-          //setInputValue(terms[0].id);
         } else {
           setListIndex(listIndex + 1);
-          //setInputValue(terms[listIndex + 1].id);
         }
       } else if (e.which === 38) {
         if (0 === listIndex) {
           setListIndex(terms.length - 1);
-          //setInputValue(terms[terms.length - 1].id);
         } else {
           setListIndex(listIndex - 1);
-          //setInputValue(terms[listIndex - 1].id);
         }
       }
     } else if (e.code === "Enter") {

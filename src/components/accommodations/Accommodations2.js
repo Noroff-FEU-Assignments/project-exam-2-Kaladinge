@@ -121,7 +121,7 @@ function Accommodations2() {
   return (
     <>
       <Row>
-        <Col className="accommodations">
+        <Col className="accommodations border-end">
           <Heading title="All accommodations" />
 
           {categoryButtonStyle.map((item, index) => (
@@ -144,7 +144,7 @@ function Accommodations2() {
           />
         </Col>
         <Col xs={2} className="question d-none d-lg-block text-center">
-          <div className="position-fixed border bottom-50">
+          <div className="question-box position-fixed border ms-4 mt-5 p-3 rounded">
             <p>Have a question?</p>
             <Link className="link" to={`/contact`}>
               Ask us!

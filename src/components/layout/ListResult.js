@@ -15,9 +15,9 @@ function ListResult({ list, error, loading, listIndex, clickHandle }) {
       <ul>
         {list.map((item, index) => {
           return (
-            <Link to={`/accommodation/${item.id}`} key={item.id}>
+            <Link to={`/accommodation/${item.id}`} key={item.id} className="navsearch--item">
               <li
-                className={`${index === listIndex ? "bg-primary" : ""}`}
+                className={`${index === listIndex ? "bg-secondary" : ""}`}
                 onClick={clickHandle}
               >
                 {item.attributes.title}
