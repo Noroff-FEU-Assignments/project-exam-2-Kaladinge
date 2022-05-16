@@ -17,7 +17,7 @@ function ListResult({ list, error, loading, listIndex, clickHandle }) {
           return (
             <Link to={`/accommodation/${item.id}`} key={item.id} className="navsearch--item">
               <li
-                className={`${index === listIndex ? "bg-secondary" : ""}`}
+                className={`${index === listIndex ? "bg-secondary" : ""} ps-2`}
                 onClick={clickHandle}
               >
                 {item.attributes.title}
