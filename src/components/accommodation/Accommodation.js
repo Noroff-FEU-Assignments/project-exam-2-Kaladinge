@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../../common/Loader";
 import Heading from "../layout/Heading";
 import Details from "./Details";
 import EnquiryForm from "./EnquiryForm";
@@ -30,7 +31,7 @@ function Accommodation() {
   }, [url]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (fetchDataError) {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import Loader from "../../common/Loader";
 import { ENQUIRIES_PATH } from "../../constants/api";
 import useAxios from "../../hooks/useAxios";
 import Heading from "../layout/Heading";
@@ -26,7 +27,7 @@ function Messages() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (fetchPagesError) {

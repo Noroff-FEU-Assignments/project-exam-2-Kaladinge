@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Heading from "../layout/Heading";
+import Heading from "../components/layout/Heading";
 import AccommodationList from "./AccommodationList";
 
 function Accommodations() {

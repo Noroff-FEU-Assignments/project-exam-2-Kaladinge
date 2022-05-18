@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Loader from "../../common/Loader";
 import { categoryButtons } from "../../constants/data";
 import { FilterContext } from "../../context/AuthContext";
 import Heading from "../layout/Heading";
@@ -17,8 +18,6 @@ function Accommodations2() {
   const [filter, setFilter] = useContext(FilterContext);
   const [categoryButtonStyle, setCategoryButtonStyle] =
     useState(categoryButtons);
-
-  console.log(filter);
 
   const url =
     "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
@@ -65,7 +64,7 @@ function Accommodations2() {
   }, [url]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (fetchPagesError) {
