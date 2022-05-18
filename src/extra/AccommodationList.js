@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import AccommodationItem from "./AccommodationItem";
+import AccommodationItem from "../components/accommodations/AccommodationItem";
 
 function AccommodationList({ category }) {
   const [accommodations, setAccommodations] = useState([]);
