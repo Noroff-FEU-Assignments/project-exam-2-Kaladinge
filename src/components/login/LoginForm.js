@@ -21,7 +21,6 @@ function Loginform() {
   const [loginError, setLoginError] = useState(null);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [token, setToken] = useContext(AuthContext);
-  console.log(token);
 
   const navigate = useNavigate();
 
@@ -89,7 +88,11 @@ function Loginform() {
             <Form.Label htmlFor="age" className="mt-3">
               Password
             </Form.Label>
-            <Form.Control {...register("password")} id="password" />
+            <Form.Control
+              {...register("password")}
+              id="password"
+              type="password"
+            />
             {errors.password && (
               <span className="mb-3 text-danger">
                 {errors.password.message}
@@ -105,7 +108,7 @@ function Loginform() {
           <div className="text-success">You successfully logged in</div>
         )}
         {loginError && (
-          <div className="text-danger">UserName or password was incorrect</div>
+          <div className="text-danger">Username or password was incorrect</div>
         )}
       </Form>
     </>

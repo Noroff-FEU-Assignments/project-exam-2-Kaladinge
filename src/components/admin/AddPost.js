@@ -209,7 +209,7 @@ function AddPost() {
               <Form.Control
                 {...register("address")}
                 id="address"
-                placeholder="Postal code, street name"
+                placeholder="Street name"
               />
               {errors.address && (
                 <div className="mb-3 text-danger">{errors.address.message}</div>

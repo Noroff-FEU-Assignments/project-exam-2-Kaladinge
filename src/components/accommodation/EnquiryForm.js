@@ -77,14 +77,14 @@ function EnquiryForm({ title }) {
         Check availability
       </Button>
       <div className={`modal ${displayMode ? "d-block" : "d-none"}`}>
-        <span onClick={displayModal} className="modal--close">
-          &times;
-        </span>
         <Form
           onSubmit={handleSubmit(onSubmit)}
-          className={`modal--content p-3 d-flex flex-column mx-auto text-start`}
+          className={`modal--content p-3 d-flex flex-column mx-auto text-start position-relative`}
           autoComplete="off"
         >
+          <span onClick={displayModal} className="modal--close text-black">
+            &times;
+          </span>
           <fieldset disabled={submitting}>
             <Form.Label htmlFor="name" className="mt-3">
               Name
