@@ -7,7 +7,7 @@ function Home() {
   const [filter, setFilter] = useContext(FilterContext);
 
   function setCategory(e) {
-    setFilter(e.target.nextSibling.innerText);
+    setFilter(e.target.parentElement.innerText);
   }
 
   return (
@@ -20,6 +20,7 @@ function Home() {
           {categoryImages.map((item) => (
             <div
               key={item.text}
+              data-text={item.text}
               className="categories-thumbnails--button mx-end mb-3 position-relative border"
               onClick={setCategory}
             >
