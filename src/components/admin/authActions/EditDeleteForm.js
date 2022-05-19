@@ -9,10 +9,8 @@ import FormMessage from "../../../common/FormMessage";
 import {
   ACCOMMODATIONS_PATH,
   facilitiesCheckbox,
-  UPLOAD_PATH,
 } from "../../../constants/api";
 import useAxios from "../../../hooks/useAxios";
-import mainpicture from "../../../images/add-icon.png";
 
 const schema = yup.object().shape({
   title: yup
@@ -72,7 +70,7 @@ function EditDeleteForm({ accommodation }) {
   });
 
   const http = useAxios();
-  const url = ACCOMMODATIONS_PATH;
+  const url = ACCOMMODATIONS_PATH + `/${accommodation.id}`;
 
   async function onSubmit(dat) {
     setSubmitting(true);
@@ -99,7 +97,7 @@ function EditDeleteForm({ accommodation }) {
       formData.append("files.subpic", subpic2);
       formData.append("data", JSON.stringify(data));
 
-      const response = await http.post(url, formData);
+      const response = await http.put(url, formData);
       console.log(response);
       setPostSuccess(true);
     } catch (error) {
@@ -304,7 +302,6 @@ function EditDeleteForm({ accommodation }) {
                     currentData.attributes.facility.filter(
                       (current) => item === current
                     );
-                  console.log(currentFacility.length);
                   return (
                     <Form.Check
                       key={index}
@@ -439,7 +436,7 @@ function EditDeleteForm({ accommodation }) {
                 type="submit"
                 className="button mt-3 bg-primary text-white w-100 border border-none p-2"
               >
-                {submitting === true ? "Working..." : "Submit"}
+                {submitting === true ? "Working..." : "Edit Accommodation"}
               </button>
             </Col>
           </Row>
