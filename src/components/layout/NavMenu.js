@@ -17,25 +17,31 @@ function NavMenu() {
   const navigate = useNavigate();
 
   function logOut() {
-    navigate("/");
-    setToken(null);
+    const confirmLogOut = window.confirm("Are you sure you want to log out?");
+
+    if (confirmLogOut) {
+      navigate("/");
+      setToken(null);
+    }
   }
 
-  document.onscroll = function() {
+  document.onscroll = function () {
     if (document.documentElement.scrollTop > 10) {
-      setBackgroundColor("bg-dark")
-      setLogoColor("text-white")
-      setNavColor("navbar-dark")} 
-    else {
-      setBackgroundColor("bg-light")
-      setNavColor("navbar-light")
-      setLogoColor("")
+      setBackgroundColor("bg-dark");
+      setLogoColor("text-white");
+      setNavColor("navbar-dark");
+    } else {
+      setBackgroundColor("bg-light");
+      setNavColor("navbar-light");
+      setLogoColor("");
     }
-  } 
-  
+  };
 
   return (
-    <Navbar expand="lg" className={`${backgroundColor} ${navColor} position-fixed w-100`}>
+    <Navbar
+      expand="lg"
+      className={`${backgroundColor} ${navColor} position-fixed w-100`}
+    >
       <NavLink to="/" className="d-lg-none border">
         <Navbar.Brand>
           <img src={logo} alt="desktop-logo" className="desktop-logo--image" />
@@ -51,7 +57,9 @@ function NavMenu() {
                 alt="desktop-logo"
                 className="desktop-logo--image"
               />
-              <h1 className={`text-uppercase desktop-logo--text ${logoColor}`}>Holidaze</h1>
+              <h1 className={`text-uppercase desktop-logo--text ${logoColor}`}>
+                Holidaze
+              </h1>
             </Navbar.Brand>
           </NavLink>
           <Nav className="">
