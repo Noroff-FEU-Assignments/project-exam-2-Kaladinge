@@ -11,6 +11,7 @@ import {
   facilitiesCheckbox,
 } from "../../../constants/api";
 import useAxios from "../../../hooks/useAxios";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   title: yup
@@ -55,12 +56,15 @@ function EditDeleteForm({ accommodation }) {
   const [currentData, setCurrentData] = useState(accommodation);
   const [submitting, setSubmitting] = useState(false);
   const [postError, setPostError] = useState(null);
+  const [deleteError, setDeleteError] = useState(null);
   const [postSuccess, setPostSuccess] = useState(false);
   const [checkboxArray, setCheckboxArray] = useState([]);
   const [file, setFile] = useState(false);
   const [subpic1, setSubpic1] = useState(false);
   const [subpic2, setSubpic2] = useState(false);
-  console.log(accommodation);
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -108,7 +112,6 @@ function EditDeleteForm({ accommodation }) {
   }
 
   function say(event) {
-    console.log(event);
     const alreadyThere = checkboxArray.filter((item) => {
       if (item === event.target.value) {
         return true;
@@ -127,6 +130,20 @@ function EditDeleteForm({ accommodation }) {
       });
 
       setCheckboxArray(alreadyThere2);
+    }
+  }
+
+  async function handleDelete() {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this post?"
+    );
+    if (confirmDelete) {
+      try {
+        await http.delete(url);
+        navigate("/admin");
+      } catch (error) {
+        setDeleteError(error.toString());
+      }
     }
   }
 
@@ -437,6 +454,13 @@ function EditDeleteForm({ accommodation }) {
                 className="button mt-3 bg-primary text-white w-100 border border-none p-2"
               >
                 {submitting === true ? "Working..." : "Edit Accommodation"}
+              </button>
+              <button
+                type="button"
+                className="delete button mt-3 bg-danger text-white w-100 border border-none p-2"
+                onClick={handleDelete}
+              >
+                Delete
               </button>
             </Col>
           </Row>
