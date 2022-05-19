@@ -3,6 +3,7 @@ import AddPost from "./AddPost";
 import Messages from "./Messages";
 import PageLink from "./PageLink";
 import Enquiries from "./Enquiries";
+import ChoosePost from "./ChoosePost";
 
 function Admin() {
   return (
@@ -11,6 +12,7 @@ function Admin() {
         <PageLink link="#messages">Messages</PageLink>
         <PageLink link="#enquiries">Booking Enquiries</PageLink>
         <PageLink link="#add-accommodation">Add a New Accommodation</PageLink>
+        <PageLink link="#edit-delete">Edit/Delete accommodation</PageLink>
       </div>
       <section className="admin-section" id="messages">
         <Messages />
@@ -20,6 +22,9 @@ function Admin() {
       </section>
       <section className="admin-section" id="add-accommodation">
         <AddPost />
+      </section>
+      <section className="admin-section mt-5" id="edit-delete">
+        <ChoosePost />
       </section>
     </>
   );

@@ -11,6 +11,7 @@ import Login from "./components/login/Login";
 import AuthProvider from "./context/AuthContext";
 import NavMenu from "./components/layout/NavMenu";
 import Footer from "./components/layout/Footer";
+import EditPost from "./components/admin/authActions/EditPost";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/edit/:id" element={<EditPost />} />
             </Routes>
           </Container>
         </div>
