@@ -185,7 +185,7 @@ function EditDeleteForm({ accommodation }) {
                 {currentData.attributes.category !== "B & B" && (
                   <option value="B &amp; B">B &amp; B</option>
                 )}
-                {currentData.attributes.category !== "GuestHouse" && (
+                {currentData.attributes.category !== "Guesthouse" && (
                   <option value="Guesthouse">GuestHouse</option>
                 )}
               </Form.Select>

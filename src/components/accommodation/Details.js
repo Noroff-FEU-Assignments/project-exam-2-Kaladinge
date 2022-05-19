@@ -23,12 +23,12 @@ function Details({
         <span>{address}</span> - <span className="text-success">{rating}</span>
         <hr></hr>
       </div>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-start">
         {facility.map((item) => {
           return (
             <span
               key={item}
-              className="accommodation--facility text-white text-center me-1 rounded p-1"
+              className="accommodation--facility text-white text-center me-4 rounded p-1"
             >
               {item}{" "}
             </span>
