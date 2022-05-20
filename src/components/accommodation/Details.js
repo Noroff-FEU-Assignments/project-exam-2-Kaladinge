@@ -1,5 +1,5 @@
-import React from "react";
-import { Col, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Carousel, Col, Row } from "react-bootstrap";
 
 function Details({
   id,
@@ -16,6 +16,13 @@ function Details({
   airport,
   bryggen,
 }) {
+  const [displayModalImage, setDisplayModalImage] = useState(false);
+
+  function displayModal(index) {
+    setDisplayModalImage(!displayModalImage);
+    console.log(index);
+  }
+
   return (
     <>
       <div className="accommodation--textcontainer">
@@ -42,6 +49,7 @@ function Details({
           <img
             src={mainpic.data.attributes.url}
             className="w-100 accommodation--image"
+            onClick={() => displayModal(0)}
           />
         </Col>
         <Col>
@@ -50,12 +58,14 @@ function Details({
               <img
                 src={subpic.data[0].attributes.url}
                 className="w-100 accommodation--image"
+                onClick={() => displayModal(1)}
               />
             </Col>
             <Col xs={6} sm={12} className="mt-sm-3">
               <img
                 src={subpic.data[1].attributes.url}
                 className="w-100 accommodation--image"
+                onClick={() => displayModal(2)}
               />
             </Col>
           </Row>
@@ -75,6 +85,35 @@ function Details({
           </ul>
         </Col>
       </Row>
+
+      <div className={`modal ${displayModalImage ? "d-block" : "d-none"}`}>
+        <span onClick={displayModal} className="modal--close text-white">
+          &times;
+        </span>
+        <Carousel>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src={mainpic.data.attributes.url}
+              alt="First slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src={subpic.data[0].attributes.url}
+              alt="Second slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src={subpic.data[1].attributes.url}
+              alt="Third slide"
+            />
+          </Carousel.Item>
+        </Carousel>
+      </div>
     </>
   );
 }

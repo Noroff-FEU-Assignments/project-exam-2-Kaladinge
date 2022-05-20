@@ -25,7 +25,8 @@ function EnquiryForm({ title }) {
   const [submitting, setSubmitting] = useState(false);
   const [postError, setPostError] = useState(null);
   const [postSuccess, setPostSuccess] = useState(false);
-  const [displayMode, setDisplayMode] = useState(false);
+  const [displayModalForm, setDisplayModalForm] = useState(false);
+  const [displayImageForm, setDisplayImageForm] = useState(false);
 
   const {
     register,
@@ -37,7 +38,7 @@ function EnquiryForm({ title }) {
   });
 
   function displayModal() {
-    setDisplayMode(!displayMode);
+    setDisplayModalForm(!displayModalForm);
   }
 
   async function onSubmit(data) {
@@ -76,7 +77,7 @@ function EnquiryForm({ title }) {
       <Button onClick={displayModal} className="check-button w-75 text-light">
         Check availability
       </Button>
-      <div className={`modal ${displayMode ? "d-block" : "d-none"}`}>
+      <div className={`modal ${displayModalForm ? "d-block" : "d-none"}`}>
         <Form
           onSubmit={handleSubmit(onSubmit)}
           className={`modal--content p-3 d-flex flex-column mx-auto text-start position-relative`}
