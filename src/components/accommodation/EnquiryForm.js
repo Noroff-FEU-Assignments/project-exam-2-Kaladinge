@@ -26,7 +26,6 @@ function EnquiryForm({ title }) {
   const [postError, setPostError] = useState(null);
   const [postSuccess, setPostSuccess] = useState(false);
   const [displayModalForm, setDisplayModalForm] = useState(false);
-  const [displayImageForm, setDisplayImageForm] = useState(false);
 
   const {
     register,
