@@ -14,7 +14,6 @@ function Accommodations2() {
   const [fetchPagesError, setFetchPagesError] = useState(null);
   const [dataArray, setDataArray] = useState([]);
   const [clicked, setClicked] = useState(false);
-  const [category, setCategory] = useState([]);
   const [filter, setFilter] = useContext(FilterContext);
   const [categoryButtonStyle, setCategoryButtonStyle] =
     useState(categoryButtons);

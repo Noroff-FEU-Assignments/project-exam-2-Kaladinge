@@ -101,7 +101,11 @@ function Details({
         >
           &times;
         </span>
-        <Carousel activeIndex={index} onSelect={handleSelect}>
+        <Carousel
+          activeIndex={index}
+          onSelect={handleSelect}
+          className="modal--content"
+        >
           {pictures.map((picture, index) => (
             <Carousel.Item>
               <img

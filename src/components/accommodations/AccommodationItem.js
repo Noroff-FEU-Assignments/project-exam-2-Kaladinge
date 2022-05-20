@@ -1,9 +1,9 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 import EnquiryForm from "../accommodation/EnquiryForm";
+import noImage from "../../images/no-image.jpg";
 
 function AccommodationItem({
   id,
@@ -23,7 +23,7 @@ function AccommodationItem({
         <Col md={4} className="p-lg-0">
           <Link to={`/accommodation/${id}`}>
             <img
-              src={mainpic.data.attributes.url}
+              src={mainpic ? mainpic.data.attributes.url : noImage}
               className="w-100 accommodations--image"
             />
           </Link>
