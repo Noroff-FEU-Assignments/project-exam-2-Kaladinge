@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import { Carousel, Col, Row } from "react-bootstrap";
 
 function Details({
-  id,
-  title,
   summary,
   description,
   address,
   area,
   facility,
-  price,
   rating,
   mainpic,
   subpic,
@@ -17,11 +14,22 @@ function Details({
   bryggen,
 }) {
   const [displayModalImage, setDisplayModalImage] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  const pictures = [
+    mainpic.data.attributes.url,
+    subpic.data[0].attributes.url,
+    subpic.data[1].attributes.url,
+  ];
 
   function displayModal(index) {
     setDisplayModalImage(!displayModalImage);
-    console.log(index);
+    setIndex(index);
   }
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
 
   return (
     <>
@@ -87,31 +95,22 @@ function Details({
       </Row>
 
       <div className={`modal ${displayModalImage ? "d-block" : "d-none"}`}>
-        <span onClick={displayModal} className="modal--close text-white">
+        <span
+          onClick={() => displayModal(0)}
+          className="modal--close text-white"
+        >
           &times;
         </span>
-        <Carousel>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src={mainpic.data.attributes.url}
-              alt="First slide"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src={subpic.data[0].attributes.url}
-              alt="Second slide"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src={subpic.data[1].attributes.url}
-              alt="Third slide"
-            />
-          </Carousel.Item>
+        <Carousel activeIndex={index} onSelect={handleSelect}>
+          {pictures.map((picture, index) => (
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={picture}
+                alt={`slide pic ${index}`}
+              />
+            </Carousel.Item>
+          ))}
         </Carousel>
       </div>
     </>
