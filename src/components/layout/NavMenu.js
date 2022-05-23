@@ -5,7 +5,6 @@ import Nav from "react-bootstrap/Nav";
 import { AuthContext } from "../../context/AuthContext";
 import { Button } from "react-bootstrap";
 import SearchBar from "./SearchBar";
-import SearchBar2 from "./SearchBar2";
 import logo from "../../images/primary-logo.png";
 
 function NavMenu() {
@@ -68,7 +67,7 @@ function NavMenu() {
             </NavLink>
           </Nav>
 
-          <SearchBar2 />
+          <SearchBar />
 
           <Nav className="">
             {token ? (

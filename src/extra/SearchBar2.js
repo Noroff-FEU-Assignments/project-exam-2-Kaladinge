@@ -6,14 +6,11 @@ import { useNavigate } from "react-router-dom";
 import ListResult from "./ListResult";
 
 function SearchBar() {
-  const [accommodations, setAccommodations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fetchPagesError, setFetchPagesError] = useState(null);
-  const [listResult, setListResult] = useState([]);
   const [displayResult, setDisplayResult] = useState("d-none");
   const [terms, setTerms] = useState(null);
   const [listIndex, setListIndex] = useState(-1);
-  const [inputValue, setInputValue] = useState("");
 
   const navigate = useNavigate();
 
@@ -51,8 +48,6 @@ function SearchBar() {
       }
     });
   }
-
-  
 
   function browseList(e) {
     if (e.code !== "Enter") {

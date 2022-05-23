@@ -27,7 +27,7 @@ function Details({
     setIndex(index);
   }
 
-  const handleSelect = (selectedIndex, e) => {
+  const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
 
@@ -36,7 +36,7 @@ function Details({
       <div className="accommodation--textcontainer">
         <div>{summary}</div>
         <span>{address}</span> - <span className="text-success">{rating}</span>
-        <hr></hr>
+        <hr />
       </div>
       <div className="d-flex justify-content-start">
         {facility.map((item) => {
@@ -107,7 +107,7 @@ function Details({
           className="modal--content"
         >
           {pictures.map((picture, index) => (
-            <Carousel.Item>
+            <Carousel.Item key={index}>
               <img
                 className="d-block w-100"
                 src={picture}

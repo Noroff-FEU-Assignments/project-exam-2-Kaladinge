@@ -1,43 +1,49 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form, FormControl } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import ListResult from "./ListResult";
 
 function SearchBar() {
-  const [accommodations, setAccommodations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fetchPagesError, setFetchPagesError] = useState(null);
-  const [listResult, setListResult] = useState(null);
   const [displayResult, setDisplayResult] = useState("d-none");
+  const [terms, setTerms] = useState(null);
+  const [listIndex, setListIndex] = useState(-1);
+  const [results, setResults] = useState([]);
+
+  const navigate = useNavigate();
+
+  const url =
+    "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
+
+  useEffect(() => {
+    const getAccommodations = async () => {
+      try {
+        const response = await axios.get(url);
+        setResults(response.data.data);
+      } catch (error) {
+        setFetchPagesError(error.toString());
+      } finally {
+        setLoading(false);
+      }
+    };
+    getAccommodations();
+  }, [url]);
+
+  function showAllAccommodations() {
+    setTerms(results);
+    setDisplayResult("d-block");
+  }
 
   function showAccommodations(event) {
-    const url =
-      "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
-
     setDisplayResult("d-block");
 
     const getAccommodations = async () => {
-      try {
-        setListResult(<p>loading</p>);
-        const response = await axios.get(url);
-
-        let terms = autoCompleteMatch(event.target.value, response.data.data);
-
-        const newArray = terms.map((item) => {
-          return (
-            <Link to={`/accommodation/${item.id}`}>
-              <li key={item.id}>{item.attributes.title}</li>
-            </Link>
-          );
-        });
-        if (terms.length > 0) {
-          setListResult(<ul>{newArray}</ul>);
-        } else {
-          setListResult(<p>There are no results</p>);
-        }
-      } catch (error) {
-        setFetchPagesError(error.toString());
-        setListResult(<p>There was something wrong when fetching results</p>);
+      setTerms(autoCompleteMatch(event.target.value, results));
+      if (event.which !== 40 && event.which !== 38) {
+        setListIndex(-1);
       }
     };
     getAccommodations();
@@ -45,7 +51,7 @@ function SearchBar() {
 
   function autoCompleteMatch(input, apiArray) {
     if (input === "") {
-      return [];
+      return results;
     }
     const reg = new RegExp(input.toLowerCase());
     return apiArray.filter(function (item) {
@@ -55,23 +61,63 @@ function SearchBar() {
     });
   }
 
+  function browseList(e) {
+    if (e.code !== "Enter") {
+      if (e.which === 40) {
+        console.log(terms);
+        if (terms.length - 1 === listIndex) {
+          setListIndex(0);
+        } else {
+          setListIndex(listIndex + 1);
+        }
+      } else if (e.which === 38) {
+        if (0 === listIndex) {
+          setListIndex(terms.length - 1);
+        } else {
+          setListIndex(listIndex - 1);
+        }
+      }
+    } else if (e.code === "Enter") {
+      navigate(`/accommodation/${terms[listIndex].id}`);
+      e.target.value = "";
+      e.target.blur();
+      setDisplayResult("d-none");
+    }
+  }
+
+  document.onclick = function (e) {
+    if (e.target.className !== "navsearch form-control") {
+      setDisplayResult("d-none");
+    }
+  };
+
   return (
-    <>
-      <FormControl
-        autoComplete="off"
-        className="navsearch"
-        type="text"
-        placeholder="Search accommodation"
-        name="search"
-        onKeyUp={showAccommodations}
-      />
-      <div
-        className={`text-danger navsearch--result ${displayResult}`}
-        id="navsearch--results"
-      >
-        {listResult}
+    //<Form action={`accommodation/${inputValue}`} className="w-50">
+    <div className="w-50">
+      <div className="position-relative">
+        <FormControl
+          autoComplete="off"
+          className="navsearch"
+          type="text"
+          placeholder="Search accommodations"
+          action="hoho"
+          onKeyUp={showAccommodations}
+          onClick={showAllAccommodations}
+          onKeyDown={browseList}
+        />
+        <div
+          className={`text-danger navsearch--result position-absolute w-100 ${displayResult}`}
+          id="navsearch--results"
+        >
+          <ListResult
+            list={terms}
+            error={fetchPagesError}
+            loading={loading}
+            listIndex={listIndex}
+          />
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

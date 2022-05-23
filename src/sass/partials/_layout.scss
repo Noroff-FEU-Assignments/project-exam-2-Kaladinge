@@ -34,6 +34,10 @@ body {
   border: 1px solid black;
 }
 
+.navbar {
+  z-index: 1;
+}
+
 .navbar-scroll {
   background-color: $colorOrange;
 }
