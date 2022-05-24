@@ -16,12 +16,16 @@ const schema = yup.object().shape({
     .string()
     .required("Name is required")
     .min(3, "Your first name must be at least 3 characters"),
+  email: yup
+    .string()
+    .required("Please enter an email address")
+    .email("Please enter a valid email address"),
   guests: yup.string().required("Number of guests is required"),
   to: yup.string().required("Start date is required"),
   from: yup.string().required("Start date is required"),
 });
 
-function EnquiryForm({ title }) {
+function EnquiryForm({ title, email }) {
   const [submitting, setSubmitting] = useState(false);
   const [postError, setPostError] = useState(null);
   const [postSuccess, setPostSuccess] = useState(false);
@@ -57,7 +61,9 @@ function EnquiryForm({ title }) {
       const response = await axios.post(url, {
         data: {
           hotel: title,
+          emailaccomm: email,
           name: data.name,
+          email: data.email,
           to: newDate(data.to),
           from: newDate(data.from),
           guests: data.guests,
@@ -96,6 +102,18 @@ function EnquiryForm({ title }) {
             />
             {errors.name && (
               <div className="mb-3 text-danger">{errors.name.message}</div>
+            )}
+
+            <Form.Label htmlFor="email" className="mt-3">
+              Email
+            </Form.Label>
+            <Form.Control
+              {...register("email")}
+              id="email"
+              placeholder="myname@holidaze.com"
+            />
+            {errors.email && (
+              <div className="mb-3 text-danger">{errors.email.message}</div>
             )}
 
             <Form.Label htmlFor="to" className="mt-3">

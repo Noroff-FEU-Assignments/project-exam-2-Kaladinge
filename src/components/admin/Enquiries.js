@@ -47,23 +47,33 @@ function Messages() {
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Hotel name</th>
+            <th>Customer email</th>
+            <th>Accommodation name</th>
+            <th>Accommodation email</th>
             <th>Dates</th>
           </tr>
         </thead>
         <tbody>
-          {enquiries.map((item, index) => {
-            return (
-              <tr key={item.id}>
-                <td>{index + 1}</td>
-                <td>{item.attributes.name}</td>
-                <td>{item.attributes.hotel}</td>
-                <td>
-                  {item.attributes.from} - {item.attributes.to}
-                </td>
-              </tr>
-            );
-          })}
+          {enquiries.length === 0 ? (
+            <tr>
+              <td colSpan={6}>No enquiries at the moment</td>
+            </tr>
+          ) : (
+            enquiries.map((item, index) => {
+              return (
+                <tr key={item.id}>
+                  <td>{index + 1}</td>
+                  <td>{item.attributes.name}</td>
+                  <td>{item.attributes.email}</td>
+                  <td>{item.attributes.hotel}</td>
+                  <td>{item.attributes.emailaccomm}</td>
+                  <td>
+                    {item.attributes.from} - {item.attributes.to}
+                  </td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </Table>
     </>

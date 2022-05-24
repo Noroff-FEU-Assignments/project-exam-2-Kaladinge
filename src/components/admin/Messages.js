@@ -52,16 +52,22 @@ function Messages() {
           </tr>
         </thead>
         <tbody>
-          {messages.map((item, index) => {
-            return (
-              <tr key={item.id}>
-                <td>{index + 1}</td>
-                <td>{item.attributes.email}</td>
-                <td>{item.attributes.subject}</td>
-                <td>{item.attributes.message}</td>
-              </tr>
-            );
-          })}
+          {messages.length === 0 ? (
+            <tr>
+              <td colSpan={4}>No enquiries at the moment</td>
+            </tr>
+          ) : (
+            messages.map((item, index) => {
+              return (
+                <tr key={item.id}>
+                  <td>{index + 1}</td>
+                  <td>{item.attributes.email}</td>
+                  <td>{item.attributes.subject}</td>
+                  <td>{item.attributes.message}</td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </Table>
     </div>

@@ -61,7 +61,7 @@ function ContactForm() {
     >
       <fieldset disabled={submitting}>
         <Form.Label htmlFor="email" className="mt-3">
-          Name
+          Email
         </Form.Label>
         <Form.Control
           {...register("email")}

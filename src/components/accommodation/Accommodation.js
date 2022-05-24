@@ -51,6 +51,7 @@ function Accommodation() {
     subpic,
     airport,
     bryggen,
+    email,
   } = accommodation.attributes;
 
   return (
@@ -74,11 +75,12 @@ function Accommodation() {
             subpic={subpic}
             airport={airport}
             bryggen={bryggen}
+            email={email}
           />
         </Col>
         <Col className="enquiryform border-start">
           <div className="enquiryform--container text-center">
-            <EnquiryForm title={title} />
+            <EnquiryForm title={title} email={email} />
           </div>
         </Col>
       </Row>

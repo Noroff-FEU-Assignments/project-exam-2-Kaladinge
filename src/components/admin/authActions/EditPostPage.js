@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../common/Loader";
 import Heading from "../../layout/Heading";
 import EditDeleteForm from "./EditDeleteForm";
+import EditDeleteForm1 from "./EditDeleteForm1";
 
 function EditPostPage() {
   const [accommodation, setAccommodation] = useState([]);

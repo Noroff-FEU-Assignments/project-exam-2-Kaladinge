@@ -12,6 +12,7 @@ import {
 } from "../../../constants/api";
 import useAxios from "../../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const schema = yup.object().shape({
   title: yup
@@ -96,30 +97,38 @@ function EditDeleteForm({ accommodation }) {
       };
 
       let formData = new FormData();
-      formData.append("files.mainpic", file);
 
+      formData.append("files", file);
+      //formData.append("refId", accommodation.id);
+      //formData.append("field", "mainpic");
+      //formData.append("ref", "api::accommodation.accommodation");
       //formData.append("files.subpic", subpic1);
       //formData.append("files.subpic", subpic2);
       formData.append("data", JSON.stringify(data));
 
-      const response = await http.put(url, formData);
+      await http
+        .post("upload", formData)
+        .then((response) => {
+          const imageId = response.data[0].id;
 
-      if (file) {
-        formData.append("files", file);
-        formData.append("refId", accommodation.id);
-        formData.append("field", "mainpic");
-        formData.append("ref", "api::accommodation.accommodation");
-        const response = await http.post("upload", formData);
-        console.log(response);
-        const imageId = response.data[0].id;
+          http
+            .put(url, { mainpic: imageId })
+            .then((response) => {
+              //handle success
+            })
+            .catch((error) => {
+              //handle error
+              console.log(error);
+            });
+        })
 
-        http.put(url, { mainpic: imageId });
-      }
-      console.log(response);
+        .catch((error) => {
+          //handle error
+        });
+
       setPostSuccess(true);
     } catch (error) {
       setPostError(error.toString());
-      console.log(error);
     } finally {
       setSubmitting(false);
     }
@@ -365,8 +374,16 @@ function EditDeleteForm({ accommodation }) {
                   />
                 </div>
               </Form.Label>
+              <input
+                type="text"
+                name="ref"
+                value="api::accommodations.accommodations"
+              />
+              <input type="text" name="refId" value={accommodation.id} />
+              <input type="text" name="field" value="mainpic" />
               <Form.Control
                 type="file"
+                name="files"
                 id="mainpic"
                 onChange={(event) => setFile(event.target.files[0])}
                 className="d-none"
