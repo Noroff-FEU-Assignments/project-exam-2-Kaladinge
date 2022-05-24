@@ -96,30 +96,16 @@ function EditDeleteForm({ accommodation }) {
       };
 
       let formData = new FormData();
-      formData.append("files.mainpic", file);
-
-      //formData.append("files.subpic", subpic1);
-      //formData.append("files.subpic", subpic2);
+      formData.append("files.subpic", file);
+      formData.append("files.subpic", subpic1);
+      formData.append("files.subpic", subpic2);
       formData.append("data", JSON.stringify(data));
 
       const response = await http.put(url, formData);
-
-      if (file) {
-        formData.append("files", file);
-        formData.append("refId", accommodation.id);
-        formData.append("field", "mainpic");
-        formData.append("ref", "api::accommodation.accommodation");
-        const response = await http.post("upload", formData);
-        console.log(response);
-        const imageId = response.data[0].id;
-
-        http.put(url, { mainpic: imageId });
-      }
       console.log(response);
       setPostSuccess(true);
     } catch (error) {
       setPostError(error.toString());
-      console.log(error);
     } finally {
       setSubmitting(false);
     }

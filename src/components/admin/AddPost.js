@@ -20,6 +20,10 @@ const schema = yup.object().shape({
     .required("Please enter a accommodation name")
     .min(2, "Accommodation name must be longer than 2 characters"),
   category: yup.string().required("Please choose an accommodation type"),
+  email: yup
+    .string()
+    .required("Please enter an email address")
+    .email("Please enter a valid email address"),
   address: yup
     .string()
     .required("Please enter an address")
@@ -81,6 +85,7 @@ function AddPost() {
     try {
       const data = {
         title: dat.title,
+        email: dat.email,
         area: dat.area,
         price: dat.price,
         address: dat.address,
@@ -94,7 +99,7 @@ function AddPost() {
       };
 
       let formData = new FormData();
-      formData.append("files.mainpic", file);
+      formData.append("files.subpic", file);
       formData.append("files.subpic", subpic1);
       formData.append("files.subpic", subpic2);
       formData.append("data", JSON.stringify(data));
@@ -202,7 +207,7 @@ function AddPost() {
               )}
             </Col>
 
-            <Col xs={12}>
+            <Col xs={12} lg={6}>
               <Form.Label htmlFor="address" className="mt-3">
                 Address
               </Form.Label>
@@ -213,6 +218,20 @@ function AddPost() {
               />
               {errors.address && (
                 <div className="mb-3 text-danger">{errors.address.message}</div>
+              )}
+            </Col>
+
+            <Col xs={12} lg={6}>
+              <Form.Label htmlFor="email" className="mt-3">
+                Email
+              </Form.Label>
+              <Form.Control
+                {...register("email")}
+                id="email"
+                placeholder="e.g accommodation@hoteldaze.com"
+              />
+              {errors.email && (
+                <div className="mb-3 text-danger">{errors.email.message}</div>
               )}
             </Col>
 

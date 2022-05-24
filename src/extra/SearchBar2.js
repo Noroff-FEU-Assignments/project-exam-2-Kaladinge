@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Form, FormControl } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-import ListResult from "./ListResult";
+import ListResult from "../components/layout/ListResult";
 
 function SearchBar() {
   const [loading, setLoading] = useState(true);
