@@ -17,7 +17,6 @@ function AccommodationItem({
   airport,
   bryggen,
 }) {
-  console.log(mainpic);
   return (
     <>
       <Row className="my-4">

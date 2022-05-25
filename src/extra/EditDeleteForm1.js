@@ -1,16 +1,13 @@
 import React from "react";
-import Heading from "../../layout/Heading";
+import Heading from "../components/layout/Heading";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Col, Form, Row } from "react-bootstrap";
 import { useState } from "react";
-import FormMessage from "../../../common/FormMessage";
-import {
-  ACCOMMODATIONS_PATH,
-  facilitiesCheckbox,
-} from "../../../constants/api";
-import useAxios from "../../../hooks/useAxios";
+import FormMessage from "../common/FormMessage";
+import { ACCOMMODATIONS_PATH, facilitiesCheckbox } from "../constants/api";
+import useAxios from "../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 

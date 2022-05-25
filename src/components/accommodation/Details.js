@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Carousel, Col, Row } from "react-bootstrap";
+import noImage from "../../images/no-image.jpg";
 
 function Details({
   summary,
@@ -16,11 +17,18 @@ function Details({
   const [displayModalImage, setDisplayModalImage] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const pictures = [
-    mainpic.data.attributes.url,
-    subpic.data[0].attributes.url,
-    subpic.data[1].attributes.url,
-  ];
+  const carouselArray = function () {
+    let carousel = [];
+    if (mainpic.data) {
+      carousel.push(mainpic.data[mainpic.data.length - 1].attributes.url);
+    }
+    if (subpic.data) {
+      subpic.data.forEach((item) => {
+        carousel.push(item.attributes.url);
+      });
+    }
+    return carousel;
+  };
 
   function displayModal(index) {
     setDisplayModalImage(!displayModalImage);
@@ -55,7 +63,11 @@ function Details({
       <Row>
         <Col xs={12} sm={8} className="mb-2">
           <img
-            src={mainpic.data.attributes.url}
+            src={
+              mainpic.data
+                ? mainpic.data[mainpic.data.length - 1].attributes.url
+                : noImage
+            }
             className="w-100 accommodation--image"
             onClick={() => displayModal(0)}
           />
@@ -64,14 +76,26 @@ function Details({
           <Row>
             <Col xs={6} sm={12}>
               <img
-                src={subpic.data[0].attributes.url}
+                src={
+                  !subpic.data
+                    ? noImage
+                    : subpic.data.length === 1
+                    ? subpic.data[subpic.data.length - 1].attributes.url
+                    : subpic.data[subpic.data.length - 2].attributes.url
+                }
                 className="w-100 accommodation--image"
                 onClick={() => displayModal(1)}
               />
             </Col>
             <Col xs={6} sm={12} className="mt-sm-3">
               <img
-                src={subpic.data[1].attributes.url}
+                src={
+                  !subpic.data
+                    ? noImage
+                    : subpic.data.length === 1
+                    ? noImage
+                    : subpic.data[subpic.data.length - 1].attributes.url
+                }
                 className="w-100 accommodation--image"
                 onClick={() => displayModal(2)}
               />
@@ -106,7 +130,7 @@ function Details({
           onSelect={handleSelect}
           className="modal--content"
         >
-          {pictures.map((picture, index) => (
+          {carouselArray().map((picture, index) => (
             <Carousel.Item key={index}>
               <img
                 className="d-block w-100"

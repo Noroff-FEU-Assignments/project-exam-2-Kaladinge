@@ -47,7 +47,7 @@ function Accommodation() {
     facility,
     price,
     rating,
-    mainpic,
+    mainpics,
     subpic,
     airport,
     bryggen,
@@ -71,7 +71,7 @@ function Accommodation() {
             facility={facility}
             price={price}
             rating={rating}
-            mainpic={mainpic}
+            mainpic={mainpics}
             subpic={subpic}
             airport={airport}
             bryggen={bryggen}
