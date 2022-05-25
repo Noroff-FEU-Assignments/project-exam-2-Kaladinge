@@ -8,6 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 import FormMessage from "../../common/FormMessage";
 import { Button } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const url = "https://kaladinge-pe2.herokuapp.com/api/enquiries";
 
@@ -22,10 +23,10 @@ const schema = yup.object().shape({
     .email("Please enter a valid email address"),
   guests: yup.string().required("Number of guests is required"),
   to: yup.string().required("Start date is required"),
-  from: yup.string().required("Start date is required"),
+  from: yup.string().required("End date is required"),
 });
 
-function EnquiryForm({ title, email }) {
+export default function EnquiryForm({ title, email }) {
   const [submitting, setSubmitting] = useState(false);
   const [postError, setPostError] = useState(null);
   const [postSuccess, setPostSuccess] = useState(false);
@@ -189,4 +190,7 @@ function EnquiryForm({ title, email }) {
   );
 }
 
-export default EnquiryForm;
+EnquiryForm.propTypes = {
+  title: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+};

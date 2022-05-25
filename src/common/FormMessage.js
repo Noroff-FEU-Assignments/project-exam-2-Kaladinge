@@ -1,7 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function FormMessage({ children, styling }) {
+export default function FormMessage({ children, styling }) {
   return <div className={styling}>{children}</div>;
 }
 
-export default FormMessage;
+FormMessage.propTypes = {
+  children: PropTypes.string.isRequired,
+  styling: PropTypes.string.isRequired,
+};

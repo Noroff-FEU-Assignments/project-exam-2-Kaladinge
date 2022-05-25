@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Carousel, Col, Row } from "react-bootstrap";
 import noImage from "../../images/no-image.jpg";
+import PropTypes from "prop-types";
 
-function AccommodationDetails({
+export default function AccommodationDetails({
   summary,
   description,
   address,
@@ -145,4 +146,13 @@ function AccommodationDetails({
   );
 }
 
-export default AccommodationDetails;
+AccommodationDetails.propTypes = {
+  summary: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  area: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
+  airport: PropTypes.number.isRequired,
+  bryggen: PropTypes.number.isRequired,
+  facility: PropTypes.array,
+};
