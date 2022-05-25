@@ -12,6 +12,7 @@ import {
 } from "../../../constants/api";
 import useAxios from "../../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
+import noImage from "../../../images/no-image.jpg";
 
 const schema = yup.object().shape({
   title: yup
@@ -340,9 +341,11 @@ function EditDeleteForm({ accommodation }) {
                 <div className="bg-light border position-relative mainpic--container">
                   <img
                     src={
-                      file
+                      !currentData.attributes.mainpics.data
+                        ? noImage
+                        : file
                         ? URL.createObjectURL(file)
-                        : currentData.attributes.mainpic.data.attributes.url
+                        : currentData.attributes.mainpics.data[0].attributes.url
                     }
                     className={`${
                       file ? "w-100 top-50" : "w-50 bottom-0"
@@ -369,8 +372,15 @@ function EditDeleteForm({ accommodation }) {
                         src={
                           subpic1
                             ? URL.createObjectURL(subpic1)
-                            : currentData.attributes.subpic.data[0].attributes
-                                .url
+                            : !currentData.attributes.subpic.data
+                            ? noImage
+                            : currentData.attributes.subpic.data.length === 1
+                            ? currentData.attributes.subpic.data[
+                                currentData.attributes.subpic.data.length - 1
+                              ].attributes.url
+                            : currentData.attributes.subpic.data[
+                                currentData.attributes.subpic.data.length - 2
+                              ].attributes.url
                         }
                         className={`${
                           subpic1 ? "w-100 top-50" : "w-50 bottom-0"
@@ -394,8 +404,13 @@ function EditDeleteForm({ accommodation }) {
                         src={
                           subpic2
                             ? URL.createObjectURL(subpic2)
-                            : currentData.attributes.subpic.data[1].attributes
-                                .url
+                            : !currentData.attributes.subpic.data
+                            ? noImage
+                            : currentData.attributes.subpic.data.length === 1
+                            ? noImage
+                            : currentData.attributes.subpic.data[
+                                currentData.attributes.subpic.data.length - 1
+                              ].attributes.url
                         }
                         className={`${
                           subpic2 ? "w-100 top-50" : "w-50 bottom-0"
