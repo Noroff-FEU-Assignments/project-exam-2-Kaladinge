@@ -27,7 +27,6 @@ function Accommodations2() {
         const response = await axios.get(url);
         setDataArray(response.data.data);
         if (filter) {
-          console.log(response.data.data[0].attributes.category);
           const filteredArray = response.data.data.filter(
             (item) => item.attributes.category === filter
           );

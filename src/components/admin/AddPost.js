@@ -99,7 +99,7 @@ function AddPost() {
       };
 
       let formData = new FormData();
-      formData.append("files.subpic", file);
+      formData.append("files.mainpics", file);
       formData.append("files.subpic", subpic1);
       formData.append("files.subpic", subpic2);
       formData.append("data", JSON.stringify(data));

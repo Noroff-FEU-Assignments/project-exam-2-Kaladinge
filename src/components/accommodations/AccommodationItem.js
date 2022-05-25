@@ -17,13 +17,18 @@ function AccommodationItem({
   airport,
   bryggen,
 }) {
+  console.log(mainpic);
   return (
     <>
       <Row className="my-4">
         <Col md={4} className="p-lg-0">
           <Link to={`/accommodation/${id}`}>
             <img
-              src={mainpic ? mainpic.data.attributes.url : noImage}
+              src={
+                mainpic.data
+                  ? mainpic.data[mainpic.data.length - 1].attributes.url
+                  : noImage
+              }
               className="w-100 accommodations--image"
             />
           </Link>

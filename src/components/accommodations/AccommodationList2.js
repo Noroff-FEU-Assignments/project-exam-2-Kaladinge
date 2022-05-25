@@ -12,7 +12,7 @@ function AccommodationList({ accommodations }) {
           facility,
           price,
           rating,
-          mainpic,
+          mainpics,
           airport,
           bryggen,
         } = item.attributes;
@@ -29,7 +29,7 @@ function AccommodationList({ accommodations }) {
             facility={facility}
             price={price}
             rating={rating}
-            mainpic={mainpic}
+            mainpic={mainpics}
             airport={airport}
             bryggen={bryggen}
           />
