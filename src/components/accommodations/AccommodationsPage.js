@@ -6,9 +6,9 @@ import Loader from "../../common/Loader";
 import { categoryButtons } from "../../constants/data";
 import { FilterContext } from "../../context/AuthContext";
 import Heading from "../layout/Heading";
-import AccommodationList2 from "./AccommodationList2";
+import AccommodationList from "./AccommodationList";
 
-function Accommodations2() {
+function AccommodationsPage() {
   const [accommodations, setAccommodations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fetchPagesError, setFetchPagesError] = useState(null);
@@ -134,7 +134,7 @@ function Accommodations2() {
             </span>
           ))}
 
-          <AccommodationList2
+          <AccommodationList
             accommodations={
               accommodations.length > 0 ? accommodations : dataArray
             }
@@ -153,4 +153,4 @@ function Accommodations2() {
   );
 }
 
-export default Accommodations2;
+export default AccommodationsPage;

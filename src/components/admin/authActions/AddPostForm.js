@@ -1,18 +1,15 @@
 import React from "react";
-import Heading from "../layout/Heading";
+import Heading from "../../layout/Heading";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Col, Form, Row } from "react-bootstrap";
 import { useState } from "react";
-import FormMessage from "../../common/FormMessage";
-import {
-  ACCOMMODATIONS_PATH,
-  facilitiesCheckbox,
-  UPLOAD_PATH,
-} from "../../constants/api";
-import useAxios from "../../hooks/useAxios";
-import mainpicture from "../../images/add-icon.png";
+import FormMessage from "../../../common/FormMessage";
+import { ACCOMMODATIONS_PATH } from "../../../constants/api";
+import { facilitiesCheckbox } from "../../../constants/data";
+import useAxios from "../../../hooks/useAxios";
+import mainpicture from "../../../images/add-icon.png";
 
 const schema = yup.object().shape({
   title: yup
@@ -57,7 +54,7 @@ const schema = yup.object().shape({
     .max(1000, "Description must be at most 1000 characters long"),
 });
 
-function AddPost() {
+function AddPostForm() {
   const [submitting, setSubmitting] = useState(false);
   const [postError, setPostError] = useState(null);
   const [postSuccess, setPostSuccess] = useState(false);
@@ -76,7 +73,6 @@ function AddPost() {
 
   const http = useAxios();
   const url = ACCOMMODATIONS_PATH;
-  const url2 = UPLOAD_PATH;
 
   async function onSubmit(dat) {
     setSubmitting(true);
@@ -400,7 +396,7 @@ function AddPost() {
                 id="descpription"
                 as="textarea"
                 rows={5}
-                placeholder="Introductive text about the accommodation - max 500 words"
+                placeholder="Introductive text about the accommodation - max 1000 words"
               />
               {errors.description && (
                 <div className="mb-3 text-danger">
@@ -434,4 +430,4 @@ function AddPost() {
   );
 }
 
-export default AddPost;
+export default AddPostForm;

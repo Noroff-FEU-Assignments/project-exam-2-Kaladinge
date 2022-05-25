@@ -2,7 +2,7 @@ import React from "react";
 import Heading from "../layout/Heading";
 import ContactForm from "./ContactForm";
 
-function Contact() {
+function ContactPage() {
   return (
     <>
       <Heading title="Send Us A Message" />
@@ -11,4 +11,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default ContactPage;

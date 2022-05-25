@@ -34,3 +34,13 @@ export const categoryButtons = [
     clicked: false,
   },
 ];
+
+export const facilitiesCheckbox = [
+  "WiFi included",
+  "Bar",
+  "Restaurant",
+  "Pet friendly",
+  "Non-smoking",
+  "Breakfast included",
+  "Swimming Pool",
+];

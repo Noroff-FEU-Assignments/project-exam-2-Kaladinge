@@ -1,11 +1,11 @@
 import React from "react";
-import AddPost from "./AddPost";
+import AddPostForm from "./authActions/AddPostForm";
 import Messages from "./Messages";
 import PageLink from "./PageLink";
 import Enquiries from "./Enquiries";
 import ChoosePost from "./ChoosePost";
 
-function Admin() {
+function AdminPage() {
   return (
     <>
       <div className="mb-5">
@@ -21,7 +21,7 @@ function Admin() {
         <Enquiries />
       </section>
       <section className="admin-section" id="add-accommodation">
-        <AddPost />
+        <AddPostForm />
       </section>
       <section className="admin-section mt-5" id="edit-delete">
         <ChoosePost />
@@ -30,4 +30,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default AdminPage;

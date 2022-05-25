@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { AuthContext } from "../../context/AuthContext";
 import { Button } from "react-bootstrap";
-import SearchBar from "./SearchBar";
+import SearchBar from "./searchbar/SearchBar";
 import logo from "../../images/primary-logo.png";
 
 function NavMenu() {

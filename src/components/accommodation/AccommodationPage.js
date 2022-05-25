@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loader from "../../common/Loader";
 import Heading from "../layout/Heading";
-import Details from "./Details";
+import AccommodationDetails from "./AccommodationDetails";
 import EnquiryForm from "./EnquiryForm";
 
-function Accommodation() {
+function AccommodationPage() {
   const [accommodation, setAccommodation] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fetchDataError, setFetchDataError] = useState(null);
@@ -60,7 +60,7 @@ function Accommodation() {
 
       <Row>
         <Col xs={12} lg={8} className="accommodation">
-          <Details
+          <AccommodationDetails
             key={id}
             summary={summary}
             description={description}
@@ -88,4 +88,4 @@ function Accommodation() {
   );
 }
 
-export default Accommodation;
+export default AccommodationPage;

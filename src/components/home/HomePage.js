@@ -3,7 +3,7 @@ import { categoryImages } from "../../constants/data";
 import { Link } from "react-router-dom";
 import { FilterContext } from "../../context/AuthContext";
 
-function Home() {
+function HomePage() {
   const [filter, setFilter] = useContext(FilterContext);
 
   function setCategory(e) {
@@ -39,4 +39,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;

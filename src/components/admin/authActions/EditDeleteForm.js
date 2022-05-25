@@ -6,10 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Col, Form, Row } from "react-bootstrap";
 import { useState } from "react";
 import FormMessage from "../../../common/FormMessage";
-import {
-  ACCOMMODATIONS_PATH,
-  facilitiesCheckbox,
-} from "../../../constants/api";
+import { ACCOMMODATIONS_PATH } from "../../../constants/api";
+import { facilitiesCheckbox } from "../../../constants/data";
 import useAxios from "../../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
 import noImage from "../../../images/no-image.jpg";

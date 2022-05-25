@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Carousel, Col, Row } from "react-bootstrap";
 import noImage from "../../images/no-image.jpg";
 
-function Details({
+function AccommodationDetails({
   summary,
   description,
   address,
@@ -145,4 +145,4 @@ function Details({
   );
 }
 
-export default Details;
+export default AccommodationDetails;

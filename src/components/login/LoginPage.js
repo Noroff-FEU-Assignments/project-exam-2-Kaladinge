@@ -2,7 +2,7 @@ import React from "react";
 import Heading from "../layout/Heading";
 import Loginform from "./LoginForm";
 
-function Login() {
+function LoginPage() {
   return (
     <>
       <Heading title="Admin Log In" />
@@ -11,4 +11,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;
