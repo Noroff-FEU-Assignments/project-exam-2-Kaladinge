@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function ListResult({ list, loading, error, listIndex, clickHandle }) {
+export default function ListResult({ list, loading, error, listIndex }) {
   if (loading) {
     return <p>loading...</p>;
   }
@@ -35,4 +36,9 @@ function ListResult({ list, loading, error, listIndex, clickHandle }) {
   }
 }
 
-export default ListResult;
+ListResult.propTypes = {
+  list: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  listIndex: PropTypes.number.isRequired,
+};

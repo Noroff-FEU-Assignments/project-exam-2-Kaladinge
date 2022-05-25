@@ -1,7 +1,8 @@
 import React from "react";
 import { HashLink } from "react-router-hash-link";
+import PropTypes from "prop-types";
 
-function PageLink({ children, link }) {
+export default function PageLink({ children, link }) {
   return (
     <div>
       <HashLink className="d-inline-block link" to={link} smooth>
@@ -11,4 +12,7 @@ function PageLink({ children, link }) {
   );
 }
 
-export default PageLink;
+PageLink.propTypes = {
+  children: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+};

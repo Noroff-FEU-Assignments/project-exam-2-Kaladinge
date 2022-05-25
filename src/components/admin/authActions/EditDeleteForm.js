@@ -11,6 +11,7 @@ import { facilitiesCheckbox } from "../../../constants/data";
 import useAxios from "../../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
 import noImage from "../../../images/no-image.jpg";
+import PropTypes from "prop-types";
 
 const schema = yup.object().shape({
   title: yup
@@ -51,7 +52,7 @@ const schema = yup.object().shape({
     .max(1000, "Description must be at most 1000 characters long"),
 });
 
-function EditDeleteForm({ accommodation }) {
+export default function EditDeleteForm({ accommodation }) {
   const [currentData, setCurrentData] = useState(accommodation);
   const [submitting, setSubmitting] = useState(false);
   const [postError, setPostError] = useState(null);
@@ -493,4 +494,6 @@ function EditDeleteForm({ accommodation }) {
   );
 }
 
-export default EditDeleteForm;
+EditDeleteForm.propTypes = {
+  accommodation: PropTypes.object.isRequired,
+};

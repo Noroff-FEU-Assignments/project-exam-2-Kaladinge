@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function Heading({ title }) {
+export default function Heading({ title }) {
   return (
     <h3 style={{ color: "#808080", fontSize: "40px", fontWeight: "600" }}>
       {title}
@@ -8,4 +9,6 @@ function Heading({ title }) {
   );
 }
 
-export default Heading;
+Heading.propTypes = {
+  title: PropTypes.string.isRequired,
+};

@@ -1,12 +1,14 @@
 import React from "react";
 import AccommodationItem from "./AccommodationItem";
+import PropTypes from "prop-types";
 
-function AccommodationList({ accommodations }) {
+export default function AccommodationList({ accommodations }) {
   return (
     <>
       {accommodations.map((item) => {
         const {
           title,
+          email,
           address,
           area,
           facility,
@@ -24,6 +26,7 @@ function AccommodationList({ accommodations }) {
             key={id}
             id={id}
             title={title}
+            email={email}
             address={address}
             area={area}
             facility={facility}
@@ -39,4 +42,6 @@ function AccommodationList({ accommodations }) {
   );
 }
 
-export default AccommodationList;
+AccommodationList.propTypes = {
+  accommodations: PropTypes.array.isRequired,
+};

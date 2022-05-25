@@ -4,10 +4,12 @@ import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 import EnquiryForm from "../accommodation/EnquiryForm";
 import noImage from "../../images/no-image.jpg";
+import PropTypes from "prop-types";
 
-function AccommodationItem({
+export default function AccommodationItem({
   id,
   title,
+  email,
   address,
   area,
   facility,
@@ -70,7 +72,7 @@ function AccommodationItem({
           <p>
             from <span className="accommodations--price">{price}</span> NOK
           </p>
-          <EnquiryForm title={title} />
+          <EnquiryForm title={title} email={email} />
           <p className="accommodations--rating text-success">{rating}</p>
         </Col>
       </Row>
@@ -79,4 +81,15 @@ function AccommodationItem({
   );
 }
 
-export default AccommodationItem;
+AccommodationItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  area: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  airport: PropTypes.number.isRequired,
+  bryggen: PropTypes.number.isRequired,
+  facility: PropTypes.array,
+};
