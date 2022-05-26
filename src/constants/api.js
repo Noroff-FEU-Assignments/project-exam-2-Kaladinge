@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.REACT_APP_BASE_URL;
+export const BASE_URL = "https://kaladinge-pe2.herokuapp.com/api/";
 
 export const ACCOMMODATIONS_PATH = "accommodations";
 

@@ -36,9 +36,9 @@ export default function AccommodationDetails({
     setIndex(index);
   }
 
-  const handleSelect = (selectedIndex) => {
+  function handleSelect(selectedIndex) {
     setIndex(selectedIndex);
-  };
+  }
 
   return (
     <>
@@ -84,7 +84,7 @@ export default function AccommodationDetails({
                     ? subpic.data[subpic.data.length - 1].attributes.url
                     : subpic.data[subpic.data.length - 2].attributes.url
                 }
-                className="w-100 accommodation--image"
+                className="accommodation--image w-100"
                 onClick={() => displayModal(1)}
               />
             </Col>
@@ -97,7 +97,7 @@ export default function AccommodationDetails({
                     ? noImage
                     : subpic.data[subpic.data.length - 1].attributes.url
                 }
-                className="w-100 accommodation--image"
+                className="accommodation--image w-100 "
                 onClick={() => displayModal(2)}
               />
             </Col>
@@ -136,7 +136,7 @@ export default function AccommodationDetails({
               <img
                 className="d-block w-100"
                 src={picture}
-                alt={`slide pic ${index}`}
+                alt={`carousel item ${index}`}
               />
             </Carousel.Item>
           ))}

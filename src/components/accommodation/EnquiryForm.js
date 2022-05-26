@@ -16,14 +16,14 @@ const schema = yup.object().shape({
   name: yup
     .string()
     .required("Name is required")
-    .min(3, "Your first name must be at least 3 characters"),
+    .min(3, "Your name must be at least 3 characters"),
   email: yup
     .string()
     .required("Please enter an email address")
     .email("Please enter a valid email address"),
   guests: yup.string().required("Number of guests is required"),
-  to: yup.string().required("Start date is required"),
-  from: yup.string().required("End date is required"),
+  to: yup.string().required("End date is required"),
+  from: yup.string().required("Start date is required"),
 });
 
 export default function EnquiryForm({ title, email }) {

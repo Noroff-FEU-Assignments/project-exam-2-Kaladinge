@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import FormMessage from "../../common/FormMessage";
 import Loader from "../../common/Loader";
+import { BASE_URL } from "../../constants/api";
 import Heading from "../layout/Heading";
 import AccommodationDetails from "./AccommodationDetails";
 import EnquiryForm from "./EnquiryForm";
@@ -13,14 +15,13 @@ function AccommodationPage() {
   const [fetchDataError, setFetchDataError] = useState(null);
 
   const { id } = useParams("/");
-  const url = `https://kaladinge-pe2.herokuapp.com/api/accommodations/${id}?populate=*`;
+  const url = BASE_URL + `accommodations/${id}?populate=*`;
 
   useEffect(() => {
     const getAccommodation = async () => {
       try {
         const response = await axios.get(url);
         setAccommodation(response.data.data);
-        console.log(response.data.data);
       } catch (error) {
         setFetchDataError(error.toString());
       } finally {
@@ -35,7 +36,11 @@ function AccommodationPage() {
   }
 
   if (fetchDataError) {
-    return <div>There was a fetch data error</div>;
+    return (
+      <FormMessage styling="form--error">
+        There was a fetch data error
+      </FormMessage>
+    );
   }
 
   const {
