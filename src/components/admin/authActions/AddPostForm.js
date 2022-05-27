@@ -110,7 +110,7 @@ function AddPostForm() {
     }
   }
 
-  function say(event) {
+  function setFacility(event) {
     const alreadyThere = checkboxArray.filter((item) => {
       if (item === event.target.value) {
         return true;
@@ -293,7 +293,7 @@ function AddPostForm() {
                 {facilitiesCheckbox.map((item, index) => (
                   <Form.Check
                     key={index}
-                    onClick={say}
+                    onClick={setFacility}
                     type="checkbox"
                     id={`${index}`}
                     label={`${item}`}

@@ -112,7 +112,7 @@ export default function EditDeleteForm({ accommodation }) {
     }
   }
 
-  function say(event) {
+  function setFacility(event) {
     const alreadyThere = checkboxArray.filter((item) => {
       if (item === event.target.value) {
         return true;
@@ -319,7 +319,7 @@ export default function EditDeleteForm({ accommodation }) {
                   return (
                     <Form.Check
                       key={index}
-                      onClick={say}
+                      onClick={setFacility}
                       type="checkbox"
                       id={`${index}`}
                       label={`${item}`}
