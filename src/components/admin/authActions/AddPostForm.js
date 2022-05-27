@@ -74,7 +74,7 @@ function AddPostForm() {
   const http = useAxios();
   const url = ACCOMMODATIONS_PATH;
 
-  async function onSubmit(dat) {
+  async function onSubmit(dat, e) {
     setSubmitting(true);
     setPostError(null);
 
@@ -101,8 +101,8 @@ function AddPostForm() {
       formData.append("data", JSON.stringify(data));
 
       const response = await http.post(url, formData);
-      console.log(response);
       setPostSuccess(true);
+      e.target.reset();
     } catch (error) {
       setPostError(error.toString());
     } finally {
@@ -410,7 +410,7 @@ function AddPostForm() {
                 type="submit"
                 className="button mt-3 bg-primary text-white w-100 border border-none p-2"
               >
-                {submitting === true ? "Working..." : "Submit"}
+                {submitting ? "Working..." : "Submit"}
               </button>
             </Col>
           </Row>

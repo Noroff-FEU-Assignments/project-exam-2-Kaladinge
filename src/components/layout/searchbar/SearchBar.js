@@ -64,7 +64,6 @@ function SearchBar() {
   function browseList(e) {
     if (e.code !== "Enter") {
       if (e.which === 40) {
-        console.log(terms);
         if (terms.length - 1 === listIndex) {
           setListIndex(0);
         } else {

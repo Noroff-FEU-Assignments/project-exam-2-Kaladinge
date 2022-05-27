@@ -76,7 +76,7 @@ export default function EditDeleteForm({ accommodation }) {
   const http = useAxios();
   const url = ACCOMMODATIONS_PATH + `/${accommodation.id}`;
 
-  async function onSubmit(dat) {
+  async function onSubmit(dat, e) {
     setSubmitting(true);
     setPostError(null);
 
@@ -102,8 +102,9 @@ export default function EditDeleteForm({ accommodation }) {
       formData.append("data", JSON.stringify(data));
 
       const response = await http.put(url, formData);
-      console.log(response);
+
       setPostSuccess(true);
+      e.target.reset();
     } catch (error) {
       setPostError(error.toString());
     } finally {
@@ -461,14 +462,7 @@ export default function EditDeleteForm({ accommodation }) {
                 type="submit"
                 className="button mt-3 bg-primary text-white w-100 border border-none p-2"
               >
-                {submitting === true ? "Working..." : "Edit Accommodation"}
-              </button>
-              <button
-                type="button"
-                className="delete button mt-3 bg-danger text-white w-100 border border-none p-2"
-                onClick={handleDelete}
-              >
-                Delete
+                {submitting ? "Working..." : "Edit Accommodation"}
               </button>
             </Col>
           </Row>
@@ -481,6 +475,18 @@ export default function EditDeleteForm({ accommodation }) {
         {postSuccess && (
           <FormMessage styling="form--success">
             Message was successfully submitted
+          </FormMessage>
+        )}
+        <button
+          type="button"
+          className="delete button mt-3 bg-danger text-white w-100 border border-none p-2"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+        {deleteError && (
+          <FormMessage styling="form--error">
+            Could not delete post at this time
           </FormMessage>
         )}
       </Form>
