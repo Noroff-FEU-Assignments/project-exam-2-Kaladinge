@@ -1,4 +1,5 @@
 .accommodations {
+
   &--image {
     border-radius: 20px;
   }
@@ -20,6 +21,10 @@
 
   &--category--clicked {
     border: 2px solid black;
+  }
+
+  @media only screen and (min-width: 992px) {
+    border-right: 1px solid $colorDarkGrey;
   }
 }
 

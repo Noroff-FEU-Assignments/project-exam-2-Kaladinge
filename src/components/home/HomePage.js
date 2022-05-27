@@ -21,7 +21,7 @@ function HomePage() {
             <div
               key={item.text}
               data-text={item.text}
-              className="categories-thumbnails--button mx-end mb-3 position-relative border"
+              className="categories-thumbnails--button mx-end mb-3 position-relative"
               onClick={setCategory}
             >
               <img

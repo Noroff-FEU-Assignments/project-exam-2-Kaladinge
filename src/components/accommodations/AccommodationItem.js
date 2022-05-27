@@ -22,7 +22,7 @@ export default function AccommodationItem({
   return (
     <>
       <Row className="my-4">
-        <Col md={4} className="p-lg-0">
+        <Col lg={4} md={6} className="p-lg-0">
           <Link to={`/accommodation/${id}`}>
             <img
               src={
@@ -34,7 +34,7 @@ export default function AccommodationItem({
             />
           </Link>
         </Col>
-        <Col md={5}>
+        <Col lg={5} md={6}>
           <Link
             to={`/accommodation/${id}`}
             className="d-flex flex-column justify-content-between h-100"
@@ -56,7 +56,7 @@ export default function AccommodationItem({
                 return (
                   <span
                     key={item}
-                    className="accommodations--facility text-white me-1 rounded p-1"
+                    className="accommodations--facility text-white me-1 mb-1 rounded p-1 d-inline-block"
                   >
                     {item}
                   </span>
@@ -66,8 +66,8 @@ export default function AccommodationItem({
           </Link>
         </Col>
         <Col
-          md={3}
-          className="d-flex flex-column justify-content-around align-items-end"
+          lg={3}
+          className="d-flex flex-column justify-content-between align-items-end"
         >
           <p>
             from <span className="accommodations--price">{price}</span> NOK

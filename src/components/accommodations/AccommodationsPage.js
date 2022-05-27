@@ -118,8 +118,8 @@ function AccommodationsPage() {
   return (
     <>
       <Row>
-        <Col className="accommodations border-end">
-          <Heading title="All accommodations" />
+        <Col className="accommodations">
+          <Heading title="Accommodations" />
 
           {categoryButtonStyle.map((item, index) => (
             <span
