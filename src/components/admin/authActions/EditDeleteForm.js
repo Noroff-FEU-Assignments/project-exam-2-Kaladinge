@@ -337,7 +337,7 @@ export default function EditDeleteForm({ accommodation }) {
             <Col xs={6} lg={4}>
               <Form.Label htmlFor="mainpic" className="mt-3">
                 <p>Mainpic</p>
-                <div className="bg-light border position-relative mainpic--container">
+                <div className="bg-light border position-relative mainpic--container overflow-hidden">
                   <img
                     src={
                       !currentData.attributes.mainpics.data
@@ -346,9 +346,7 @@ export default function EditDeleteForm({ accommodation }) {
                         ? URL.createObjectURL(file)
                         : currentData.attributes.mainpics.data[0].attributes.url
                     }
-                    className={`${
-                      file ? "w-100 top-50" : "w-50 bottom-0"
-                    }  start-50 translate-middle position-absolute`}
+                    className="start-50 top-50 w-100 translate-middle position-absolute"
                     alt="main picture"
                   />
                 </div>
@@ -366,7 +364,7 @@ export default function EditDeleteForm({ accommodation }) {
                 <Col xs={5} sm={4} lg={12}>
                   <Form.Label htmlFor="subpic" className="mt-2 mt-lg-3 mb-0">
                     <p>Subpics</p>
-                    <div className="bg-light border position-relative subpic--container">
+                    <div className="bg-light border position-relative subpic--container overflow-hidden">
                       <img
                         src={
                           subpic1
@@ -381,9 +379,7 @@ export default function EditDeleteForm({ accommodation }) {
                                 currentData.attributes.subpic.data.length - 2
                               ].attributes.url
                         }
-                        className={`${
-                          subpic1 ? "w-100 top-50" : "w-50 bottom-0"
-                        }  start-50 translate-middle position-absolute`}
+                        className="start-50 top-50 w-100 translate-middle position-absolute"
                         alt="sub picture"
                       />
                     </div>
@@ -398,7 +394,7 @@ export default function EditDeleteForm({ accommodation }) {
 
                 <Col xs={5} sm={4} lg={12}>
                   <Form.Label htmlFor="subpic2" className="mt-5 mt-lg-0">
-                    <div className="bg-light border position-relative subpic--container">
+                    <div className="bg-light border position-relative subpic--container overflow-hidden">
                       <img
                         src={
                           subpic2
@@ -411,9 +407,7 @@ export default function EditDeleteForm({ accommodation }) {
                                 currentData.attributes.subpic.data.length - 1
                               ].attributes.url
                         }
-                        className={`${
-                          subpic2 ? "w-100 top-50" : "w-50 bottom-0"
-                        }  start-50 translate-middle position-absolute`}
+                        className="start-50 top-50 w-100 translate-middle position-absolute"
                         alt="sub picture"
                       />
                     </div>

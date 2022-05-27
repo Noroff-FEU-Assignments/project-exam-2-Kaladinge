@@ -42,8 +42,11 @@ function ChoosePost() {
       <Row>
         {accommodations.map((item) => (
           <Col xs={12} md={4} lg={3} key={item.id}>
-            <Link to={`/edit/${item.id}`}>
-              <h6 className="bg-primary p-3">{item.attributes.title}</h6>
+            <Link
+              to={`/edit/${item.id}`}
+              className="text-decoration-none text-center"
+            >
+              <h6 className="posts p-3">{item.attributes.title}</h6>
             </Link>
           </Col>
         ))}

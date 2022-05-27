@@ -306,7 +306,7 @@ function AddPostForm() {
             <Col xs={6} lg={4}>
               <Form.Label htmlFor="mainpic" className="mt-3">
                 <p>Mainpic</p>
-                <div className="bg-light border position-relative mainpic--container">
+                <div className="bg-light border position-relative mainpic--container overflow-hidden">
                   <img
                     src={file ? URL.createObjectURL(file) : mainpicture}
                     className={`${
@@ -329,7 +329,7 @@ function AddPostForm() {
                 <Col xs={5} sm={4} lg={12}>
                   <Form.Label htmlFor="subpic" className="mt-2 mt-lg-3 mb-0">
                     <p>Subpics</p>
-                    <div className="bg-light border position-relative subpic--container">
+                    <div className="bg-light border position-relative subpic--container overflow-hidden">
                       <img
                         src={
                           subpic1 ? URL.createObjectURL(subpic1) : mainpicture
@@ -351,7 +351,7 @@ function AddPostForm() {
 
                 <Col xs={5} sm={4} lg={12}>
                   <Form.Label htmlFor="subpic2" className="mt-5 mt-lg-0">
-                    <div className="bg-light border position-relative subpic--container">
+                    <div className="bg-light border position-relative subpic--container overflow-hidden">
                       <img
                         src={
                           subpic2 ? URL.createObjectURL(subpic2) : mainpicture

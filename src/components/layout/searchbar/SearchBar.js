@@ -97,7 +97,7 @@ function SearchBar() {
       <div className="position-relative">
         <FormControl
           autoComplete="off"
-          className="navsearch mb-1"
+          className="navsearch"
           type="text"
           placeholder="Search accommodations"
           action="hoho"
