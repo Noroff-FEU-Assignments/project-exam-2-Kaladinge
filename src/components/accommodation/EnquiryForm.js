@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Form } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import FormMessage from "../../common/FormMessage";
@@ -122,41 +122,47 @@ export default function EnquiryForm({ title, email }) {
               <div className="mb-3 text-danger">{errors.email.message}</div>
             )}
 
-            <Form.Label htmlFor="to" className="mt-3">
-              To
-            </Form.Label>
-            <Controller
-              control={control}
-              name="to"
-              render={({ field }) => (
-                <DatePicker
-                  placeholderText="Select date"
-                  onChange={(e) => field.onChange(e)}
-                  selected={field.value}
+            <Row>
+              <Col md={3}>
+                <Form.Label htmlFor="from" className="mt-3">
+                  From
+                </Form.Label>
+                <Controller
+                  control={control}
+                  name="from"
+                  render={({ field }) => (
+                    <DatePicker
+                      placeholderText="Select date"
+                      onChange={(e) => field.onChange(e)}
+                      selected={field.value}
+                    />
+                  )}
                 />
-              )}
-            />
-            {errors.to && (
-              <div className="mb-3 text-danger">This field is required</div>
-            )}
+                {errors.from && (
+                  <div className="mb-3 text-danger">Start date is required</div>
+                )}
+              </Col>
 
-            <Form.Label htmlFor="from" className="mt-3">
-              From
-            </Form.Label>
-            <Controller
-              control={control}
-              name="from"
-              render={({ field }) => (
-                <DatePicker
-                  placeholderText="Select date"
-                  onChange={(e) => field.onChange(e)}
-                  selected={field.value}
+              <Col md={3}>
+                <Form.Label htmlFor="to" className="mt-3">
+                  To
+                </Form.Label>
+                <Controller
+                  control={control}
+                  name="to"
+                  render={({ field }) => (
+                    <DatePicker
+                      placeholderText="Select date"
+                      onChange={(e) => field.onChange(e)}
+                      selected={field.value}
+                    />
+                  )}
                 />
-              )}
-            />
-            {errors.from && (
-              <div className="mb-3 text-danger">This field is required</div>
-            )}
+                {errors.to && (
+                  <div className="mb-3 text-danger">End date is required</div>
+                )}
+              </Col>
+            </Row>
 
             <Form.Label htmlFor="guests" className="mt-3">
               Number of guests

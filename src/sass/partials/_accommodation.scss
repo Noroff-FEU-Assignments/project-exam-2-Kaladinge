@@ -14,3 +14,25 @@
   border-radius: 20px;
   margin-top: 70px;
 }
+
+.carousel-indicators [data-bs-target] {
+  height: 30px;
+  margin: 0 8px;
+  opacity: 1;
+  background-color: white;
+  border-radius: 2px/2px;
+  box-shadow: 2px 2px 10px $black;
+  border-top: none;
+  border-bottom: none;
+}
+
+.carousel-indicators {
+  .active {
+    background-color: $primary;
+  }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  display: none;
+}

@@ -5,7 +5,6 @@ body {
 
 .link {
   font-size: 20px;
-
 }
 
 .link:hover {
@@ -36,6 +35,12 @@ body {
 
 .navbar {
   z-index: 1;
+
+  &-collapse {
+  @media only screen and (max-width: 768px) {
+    border-bottom: 1px solid $colorDarkGrey;
+  }
+  }
 }
 
 .navbar-scroll {

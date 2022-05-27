@@ -17,10 +17,9 @@ $navbar-dark-toggler-border-color: $colorDarkGrey;
 //$h6-font-size: 0.8em;
 
 
-
+@import "partials/base";
 @import "partials/layout";
 @import "partials/typography";
-@import "partials/base";
 @import "partials/home";
 @import "partials/modal";
 @import "partials/accommodations";

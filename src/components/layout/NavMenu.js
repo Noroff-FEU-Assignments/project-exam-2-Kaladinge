@@ -62,7 +62,7 @@ function NavMenu() {
             </Navbar.Brand>
           </NavLink>
           <Nav className="">
-            <NavLink to="/accommodations" className="nav-link">
+            <NavLink to="/accommodations" className="nav-link mb-1">
               Accommodations
             </NavLink>
           </Nav>
@@ -71,11 +71,11 @@ function NavMenu() {
 
           <Nav className="">
             {token ? (
-              <NavLink to="/admin" className="nav-link">
+              <NavLink to="/admin" className="nav-link mb-1">
                 Admin
               </NavLink>
             ) : (
-              <NavLink to="/contact" className="nav-link">
+              <NavLink to="/contact" className="nav-link mb-1">
                 Contact
               </NavLink>
             )}
@@ -84,7 +84,7 @@ function NavMenu() {
             {token ? (
               <Button onClick={logOut}>Log out</Button>
             ) : (
-              <NavLink to="/login" className="nav-link">
+              <NavLink to="/login" className="nav-link mb-1">
                 Login
               </NavLink>
             )}

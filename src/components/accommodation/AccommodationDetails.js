@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Carousel, Col, Row } from "react-bootstrap";
 import noImage from "../../images/no-image.jpg";
 import PropTypes from "prop-types";
+import closeIcon from "../../images/close-icon.png";
 
 export default function AccommodationDetails({
   summary,
@@ -120,12 +121,12 @@ export default function AccommodationDetails({
       </Row>
 
       <div className={`modal ${displayModalImage ? "d-block" : "d-none"}`}>
-        <span
+        <img
           onClick={() => displayModal(0)}
-          className="modal--close text-white"
-        >
-          &times;
-        </span>
+          className="modal--close"
+          src={closeIcon}
+          alt="close icon"
+        />
         <Carousel
           activeIndex={index}
           onSelect={handleSelect}
