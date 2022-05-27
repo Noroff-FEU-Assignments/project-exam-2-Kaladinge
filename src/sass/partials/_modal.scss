@@ -24,11 +24,9 @@
 
   &--close {
     position: absolute;
-    top: 0px;
+    top: 5px;
     right: 10px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
+    width: 50px;
   }
 
   &--close:hover,

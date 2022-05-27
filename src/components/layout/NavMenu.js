@@ -41,7 +41,7 @@ function NavMenu() {
       expand="lg"
       className={`${backgroundColor} ${navColor} position-fixed w-100`}
     >
-      <NavLink to="/" className="d-lg-none border">
+      <NavLink to="/" className="d-lg-none">
         <Navbar.Brand>
           <img src={logo} alt="desktop-logo" className="desktop-logo--image" />
         </Navbar.Brand>

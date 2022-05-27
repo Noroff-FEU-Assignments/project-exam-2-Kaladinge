@@ -86,6 +86,9 @@ function AccommodationPage() {
         <Col className="enquiryform border-start">
           <div className="enquiryform--container text-center">
             <EnquiryForm title={title} email={email} />
+            <p>
+              from <span className="accommodations--price">{price}</span> NOK
+            </p>
           </div>
         </Col>
       </Row>

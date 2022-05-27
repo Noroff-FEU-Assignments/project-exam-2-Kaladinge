@@ -43,16 +43,16 @@ export default function AccommodationDetails({
   return (
     <>
       <div className="accommodation--textcontainer">
-        <div>{summary}</div>
+        <div className="fst-italic">{summary}</div>
         <span>{address}</span> - <span className="text-success">{rating}</span>
         <hr />
       </div>
-      <div className="d-flex justify-content-start">
+      <div>
         {facility.map((item) => {
           return (
             <span
               key={item}
-              className="accommodation--facility text-white text-center me-4 rounded p-1"
+              className="accommodation--facility text-white me-1 mb-1 rounded d-inline-block text-center p-1"
             >
               {item}{" "}
             </span>

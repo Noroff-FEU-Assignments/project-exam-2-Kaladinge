@@ -9,6 +9,7 @@ import axios from "axios";
 import FormMessage from "../../common/FormMessage";
 import { Button } from "react-bootstrap";
 import PropTypes from "prop-types";
+import closeIcon from "../../images/close-icon.png";
 
 const url = "https://kaladinge-pe2.herokuapp.com/api/enquiries";
 
@@ -89,9 +90,13 @@ export default function EnquiryForm({ title, email }) {
           className={`modal--content p-3 d-flex flex-column mx-auto text-start position-relative`}
           autoComplete="off"
         >
-          <span onClick={displayModal} className="modal--close text-black">
-            &times;
-          </span>
+          <img
+            onClick={displayModal}
+            className="modal--close"
+            src={closeIcon}
+            alt="close icon"
+          />
+
           <fieldset disabled={submitting}>
             <Form.Label htmlFor="name" className="mt-3">
               Name
