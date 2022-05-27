@@ -46,7 +46,7 @@ export default function EnquiryForm({ title, email }) {
     setDisplayModalForm(!displayModalForm);
   }
 
-  async function onSubmit(data) {
+  async function onSubmit(data, e) {
     const options = {
       day: "numeric",
       month: "long",
@@ -72,6 +72,10 @@ export default function EnquiryForm({ title, email }) {
         },
       });
       setPostSuccess(true);
+      e.target.reset();
+      setTimeout(() => {
+        setDisplayModalForm(false);
+      }, 1500);
     } catch (error) {
       setPostError(error.toString());
     } finally {

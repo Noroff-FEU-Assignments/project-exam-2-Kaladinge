@@ -8,8 +8,10 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 import { Form } from "react-bootstrap";
+import FormMessage from "../../common/FormMessage";
+import { BASE_URL } from "../../constants/api";
 
-const url = "https://kaladinge-pe2.herokuapp.com/api/auth/local";
+const url = BASE_URL + "auth/local";
 
 const schema = yup.object().shape({
   username: yup.string().required("Please enter your username"),
@@ -40,8 +42,7 @@ function Loginform() {
 
   async function onSubmit(data) {
     setSubmitting(true);
-    console.log(data.username);
-    console.log(data.password);
+    setLoginError(null);
 
     try {
       const response = await axios.post(url, {
@@ -51,7 +52,6 @@ function Loginform() {
 
       setToken(response.data.jwt);
       setLoginError(false);
-      console.log(response.data.jwt);
       setLoginSuccess(true);
       navigate("/admin");
     } catch (error) {
@@ -101,14 +101,18 @@ function Loginform() {
           </div>
 
           <button className="button mt-3 bg-primary text-white w-100 border border-none p-2">
-            Login
+            {submitting ? "Working..." : "Submit"}
           </button>
         </fieldset>
         {loginSuccess && (
-          <div className="text-success">You successfully logged in</div>
+          <FormMessage styling="form--success">
+            You successfully logged in
+          </FormMessage>
         )}
         {loginError && (
-          <div className="text-danger">Username or password was incorrect</div>
+          <FormMessage styling="form--error">
+            Username or password was incorrect
+          </FormMessage>
         )}
       </Form>
     </>

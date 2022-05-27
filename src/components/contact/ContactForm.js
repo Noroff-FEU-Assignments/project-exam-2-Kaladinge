@@ -5,8 +5,9 @@ import { Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import FormMessage from "../../common/FormMessage";
+import { BASE_URL } from "../../constants/api";
 
-const url = "https://kaladinge-pe2.herokuapp.com/api/messages";
+const url = BASE_URL + "messages";
 
 const schema = yup.object().shape({
   email: yup
@@ -34,7 +35,7 @@ function ContactForm() {
     resolver: yupResolver(schema),
   });
 
-  async function onSubmit(data) {
+  async function onSubmit(data, e) {
     setSubmitting(true);
     setPostError(null);
     try {
@@ -46,6 +47,7 @@ function ContactForm() {
         },
       });
       setPostSuccess(true);
+      e.target.reset();
     } catch (error) {
       setPostError(error.toString());
     } finally {
