@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Heading from "../../layout/Heading";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -316,10 +316,6 @@ export default function EditDeleteForm({ accommodation }) {
               </Form.Label>
               <div className="mb-3">
                 {facilitiesCheckbox.map(function (item, index) {
-                  const currentFacility =
-                    currentData.attributes.facility.filter(
-                      (current) => item === current
-                    );
                   return (
                     <Form.Check
                       key={index}
@@ -328,7 +324,6 @@ export default function EditDeleteForm({ accommodation }) {
                       id={`${index}`}
                       label={`${item}`}
                       value={item}
-                      defaultChecked={currentFacility.length > 0 ? true : false}
                     />
                   );
                 })}
