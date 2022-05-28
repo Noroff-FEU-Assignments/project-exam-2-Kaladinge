@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FormControl } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../../constants/api";
 
 import ListResult from "./ListResult";
 
@@ -15,8 +16,7 @@ function SearchBar() {
 
   const navigate = useNavigate();
 
-  const url =
-    "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
+  const url = BASE_URL + "accommodations/?populate=*";
 
   useEffect(() => {
     const getAccommodations = async () => {

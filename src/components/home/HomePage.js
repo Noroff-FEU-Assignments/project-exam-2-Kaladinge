@@ -27,6 +27,7 @@ function HomePage() {
               <img
                 src={item.image}
                 className="categories-thumbnails--image w-100"
+                alt={item.text}
               />
               <h3 className="categories-thumbnails--text position-absolute bottom-0 p-4 m-0 bg-secondary w-100 text-white text-center">
                 {item.text}

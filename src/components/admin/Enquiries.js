@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import FormMessage from "../../common/FormMessage";
 import Loader from "../../common/Loader";
 import { ENQUIRIES_PATH } from "../../constants/api";
 import useAxios from "../../hooks/useAxios";
@@ -31,7 +32,11 @@ function Messages() {
   }
 
   if (fetchPagesError) {
-    return <div>There was a fetch enquiries error</div>;
+    return (
+      <FormMessage styling="form--error">
+        There was a fetch enquiries error
+      </FormMessage>
+    );
   }
 
   return (

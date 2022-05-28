@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import FormMessage from "../../../common/FormMessage";
 
 export default function ListResult({ list, loading, error, listIndex }) {
   if (loading) {
@@ -8,7 +9,11 @@ export default function ListResult({ list, loading, error, listIndex }) {
   }
 
   if (error) {
-    return <p>There was something wrong when fetching results</p>;
+    return (
+      <FormMessage styling="form--error">
+        There was something wrong when fetching results
+      </FormMessage>
+    );
   }
 
   if (list && list.length > 0) {

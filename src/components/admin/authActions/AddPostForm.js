@@ -132,7 +132,6 @@ function AddPostForm() {
     }
   }
 
-  console.log(file);
   return (
     <>
       <Heading title="Add a New Accommodation" />
@@ -312,7 +311,7 @@ function AddPostForm() {
                     className={`${
                       file ? "w-100 top-50" : "w-50 bottom-0"
                     }  start-50 translate-middle position-absolute`}
-                    alt="main picture"
+                    alt="main accommodation"
                   />
                 </div>
               </Form.Label>
@@ -337,7 +336,7 @@ function AddPostForm() {
                         className={`${
                           subpic1 ? "w-100 top-50" : "w-50 bottom-0"
                         }  start-50 translate-middle position-absolute`}
-                        alt="sub picture"
+                        alt="sub accommodation"
                       />
                     </div>
                   </Form.Label>
@@ -359,7 +358,7 @@ function AddPostForm() {
                         className={`${
                           subpic2 ? "w-100 top-50" : "w-50 bottom-0"
                         }  start-50 translate-middle position-absolute`}
-                        alt="sub picture"
+                        alt="sub accommodation"
                       />
                     </div>
                   </Form.Label>

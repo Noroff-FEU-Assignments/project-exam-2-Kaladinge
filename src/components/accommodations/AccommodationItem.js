@@ -30,7 +30,8 @@ export default function AccommodationItem({
                   ? mainpic.data[mainpic.data.length - 1].attributes.url
                   : noImage
               }
-              className="w-100 accommodations--image"
+              className="w-100 accommodations--image border"
+              alt="main accommodation"
             />
           </Link>
         </Col>

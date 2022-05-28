@@ -53,7 +53,7 @@ function NavMenu() {
             <Navbar.Brand className="d-block text-center">
               <img
                 src={logo}
-                alt="desktop-logo"
+                alt="smartphone-logo"
                 className="desktop-logo--image"
               />
               <h1 className={`text-uppercase desktop-logo--text ${logoColor}`}>

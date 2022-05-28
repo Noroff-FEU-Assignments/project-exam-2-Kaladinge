@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Loader from "../../common/Loader";
+import { BASE_URL } from "../../constants/api";
 import { categoryButtons } from "../../constants/data";
 import { FilterContext } from "../../context/AuthContext";
 import Heading from "../layout/Heading";
@@ -18,8 +19,7 @@ function AccommodationsPage() {
   const [categoryButtonStyle, setCategoryButtonStyle] =
     useState(categoryButtons);
 
-  const url =
-    "https://kaladinge-pe2.herokuapp.com/api/accommodations/?populate=*";
+  const url = BASE_URL + "accommodations/?populate=*";
 
   useEffect(() => {
     const getAccommodations = async () => {
@@ -94,7 +94,6 @@ function AccommodationsPage() {
 
     if (accommodations.length === dataArray.length && clicked === false) {
       setAccommodations(filteredArray);
-      console.log("first");
       setClicked(true);
     } else {
       const alreadyThere = accommodations.filter(
@@ -103,10 +102,8 @@ function AccommodationsPage() {
       setClicked(true);
 
       if (alreadyThere.length === 0) {
-        console.log("new");
         setAccommodations([...accommodations, ...filteredArray]);
       } else {
-        console.log("already");
         const newArray = accommodations.filter(
           (item) => item.attributes.category !== e.target.innerText
         );

@@ -10,8 +10,9 @@ import FormMessage from "../../common/FormMessage";
 import { Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import closeIcon from "../../images/close-icon.png";
+import { BASE_URL } from "../../constants/api";
 
-const url = "https://kaladinge-pe2.herokuapp.com/api/enquiries";
+const url = BASE_URL + "enquiries";
 
 const schema = yup.object().shape({
   name: yup

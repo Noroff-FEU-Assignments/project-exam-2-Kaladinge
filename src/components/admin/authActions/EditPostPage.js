@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import FormMessage from "../../../common/FormMessage";
 import Loader from "../../../common/Loader";
+import { BASE_URL } from "../../../constants/api";
 import EditDeleteForm from "./EditDeleteForm";
 
 function EditPostPage() {
@@ -11,7 +12,7 @@ function EditPostPage() {
   const [fetchDataError, setFetchDataError] = useState(null);
 
   const { id } = useParams("/");
-  const url = `https://kaladinge-pe2.herokuapp.com/api/accommodations/${id}?populate=*`;
+  const url = BASE_URL + `accommodations/${id}?populate=*`;
 
   useEffect(() => {
     const getAccommodation = async () => {

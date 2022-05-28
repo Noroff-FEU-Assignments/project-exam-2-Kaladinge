@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import FormMessage from "../../common/FormMessage";
 import Loader from "../../common/Loader";
 import { MESSAGES_PATH } from "../../constants/api";
 import useAxios from "../../hooks/useAxios";
@@ -18,7 +19,6 @@ function Messages() {
         setMessages(response.data.data);
       } catch (error) {
         setFetchPagesError(error.toString());
-        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -31,7 +31,11 @@ function Messages() {
   }
 
   if (fetchPagesError) {
-    return <div>There was a fetch messages error</div>;
+    return (
+      <FormMessage styling="form--error">
+        There was a fetch messages error
+      </FormMessage>
+    );
   }
 
   return (

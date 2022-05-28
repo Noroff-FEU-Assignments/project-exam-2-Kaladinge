@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Heading from "../../layout/Heading";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -343,7 +343,7 @@ export default function EditDeleteForm({ accommodation }) {
                         : currentData.attributes.mainpics.data[0].attributes.url
                     }
                     className="start-50 top-50 w-100 translate-middle position-absolute"
-                    alt="main picture"
+                    alt="main accommodation"
                   />
                 </div>
               </Form.Label>
@@ -376,7 +376,7 @@ export default function EditDeleteForm({ accommodation }) {
                               ].attributes.url
                         }
                         className="start-50 top-50 w-100 translate-middle position-absolute"
-                        alt="sub picture"
+                        alt="sub accommodation"
                       />
                     </div>
                   </Form.Label>
@@ -404,7 +404,7 @@ export default function EditDeleteForm({ accommodation }) {
                               ].attributes.url
                         }
                         className="start-50 top-50 w-100 translate-middle position-absolute"
-                        alt="sub picture"
+                        alt="sub accommodation"
                       />
                     </div>
                   </Form.Label>

@@ -70,7 +70,8 @@ export default function AccommodationDetails({
                 ? mainpic.data[mainpic.data.length - 1].attributes.url
                 : noImage
             }
-            className="w-100 accommodation--image"
+            className="w-100 accommodation--image border"
+            alt="main accommodation"
             onClick={() => displayModal(0)}
           />
         </Col>
@@ -85,7 +86,8 @@ export default function AccommodationDetails({
                     ? subpic.data[subpic.data.length - 1].attributes.url
                     : subpic.data[subpic.data.length - 2].attributes.url
                 }
-                className="accommodation--image w-100"
+                className="accommodation--image w-100 border"
+                alt="sub accommodation"
                 onClick={() => displayModal(1)}
               />
             </Col>
@@ -98,7 +100,8 @@ export default function AccommodationDetails({
                     ? noImage
                     : subpic.data[subpic.data.length - 1].attributes.url
                 }
-                className="accommodation--image w-100 "
+                className="accommodation--image w-100 border"
+                alt="sub accommodation"
                 onClick={() => displayModal(2)}
               />
             </Col>
