@@ -1,3 +1,9 @@
+Start project with the npm start command
+
+Login details:
+username: admin@admin.com
+password: Pass1234
+
 # Project Exam 2
 
 There are two options with this Project Exam.
