@@ -336,11 +336,11 @@ export default function EditDeleteForm({ accommodation }) {
                 <div className="bg-light border position-relative mainpic--container overflow-hidden">
                   <img
                     src={
-                      !currentData.attributes.mainpics.data
-                        ? noImage
-                        : file
+                      file
                         ? URL.createObjectURL(file)
-                        : currentData.attributes.mainpics.data[0].attributes.url
+                        : currentData.attributes.mainpics.data
+                        ? currentData.attributes.mainpics.data[0].attributes.url
+                        : noImage
                     }
                     className="start-50 top-50 w-100 translate-middle position-absolute"
                     alt="main accommodation"
