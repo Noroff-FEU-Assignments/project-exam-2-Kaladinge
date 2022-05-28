@@ -44,7 +44,7 @@ const schema = yup.object().shape({
   summary: yup
     .string()
     .required("Please enter a short description")
-    .min(2, "Summary must be at least 10 characters long"),
+    .min(10, "Summary must be at least 10 characters long"),
   description: yup
     .string()
     .required("Please enter a description")
