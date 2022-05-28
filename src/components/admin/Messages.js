@@ -39,7 +39,7 @@ function Messages() {
   }
 
   return (
-    <div>
+    <>
       <div className="position-relative d-inline-block">
         <Heading title="Messages" />
         <span className="position-absolute top-0 start-100 badge rounded-pill bg-secondary">
@@ -74,7 +74,7 @@ function Messages() {
           )}
         </tbody>
       </Table>
-    </div>
+    </>
   );
 }
 
