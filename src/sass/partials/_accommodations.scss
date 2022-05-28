@@ -4,6 +4,12 @@
     border-radius: 20px;
   }
 
+  &--image:hover {
+    backdrop-filter: blur(2px);
+    filter: blur(2px);
+    transition: 0.5s ease;
+  }
+
   & a {
     text-decoration: none;
     color: black;
