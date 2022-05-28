@@ -51,6 +51,7 @@ function Messages() {
         <thead>
           <tr>
             <th>#</th>
+            <th>Name</th>
             <th>Guests</th>
             <th>Customer email</th>
             <th>Accommodation name</th>
@@ -68,6 +69,7 @@ function Messages() {
               return (
                 <tr key={item.id}>
                   <td>{index + 1}</td>
+                  <td>{item.attributes.name}</td>
                   <td>{item.attributes.guests}</td>
                   <td>{item.attributes.email}</td>
                   <td>{item.attributes.hotel}</td>
