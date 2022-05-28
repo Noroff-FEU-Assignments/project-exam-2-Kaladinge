@@ -175,9 +175,9 @@ export default function EnquiryForm({ title, email }) {
             <Form.Select {...register("guests")}>
               <option value="">---</option>
               <option value="1 guest">1 guest</option>
-              <option value="2 guest">2 guests</option>
-              <option value="3 guest">3 guests</option>
-              <option value="4 guest">4 guests</option>
+              <option value="2 guests">2 guests</option>
+              <option value="3 guests">3 guests</option>
+              <option value="4 guests">4 guests</option>
             </Form.Select>
             {errors.guests && (
               <div className="mb-3 text-danger">{errors.guests.message}</div>
