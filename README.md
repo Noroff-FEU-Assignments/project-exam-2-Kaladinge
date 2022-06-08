@@ -4,6 +4,96 @@ Login details:
 username: admin@admin.com
 password: Pass1234
 
+# Holidaze
+
+![screenshot](https://res.cloudinary.com/dyv1dt5ps/image/upload/v1654677212/holidaze-pic_b37jg4.jpg)
+
+A accommodation website allowing customers to browse accommodations in Bergen and make booking reservations. Admin users can manage reservations as well as add new accommodations and edit/delete existing ones.
+
+## Description
+
+A fully responsive model of a website that allows users to find hotels, B&Bs and guesthouses, and accommodation owners to receive enquiries. There is a customer-facing and an admin section. Strapi is used as a headless CMS for storing and managing data and is publically hosted at Heroku.
+
+For the customers possible actions include:
+
+- Using the GET method to:
+
+  1. display all accommodation entries
+  2. display single entries with the id retrieved from the URL parameter
+
+- Using the POST method to:
+
+  1. post booking enquiries for a specific accommodation with specific dates and number of guests
+  2. post messages concerning any questions the user may have
+
+- Filtering accommodations by their categories (multiple categories can be stacked to allow for more advanced filtering)
+
+- Using a typeahed searcbar to find specific accommodations
+
+For the admin possible actions include:
+
+- Using the GET method to see enquiries and messages posted by the user
+- Using the POST method to add new entries
+- Using the PUT method to edit properties of existing entries
+- Using the DELETE method to delete existing entries
+
+## Built With
+
+Tech stacks include:
+
+- [React](https://reactjs.org/)
+- [React-Bootstrap](https://react-bootstrap.github.io/)
+- [Strapi](https://https://strapi.io/) (as a headless CMS)
+- [Heroku](https://id.heroku.com/) (for hosting the API)
+- [Sass](https://sass-lang.com/)(for styling)
+
+## Getting Started
+
+### Installing
+
+1. Clone the repo:
+
+```bash
+git clone git@github.com/Kaladinge/project-exam-2.git
+```
+
+2. Install the dependencies:
+
+```
+npm install
+```
+
+### Running
+
+To run the app, run the following commands:
+
+```
+npm run start
+```
+
+## Contributing
+
+To make comments and suggestions make sure to open a pull request by the following steps:
+
+1. From the repo page, click on the **Fork** button in the top-right corner.
+2. Clone the repo as described above (**_Installing_**).
+3. Create a new branch with the following command:
+   ```bash
+    git checkout -b new_branch
+   ```
+4. Create a new remote for the upstream repo with the command:
+   ```bash
+    git remote add upstream https://github.com/<original reponame>/demo
+   ```
+   where original reponame refers to the original repo you created your fork from.
+5. Make changes and push it to the new branch
+6. Once changes has been done click on the **Compare & Pull request** button on your repo.
+7. Now click on the **Create Pull request** button that appear.
+
+## Contact
+
+[My LinkedIn page](www.linkedin.com/in/lars-inge-g-johnsen)
+
 # Project Exam 2
 
 There are two options with this Project Exam.
